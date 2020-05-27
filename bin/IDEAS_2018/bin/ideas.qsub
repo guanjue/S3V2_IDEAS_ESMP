@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+#This script replaces run_IDEAS.sh 
+## print a message and exit
+function die () {
+        echo $1
+        exit 100
+}
+
+## set variables from config file
+source $CONFIG_FILE
+test $? -eq 0 || die "failed: source $CONFIG_FILE"
+#command line tests
+#config_file=$1
+#source $config_file || die "failed: source $config_file"
+
+#for IDEAS (need GSL in LD_LIBRARY_PATH)
+export LD_LIBRARY_PATH=/gpfs/group/rch8/legacy/biostar/lib:$LD_LIBRARY_PATH
+#load python for bed2inv.py
+module load python/2.7.14-anaconda5.0.1
+
+## create the output directory if necessary
+if [ ! -d "$OUTDIR" ]; then
+        mkdir -p "$OUTDIR"
+        test $? -eq 0 || die "Insufficient privileges to create $OUTDIR"
+fi
+runideas=1
+if [ -n "$IDEAS" ]; then 
+	runideas=$IDEAS
+fi
+
+cd $OUTDIR
+output_dir=$OUTDIR/ideas_result/
+script_dir=$WORKFLOWDIR/IDEAS_2018/
+
+#write parafile either way, need to set ideas parameter
+#write the parameter file for ideas, using options in config file
+echo "Writing para file for IDEAS"
+$WORKFLOWDIR/writeParafile.pl $CONFIG_FILE > $OUTDIR/$IDEAS_jobname.parafile
+test $? -eq 0 || die "failed: writeParafile.pl"
+
+#if running ideas, may be just heatmap and tracks
+if [ "$runideas" -eq "1" ]; then 
+    #convert input file for s3norm to what ideas wants
+    echo "Writing input files for IDEAS"
+    #don't overwrite if skipping normalization
+    $WORKFLOWDIR/writeIdeasInput.pl $CONFIG_FILE $OUTDIR/$IDEAS_jobname.input
+    test $? -eq 0 || die "failed: writeIdeasInput.pl"
+    #reformat windows file
+    echo "Reformating windows file for IDEAS"
+    $WORKFLOWDIR/windowsForIdeas.pl $OUTDIR > $OUTDIR/windowsNoBlackForIdeas.bed
+    test $? -eq 0 || die "failed: windowsForIdeas.pl"
+    ### get genome inv file, used with split parameter
+    #binfile=$OUTDIR/windowsNoBlackForIdeas.bed
+    #echo "counting bins per chromosome (cumulative) $binfile"
+    #time python ./bin/bed2inv.py -i $binfile -o $binfile'.inv'
+
+    cd $OUTDIR
+    ### make output dir, and deletes everything from output_dir before starting!
+    if [ -d $output_dir ]; then rm -r $output_dir; mkdir $output_dir; else mkdir $output_dir; fi
+    ### cp scripts to the analysis dir
+    if [ -d bin ]; then rm -r bin; cp -r $script_dir'bin' ./ ; else cp -r $script_dir'bin' ./ ; fi
+fi
+
+echo "runme.R *${IDEAS_jobname}* *${output_dir}*"
+time Rscript ./bin/runme.R $IDEAS_jobname'.input' $IDEAS_jobname'.parafile' $output_dir
+
+exit 0
