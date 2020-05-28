@@ -2,6 +2,7 @@ import os
 import numpy as np
 import subprocess
 from subprocess import call
+import sys
 
 def creat2log(info, log_file):
 	log = open(log_file, 'w')
@@ -24,6 +25,25 @@ def read2d_array(filename,dtype_used):
 	data.close()
 	return(data0)
 
+def read1d_array(filename,dtype_used):
+	import numpy as np
+	data=open(filename,'r')
+	data0=[]
+	for records in data:
+		tmp = records.strip()
+		data0.append(tmp)
+	data0 = np.array(data0,dtype=dtype_used)
+	data.close()
+	return(data0)
+
+def check(file_check):
+	try:
+		if not os.path.exists(file_check):
+			sys.exit("something wrong with NBP value! *NBP.bedgraph file is not there")
+		read1d_array(file_check, float)
+		print('ok')
+	except ValueError:
+		sys.exit("something wrong with NBP value!")
 
 def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_dir, OUTDIR, GENOME, GENOMESIZES, BLACK, metadata, bin_size, local_bg_bin, id_name, email, threads, cap_sig, IDEAS_track_link, other_parafile):
 	####################################
@@ -119,7 +139,12 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 			os.makedirs(id_name+'_IDEAS_input_NB/')
 		# cut 4th column
 		for mk in mks:
+			all_file = read2d_array(mk[0]+'.getave_nbp.list.txt', str)
 			a=call('while read -r IP CTRL; do cut -f4 $IP\'.NBP.bedgraph\' > $IP\'.NBP.txt\'; mv $IP\'.NBP.txt\' '+id_name+'_IDEAS_input_NB/; done < '+mk[0]+'.getave_nbp.list.txt', shell=True)
+			file_check = id_name+'_IDEAS_input_NB/'+all_file[0,0]+'.NBP.txt'
+			### check if .NBP.txt is there
+			check(file_check)
+			###
 			if uniq_mk_num==1:
 				b=call('cut -f4 '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph.NBP.bedgraph'+' > '+mk[0]+'.average_sig.bedgraph.S3V2.bedgraph.NBP.txt', shell=True)
 				b=call('mv '+mk[0]+'.average_sig.bedgraph.S3V2.bedgraph.NBP.txt '+id_name+'_IDEAS_input_NB/', shell=True)
