@@ -1,0 +1,23 @@
+# required R package:
+#data.table
+
+#python packages:
+
+#packages default to python: (should already be installed)
+#os
+#glob
+#getopt
+#sys
+#subprocess
+
+#package required installation:
+#numpy
+#multiprocessing
+#scipy
+
+pip install numpy --user
+pip install scipy --user
+pip install multiprocess --user
+
+R
+install.packages('data.table')
