@@ -1,4 +1,6 @@
-# required R package:
+#linux system
+
+#required R package:
 #data.table
 
 #python packages:

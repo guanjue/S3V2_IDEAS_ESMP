@@ -8,7 +8,7 @@ GENOME='hg38'
 GENOMESIZES='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/genomesize/hg38.chrom.chr16.fortest.sizes'
 BLACK='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/blacklist/hg38-blacklist.v2.bed'
 
-### optional
+### other parameters 
 get_sigtrack='T'
 normalization='T'
 get_bw='T'
