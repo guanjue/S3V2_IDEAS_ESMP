@@ -73,13 +73,6 @@ bedtools
 ##### 3rd column: cell type id
 ##### 4th column: absolute path to the IP bigwig files
 ##### 5th column: absolute path to the CONTROL bigwig files (If there is no control signal track, this column can be leave as empty)
-
-#### (1) The input filelist for S3norm
-##### The filelist contains the names of the ChIP bedgraph file and the control bedgraph. Each row is one ChIP-seq sample. The 1st column is the ChIP bedgraph and 2nd column is the Contrl bedgraph file. (Separated by tab "\t") 
-##### The example of the filelist is in the 'example_file' folder.
-##### The first column is the bedgraph file of ChIP signal and second column is the corresponding bedgraph file of the Control signal track.
-##### For the ChIP-seq, the Control signal can be computed by the same way in MACS (Zhang, Yong, et al. "Model-based analysis of ChIP-Seq (MACS)." Genome biology 9.9 (2008): R137.)
-##### For the ATAC-seq (or any other signal without control), a bedgraph file with control signal all equal to 1 can be used.
 ```
 >>> head metadata.for_master_peak_calls.txt
 Cell1	ATAC	01	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs/bw/c10_chr16_read.ATAC.bw

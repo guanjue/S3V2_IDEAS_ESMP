@@ -1,25 +1,36 @@
 ### required inputs
+###### the absolute path to the bin folder
 script_dir='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/bin/'
+###### your output folder
 output_dir='/storage/home/gzx103/scratch/S3V2norm_compare/S3V2_cCRE_pipeline_test/'
+###### the absolute path to the your modified "metadata.for_master_peak_calls.txt" file
 metadata='/storage/home/gzx103/scratch/S3V2norm_compare/S3V2_cCRE_pipeline_test/input_files/metadata.for_master_peak_calls.txt'
+###### The output name
 id_name='test_S3V2_IDEAS_cCRE_pipeline'
 
+###### genome
 GENOME='hg38'
+###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
 GENOMESIZES='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/genomesize/hg38.chrom.chr16.fortest.sizes'
+###### blacklist (can be found in the "S3V2_IDEAS_ESMP/blacklist/" folder)
 BLACK='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/blacklist/hg38-blacklist.v2.bed'
 
-### other parameters 
+###### number of threads in system
+threads=4
+###### bin size of the signal resolution
+bin_size=200
+###### email address
+email='your_email@xxx.edu'
+
+###### other parameters 
 get_sigtrack='T'
 normalization='T'
 get_bw='T'
 run_ideas='T'
-threads=4
-bin_size=200
 local_bg_bin=5
 cap_sig=16
-email='gzx103@psu.edu'
 other_parafile='F'
-IDEAS_track_link='http://bx.psu.edu/~gzx103/tmp/'
+IDEAS_track_link='http://your_acess_link_that_can_be_used_for_track_hub_in_genome_browser/'
 
 time python $script_dir/S3V2_IDEAS_pipeline.py \
 -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas \
