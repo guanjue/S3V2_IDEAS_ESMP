@@ -126,9 +126,14 @@ time bash run_S3V2_IDEAS_ESMP.sh
 ```
 ls -ltrh test_S3V2_IDEAS_ESMP_pipeline_IDEAS_output/
 ```
+##### The S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_cCRE_pipeline_bws_RC" folder
+##### The -log10(p-value) based on S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_cCRE_pipeline_bws_NBP" folder
 ##### The signal composition of the epigenetic state will be the "test_S3V2_IDEAS_cCRE_pipeline.pdf"
 ##### The genome segmentation will be saved in "test_S3V2_IDEAS_ESMP_pipeline_IDEAS_output/Tracks/" folder
 ##### If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_ESMP_pipeline.cCRE.M.bed" file
+
+
+test_S3V2_IDEAS_cCRE_pipeline_bws_RC
 
 
 #####################################################################################
