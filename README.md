@@ -35,7 +35,7 @@ install.packages('data.table')
 ## Prerequisites and S3V2_IDEAS_ESMP installation
 ### S3V2_IDEAS_ESMP dependencies are as follows:
 #### python/2.7 (https://www.python.org/downloads/release/python-2716/)
-#### python dependencies: numpy, scipy
+#### python dependencies: numpy, scipy, multiprocess
 #### R (https://www.r-project.org/)
 #### gawk
 
