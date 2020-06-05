@@ -133,8 +133,6 @@ ls -ltrh test_S3V2_IDEAS_ESMP_pipeline_IDEAS_output/
 ##### If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_ESMP_pipeline.cCRE.M.bed" file
 
 
-test_S3V2_IDEAS_cCRE_pipeline_bws_RC
-
 
 #####################################################################################
 
