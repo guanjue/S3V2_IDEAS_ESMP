@@ -1,5 +1,11 @@
 #linux system
 
+# require 
+bedtools
+#which can be found in the following link:
+https://bedtools.readthedocs.io/en/latest/content/installation.html
+
+
 #required R package:
 #data.table
 

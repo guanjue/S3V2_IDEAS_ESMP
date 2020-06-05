@@ -1,2 +1,2 @@
-SC	ATAC	10	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs_SC/bw/c10_chr16_read.bw
-SC	ATAC	11	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs_SC/bw/c11_chr16_read.bw
+Cell1	ATAC	10	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs_SC/bw/c10_chr16_read.bw
+Cell2	ATAC	11	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs_SC/bw/c11_chr16_read.bw
