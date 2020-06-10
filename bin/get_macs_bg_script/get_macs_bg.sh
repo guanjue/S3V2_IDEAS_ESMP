@@ -17,7 +17,7 @@ sort -k1,1 chip.mean.5kb.tab > chip.mean.5kb.sort.tab
 sort -k1,1 chip.mean.10kb.tab > chip.mean.10kb.sort.tab
 
 echo get input mat
-cut -f1 chip.mean.1kb.sort.tab | awk -F '_' -v OFS='\t' '{print $1, $2, $3}' > chip.meanrc.bg.txt
+cut -f1 chip.mean.200bp.sort.tab | awk -F '_' -v OFS='\t' '{print $1, $2, $3}' > chip.meanrc.bg.txt
 time cut -f6 chip.mean.200bp.sort.tab > chip.mean.200bp.sort.tab.txt
 time cut -f6 chip.mean.5kb.sort.tab > chip.mean.5kb.sort.tab.txt
 time cut -f6 chip.mean.10kb.sort.tab > chip.mean.10kb.sort.tab.txt
