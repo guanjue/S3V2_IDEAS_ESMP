@@ -68,7 +68,7 @@ bedtools
 ## Inputs for S3V2_IDEAS_ESMP
 #### (1) The input metadata list for S3norm
 ##### It only needs one input metadata file which tells the pipeline where are input bigwig files. An example of the metadata is in the "metadata.for_master_peak_calls.txt" file with 4 columns (columns are separated by tab):
-##### 1st column: cell type name
+##### 1st column: cell type name (!!!The cell type name should not have "." in it!!!)
 ##### 2nd column: epigenetic feature
 ##### 3rd column: cell type id
 ##### 4th column: absolute path to the IP bigwig files
