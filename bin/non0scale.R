@@ -50,7 +50,7 @@ print(average_non0sd)
 for (i in 1:dim(file_list)[1]){
 	file_tmp = toString(file_list[i,1])
 	output_name_tmp = paste(toString(file_list[i,1]), '.norm.bedgraph', sep='')
-	dmat_sigi = as.data.frame(fread(file_tmp, nrows=bin_num_used))[,4]
+	dmat_sigi = as.data.frame(fread(file_tmp))[,4]
 	if (length(unique(dmat_sigi))!=1){
 		dmat_sigi_norm = non0scale(dmat_sigi, average_non0mean, average_non0sd)
 	}else{
