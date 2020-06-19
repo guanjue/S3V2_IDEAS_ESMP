@@ -183,10 +183,8 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 
 	### check if the bedgraph files have the same coordinates
 	bin_num = sig1_raw.shape[0]
-	if cross_mark != 'T':
-		if np.sum(sig1_raw[:,1]==sig2_raw[:,1]) != bin_num:
-			print('The bedgraph files are not sorted. Please use "sort -k1,1 -k2,2n target.bedgraph > target.sorted.bedgraph" to sort bedgraph files')
-			return()
+	bin_num1 = sig1_raw.shape[0]
+	bin_num2 = sig2_raw.shape[0]
 
 	### get signal
 	sig1 = np.array(sig1_raw[:,3], dtype=float)
@@ -228,17 +226,17 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 	print(sig2_pk_num)
 
 	### if pk number < 10000 then use rank for reference
-	if sig1_pk_num <= int(bin_num * rank_lim):
-		sig1_thresh = np.sort(sig1, axis=None)[-int(bin_num * rank_lim)]
-		print('fdr peak number < bin_num * rank_lim')
+	if sig1_pk_num <= int(bin_num1 * rank_lim):
+		sig1_thresh = np.sort(sig1, axis=None)[-int(bin_num1 * rank_lim)]
+		print('fdr peak number < bin_num1 * rank_lim')
 		print('use rank for reference')
 		sig1_binary = sig1 >= sig1_thresh
 		print(sig1_thresh)
 
 	### if pk number < 10000 then use rank for target
-	if sig2_pk_num <= int(bin_num * rank_lim):
-		sig2_thresh = np.sort(sig2, axis=None)[-int(bin_num * rank_lim)]
-		print('fdr peak number < bin_num * rank_lim')
+	if sig2_pk_num <= int(bin_num2 * rank_lim):
+		sig2_thresh = np.sort(sig2, axis=None)[-int(bin_num2 * rank_lim)]
+		print('fdr peak number < bin_num2 * rank_lim')
 		print('use rank for target')
 		sig2_binary = sig2 >= sig2_thresh
 		print(sig2_thresh)
@@ -248,50 +246,12 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 	print('target_pk_num')
 	print(sig2_pk_num)
 	
-	### get user provided common pk 
-	if cross_mark != 'T':
-		if (common_pk_binary!='0'):
-			print('check user provided common peaks')
-			common_pk_binary_sig = read2d_array(common_pk_binary, float)
-			if np.sum(common_pk_binary_sig == 1.0)>int(bin_num * rank_lim):
-				print('use user provided common peaks')
-				print(np.sum(common_pk_binary_sig == 1.0))
-				peak_binary = (common_pk_binary_sig == 1.0)[:,0]
-			else:
-				print('user provided common peaks number < bin_num * rank_lim. Not use')
-				print(sig1_binary.shape)
-				print(sig2_binary.shape)
-				#peak_binary = (sig1_binary[:,0] & sig2_binary[:,0])
-				peak_binary = (sig1_binary & sig2_binary)
-		else:
-			print('use FDR common peaks')
-			peak_binary = (sig1_binary & sig2_binary)
-
-		### get user provided common bg
-		if (common_bg_binary!='0'):
-			print('check user provided common background')
-			common_bg_binary_sig = read2d_array(common_bg_binary, float)
-			bg_binary = (common_bg_binary_sig == 1.0)[:,0]
-		else:
-			print('use FDR common background')
-			bg_binary = ~(sig1_binary | sig2_binary)
-
-		print('common peaks number:')
-		print(np.sum(peak_binary))
-		print('common background number:')
-		print(np.sum(bg_binary))
-
 	### get common bg pk
 	if cross_mark == 'T':
 		sig1_cbg = sig1[~sig1_binary]
 		sig2_cbg = sig2[~sig2_binary]
 		sig1_cpk = sig1[sig1_binary]
 		sig2_cpk = sig2[sig2_binary]
-	else:
-		sig1_cbg = sig1[bg_binary]
-		sig2_cbg = sig2[bg_binary]
-		sig1_cpk = sig1[peak_binary]
-		sig2_cpk = sig2[peak_binary]
 
 	### get transformation factor
 	print('check!!!')
