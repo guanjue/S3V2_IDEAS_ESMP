@@ -84,7 +84,7 @@ Cell2	H3K4me3	02	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_EP/bw/c11_ch
 #####################################################################################
 
 ## How to run S3V2_IDEAS_ESMP pipeline
-#### Use 's3norm_pipeline.py' to run S3norm pipeline.
+#### Use 'run_S3V2_IDEAS_ESMP.sh' to run S3norm pipeline.
 ##### After perparing the input data, user just need to set the parameters in "run_S3V2_IDEAS_ESMP.sh" to run S3V2_IDEAS_ESMP.
 #####
 ```
