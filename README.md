@@ -98,6 +98,7 @@ metadata='/storage/home/gzx103/scratch/S3V2norm_compare/S3V2_cCRE_pipeline_test/
 ###### The output name
 id_name='test_S3V2_IDEAS_ESMP_pipeline'
 
+
 ###### genome
 GENOME='hg38'
 ###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
