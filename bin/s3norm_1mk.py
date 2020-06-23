@@ -277,10 +277,7 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 		B=AB[1]
 	else:
 		A=1.0
-		B=1.0
-	#else:
-	#	A=1.0
-	#	B=1.0		
+		B=1.0	
 	print('transformation: '+'B: '+str(B)+'; A: '+str(A))
 	Ao=A
 	Bo=B
