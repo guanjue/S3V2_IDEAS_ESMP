@@ -270,10 +270,14 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 	### get transformation factor
 	print('check!!!')
 	print(np.sum(sig1==sig2))
-	#if sig1_wg_raw != sig2_wg_raw:
-	AB = NewtonRaphsonMethod(sig1_cpk, sig1_cbg, sig2_cpk, sig2_cbg, upperlim, 0.5, 2.0, NTmethod, 1e-5, 200)
-	A=AB[0]
-	B=AB[1]
+	print(np.sum(sig1==sig2) == sig1.shape[0])
+	if np.sum(sig1==sig2) != sig1.shape[0]:
+		AB = NewtonRaphsonMethod(sig1_cpk, sig1_cbg, sig2_cpk, sig2_cbg, upperlim, 0.5, 2.0, NTmethod, 1e-5, 200)
+		A=AB[0]
+		B=AB[1]
+	else:
+		A=1.0
+		B=1.0
 	#else:
 	#	A=1.0
 	#	B=1.0		
