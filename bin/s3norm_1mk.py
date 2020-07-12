@@ -99,8 +99,8 @@ def NewtonRaphsonMethod(sig1_pk, sig1_bg, sig2_pk, sig2_bg, upperlim, A,B, metho
 	print(sig1_pk_mean)
 	print(sig1_bg_mean)
 	#if (sig1_pk_mean>15):
-	sig1_bg_mean = sig1_bg_mean / sig1_pk_mean * 20
-	sig1_pk_mean = 20.0
+	#sig1_bg_mean = sig1_bg_mean / sig1_pk_mean * 20
+	#sig1_pk_mean = 20.0
 	print(sig1_pk_mean)
 	print(sig1_bg_mean)
 
