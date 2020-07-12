@@ -73,10 +73,12 @@ print(summary(AVEmat[AVEmat<1]))
 #AVEmat[AVEmat<1] = round(AVEmat[AVEmat<1])
 print(sum(AVEmat<1))
 #AVEmat = AVEmat+1
+AVEmat_cbg = as.numeric(AVEmat)
 AVEmat[AVEmat<1] = 0
 #AVEmat_cbg = as.numeric(AVEmat[cbg])
 #if (max(AVEmat_cbg)<1){
-AVEmat_cbg = as.numeric(AVEmat)
+AVEmat_cbg[AVEmat_cbg<=0.5] = 0
+AVEmat_cbg[(AVEmat_cbg>0.5) & (AVEmat_cbg<1)] = 1
 AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.9)]
 #}
 #AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.95)]
