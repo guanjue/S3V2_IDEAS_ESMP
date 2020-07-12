@@ -109,6 +109,9 @@ if (AVEmat_cbg_prob>=0.999){
 bin_num = length(AVEmat)
 obs_0_num = round(sum(AVEmat_cbg<1)/length(AVEmat_cbg)*length(AVEmat))
 
+print(bin_num)
+print(obs_0_num)
+
 get_p_z = function(d, mean_i, sd_i){
         dz = (d - mean_i)/sd_i
 #        dzp = ppois(d,mean_i, lower.tail=F)#pnorm(-(dz))
@@ -119,34 +122,6 @@ get_p_z = function(d, mean_i, sd_i){
 #########
 ### get output sigi
 # for average signal
-IP_CTRL_tmp = cbind(AVEmat, rep(AVEmat_cbg_size,length(AVEmat)))
-IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
-IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
-IP_nb_pval[IP_nb_pval>1] = 1.0
-
-### 2nd round
-AVEmat_cbg = as.numeric(AVEmat)
-AVEmat_cbg = AVEmat_cbg[IP_nb_pval<0.05]
-###### get NB model prob and size and p0
-AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVEmat_cbg)
-AVEmat_cbg_Zmodel_non0mean = mean(AVEmat_cbg[AVEmat_cbg>0])
-AVEmat_cbg_Zmodel_non0sd = sd(AVEmat_cbg[AVEmat_cbg>0])
-print('2nd round AVEmat_cbg_NBmodel:')
-print(AVEmat_cbg_NBmodel)
-print(AVEmat_cbg_Zmodel_non0mean)
-print(AVEmat_cbg_Zmodel_non0sd)
-AVEmat_cbg_p0 = AVEmat_cbg_NBmodel[3]
-AVEmat_cbg_size = AVEmat_cbg_NBmodel[2]
-AVEmat_cbg_prob = AVEmat_cbg_NBmodel[1]
-### set limit for prob
-if (AVEmat_cbg_prob<0.001){
-        AVEmat_cbg_prob = 0.001
-}
-if (AVEmat_cbg_prob>=0.999){
-        AVEmat_cbg_prob = 0.999
-}
-
-### output
 IP_CTRL_tmp = cbind(AVEmat, rep(AVEmat_cbg_size,length(AVEmat)))
 IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
 IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
