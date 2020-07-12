@@ -45,8 +45,9 @@ get_pval = function(N, l, sig_0_size, sig_0_prob, num_0){
 }
 
 file_list_file = args[1] #'H3K36me3.file_list.txt'
-average_sig_file = args[2]
-cbg_file = args[3]
+average_sig_file0 = args[2]
+average_sig_file = args[3]
+cbg_file = args[4]
 
 file_list = read.table(file_list_file, header=F)
 
@@ -57,9 +58,11 @@ mk = unlist(strsplit(file_list_file, split='\\.'))[1]
 #file_tmp = paste(mk, '.average_sig.bedgraph.S3.bedgraph', sep='')
 file_tmp = average_sig_file
 
-AVE = as.data.frame(fread(file_tmp))
+AVE0 = as.data.frame(fread(average_sig_file0))
+AVE = as.data.frame(fread(average_sig_file))
 bed = AVE[,1:3]
 #AVEmat = matrix(0, nrow=dim(bed)[1],ncol=dim(mk_list)[1])#[used_row,]
+AVE0mat = AVE0[,4]
 AVEmat = AVE[,4]
 ### cbg
 #cbg_file = paste(mk, '_commonpkfdr01_z.cbg.txt', sep='')
@@ -69,30 +72,29 @@ cbg = scan(cbg_file)!=0
 ### all cbg
 #cbg = (cbg!=0)
 ######### get global NB bg model
-print(sum(AVEmat<1))
-print(summary(AVEmat[AVEmat<1]))
-#AVEmat[AVEmat<1] = round(AVEmat[AVEmat<1])
-print(sum(AVEmat<1))
-#AVEmat = AVEmat+1
+print(sum(AVE0mat<1))
+print(summary(AVE0mat[AVE0mat<1]))
+print(sum(AVE0mat<1))
+### for S3 AVE
+AVE0mat[AVE0mat<1] = 0
+AVE0mat_cbg = as.numeric(AVE0mat[cbg])
+if (max(AVE0mat_cbg)<1){
+AVE0mat_cbg = as.numeric(AVE0mat)
+AVE0mat_cbg = AVE0mat_cbg[AVE0mat_cbg<quantile(AVE0mat_cbg[AVE0mat_cbg>0],0.95)]
+}
+### for S3V2 AVE
 AVEmat[AVEmat<1] = 0
 AVEmat_cbg = as.numeric(AVEmat[cbg])
 if (max(AVEmat_cbg)<1){
 AVEmat_cbg = as.numeric(AVEmat)
 AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.95)]
 }
-#AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.95)]
-#AVEmat_cbg = AVEmat_cbg[cbg]
-print(summary(AVEmat))
-print(summary(AVEmat_cbg))
+
 ###### get NB model prob and size and p0
-AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVEmat_cbg)
-AVEmat_cbg_Zmodel_non0mean = mean(AVEmat_cbg[AVEmat_cbg>0])
-AVEmat_cbg_Zmodel_non0sd = sd(AVEmat_cbg[AVEmat_cbg>0])
+AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVE0mat_cbg)
 
 print('AVEmat_cbg_NBmodel:')
 print(AVEmat_cbg_NBmodel)
-print(AVEmat_cbg_Zmodel_non0mean)
-print(AVEmat_cbg_Zmodel_non0sd)
 AVEmat_cbg_p0 = AVEmat_cbg_NBmodel[3]
 AVEmat_cbg_size = AVEmat_cbg_NBmodel[2]
 AVEmat_cbg_prob = AVEmat_cbg_NBmodel[1]

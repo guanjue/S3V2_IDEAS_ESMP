@@ -130,7 +130,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 			else:
 				add2log('get NBP multiple mks mode......', log_file)
 				### get NBP
-				a=call('Rscript '+script_dir+'/global_nbp_NB_cm.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
+				a=call('Rscript '+script_dir+'/global_nbp_NB_cm.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
 		add2log('Get NBP......Done', log_file)
 		# 6: Get IDEAS input
 		add2log('Get IDEAS input......', log_file)
