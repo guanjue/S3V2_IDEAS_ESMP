@@ -125,6 +125,7 @@ IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
 IP_nb_pval[IP_nb_pval>1] = 1.0
 
 ### 2nd round
+AVEmat_cbg = as.numeric(AVEmat)
 AVEmat_cbg = AVEmat_cbg[IP_nb_pval<0.05]
 ###### get NB model prob and size and p0
 AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVEmat_cbg)
