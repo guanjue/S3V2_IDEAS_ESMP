@@ -323,7 +323,7 @@ def main(argv):
 	###
 	try:
 		print('User provide bin_size: -l '+str(bin_size))
-		if float(fdr_thresh)<=0:
+		if float(bin_size)<=0:
 			print('-l integer_greater_than_0')
 			return()
 	except NameError:
