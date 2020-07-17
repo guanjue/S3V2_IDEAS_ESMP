@@ -29,6 +29,8 @@ get_bw='T'
 run_ideas='T'
 local_bg_bin=5
 cap_sig=16
+### User can use the "other_parafile" parameter to incorporate previous epigenetic state model
+### We provided two epigenetic state models with 8/7 epigenetic features that can be found in the "prior_ES_models/" folder
 other_parafile='F'
 IDEAS_track_link='http://your_acess_link_that_can_be_used_for_track_hub_in_genome_browser/'
 
