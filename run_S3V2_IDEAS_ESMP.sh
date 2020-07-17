@@ -18,7 +18,7 @@ BLACK='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/blacklist/hg38-blackl
 ###### number of threads in system
 threads=4
 ###### bin size of the signal resolution
-bin_size=200
+bin_size=50
 ###### email address
 email='your_email@xxx.edu'
 
