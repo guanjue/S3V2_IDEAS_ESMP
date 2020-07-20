@@ -125,6 +125,7 @@ GENOMESIZES='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/genomesize/hg38
 BLACK='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/blacklist/hg38-blacklist.v2.bed'
 
 ###### number of threads in system
+###### When the number of threads is too large, the multi-threads in python may fail. So it is more stable to keep it below 4. 
 threads=4
 ###### bin size of the signal resolution
 bin_size=200
@@ -135,6 +136,14 @@ email='your_email@xxx.edu'
 ###### We provided two epigenetic state models with 8/7 epigenetic features that can be found in the "prior_ES_models/" folder
 other_parafile='F'
 
+```
+
+##### The pipeline will generated several whole genome matrix which require large memory such as:
+```
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -j oe
+#PBS -l pmem=50gb
 ```
 
 ##### Then Run:
