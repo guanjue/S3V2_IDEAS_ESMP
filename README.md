@@ -66,7 +66,7 @@ install.packages('pheatmap')
 bedtools
 ######(https://bedtools.readthedocs.io/en/latest/content/installation.html)
 
-IDEAS requires GSL 2.2.1 and python 2.7.
+IDEAS requires GSL 2.2.1 and python.
 The instruction about GSL can be found in the following link:
 
 https://www.gnu.org/software/gsl/manual/gsl-ref.html
