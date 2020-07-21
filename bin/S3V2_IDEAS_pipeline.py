@@ -96,7 +96,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 			if uniq_mk_num==1:
 				add2log('S3V2norm each sample 1 mk mode......', log_file)
 				### get input file list
-				a=call('cat '+mk[0]+'.file_list_tmp1'+' | awk -F \'.\' -v OFS=\'\\t\' -v average='+mk[0]+'.average_sig.max1.bedgraph.S3.bedgraph \'{print $0, average, $1"_"$3, $2}\' > '+mk[0]+'.file_list.S3V2.txt', shell=True)
+				a=call('cat '+mk[0]+'.file_list_tmp1'+' | awk -F \'.\' -v OFS=\'\\t\' -v average='+mk[0]+'.average_sig.bedgraph.S3.bedgraph \'{print $0, average, $1"_"$3, $2}\' > '+mk[0]+'.file_list.S3V2.txt', shell=True)
 				### S3V2 normalization
 				b=call('python '+script_dir+'/s3v2norm.pipemultithreads_IDEAS.py'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001), shell=True)
 			else:
