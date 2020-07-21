@@ -71,6 +71,8 @@ The instruction about GSL can be found in the following link:
 
 https://www.gnu.org/software/gsl/manual/gsl-ref.html
 Add the ~/gsl/lib into the LD_LIBRARY_PATH
+
+
 IDEAS also requires UCSC utilities
 IDEAS already include the required utilities in the package. But if user is using different system, please replace the UCSC utilities by the version of user's system.
 The follow link includes the UCSC utilities for other systems.
