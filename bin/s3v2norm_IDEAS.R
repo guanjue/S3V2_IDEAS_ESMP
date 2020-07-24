@@ -334,7 +334,7 @@ if (cpk_file=='F'){
 	}
 } else{
 	cpk_id = (scan(cpk_file)!=0)
-	if (sum(cpk_id)<30){
+	if (sum(cpk_id)<sum(cpk_id)>(rank_lim*length(cpk_id))){
 		d2_3rd_qt = quantile(d2[d2>0],0.75,type=1)
 		if (d2_3rd_qt<1){
 			d2 = d2/d2_3rd_qt
@@ -444,7 +444,7 @@ if (for_ref == 'T'){
 		cpk_id = (d1s_nb_pval_out_binary_pk) & (d2s_nb_pval_out_binary_pk)
 	} else{
 		cpk_id = (scan(cpk_file)!=0)
-		if (sum(cpk_id)<30){
+		if (sum(cpk_id)<sum(cpk_id)>(rank_lim*length(cpk_id))){
 			cpk_id = (d1s_nb_pval_out_binary_pk) & (d2s_nb_pval_out_binary_pk)
 		}
 	}
