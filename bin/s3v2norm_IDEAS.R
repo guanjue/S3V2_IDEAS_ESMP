@@ -334,11 +334,18 @@ if (cpk_file=='F'){
 	}
 } else{
 	cpk_id = (scan(cpk_file)!=0)
-	d2_cpk = d2[cpk_id]
-	d2_cpk_non0_min = min(d2_cpk[d2_cpk>0])
-	if (d2_cpk_non0_min<1){
-		d2 = d2/d2_cpk_non0_min
-	}	
+	if (sum(cpk_id)<30){
+		d2_3rd_qt = quantile(d2[d2>0],0.75,type=1)
+		if (d2_3rd_qt<1){
+			d2 = d2/d2_3rd_qt
+		}
+	} else{
+		d2_cpk = d2[cpk_id]
+		d2_cpk_non0_min = min(d2_cpk[d2_cpk>0])
+		if (d2_cpk_non0_min<1){
+			d2 = d2/d2_cpk_non0_min
+		}	
+	}
 }
 
 #d1 = d1/(min(d1[d1>0]))
@@ -434,9 +441,12 @@ if (for_ref == 'T'){
 } else{
 	### cpk
 	if (cpk_file=='F'){
-	cpk_id = (d1s_nb_pval_out_binary_pk) & (d2s_nb_pval_out_binary_pk)
+		cpk_id = (d1s_nb_pval_out_binary_pk) & (d2s_nb_pval_out_binary_pk)
 	} else{
-	cpk_id = (scan(cpk_file)!=0)
+		cpk_id = (scan(cpk_file)!=0)
+		if (sum(cpk_id)<30){
+			cpk_id = (d1s_nb_pval_out_binary_pk) & (d2s_nb_pval_out_binary_pk)
+		}
 	}
 	if (cbg_file=='F'){
 	cbg_id = (d1s_nb_pval_out_binary_bg) & (d2s_nb_pval_out_binary_bg)
