@@ -106,7 +106,7 @@ Cell2	H3K4me3	02	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_EP/bw/c11_ch
 ## How to run S3V2_IDEAS_ESMP pipeline
 #### Use 'run_S3V2_IDEAS_ESMP.sh' to run S3norm pipeline.
 ##### After perparing the input data, user just need to set the parameters in "run_S3V2_IDEAS_ESMP.sh" to run S3V2_IDEAS_ESMP.
-#####
+##### For our analysis in 20 cell types in mouse, we usually ask 50GB memories and 4 threads to run the pipeline.
 ```
 ### required inputs
 ###### the absolute path to the bin folder

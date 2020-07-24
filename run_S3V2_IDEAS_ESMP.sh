@@ -16,6 +16,7 @@ GENOMESIZES='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/genomesize/hg38
 BLACK='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/blacklist/hg38-blacklist.v2.bed'
 
 ###### number of threads in system
+###### When the number of threads is too large, the multi-threads in python may fail. So it is more stable to keep it below 4. 
 threads=4
 ###### bin size of the signal resolution
 bin_size=200
