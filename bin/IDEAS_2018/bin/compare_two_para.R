@@ -47,6 +47,10 @@ scale=F
 if(sortstate)
 {
 o=hclust(dist(m0),method="ward.D2")$order;
+pdf(paste(outputfile, '.tree.pdf', sep=''), width=14)
+plot(hclust(dist(m0),method="ward.D2"), cex = 0.6, hang = -1)
+dev.off()
+
 m=m[o,];
 if(length(statecolor) != 0)
 {	statecolor=statecolor[o,];
