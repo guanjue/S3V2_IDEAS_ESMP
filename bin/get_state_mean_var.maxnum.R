@@ -20,11 +20,11 @@ uniq_mk_num = length(uniq_mk)
 
 ct_num = table(d[,1])
 print(ct_num)
-#fullset_ct = rownames(ct_num)[ct_num==uniq_mk_num]
-fullset_ct = rownames(ct_num)[ct_num==max(ct_num)]
-uniq_mk = d[d[,1]==fullset_ct,2]
-print(uniq_mk)
-uniq_mk_num = length(uniq_mk)
+fullset_ct = rownames(ct_num)[ct_num==uniq_mk_num]
+#fullset_ct = rownames(ct_num)[ct_num==max(ct_num)]
+#uniq_mk = d[d[,1]==fullset_ct,2]
+#print(uniq_mk)
+#uniq_mk_num = length(uniq_mk)
 
 print(paste(IDEAS_folder, IDEAS_output_name, IDEAS_output_folder_tail, IDEAS_output_name, '.state', sep=''))
 library(data.table)
