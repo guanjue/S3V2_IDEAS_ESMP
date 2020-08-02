@@ -92,7 +92,7 @@ used_order_col = order(colnames(state_var_all))
 state_var_all = state_var_all[,used_order_col]
 state_mean_all = state_mean_all[,used_order_col]
 
-state_var_mean_all = (state_var_all)/(state_mean_all)
+state_var_mean_all = sqrt(state_var_all)/(state_mean_all)
 
 state_var_mean_all = state_var_mean_all/length(fullset_ct)
 
