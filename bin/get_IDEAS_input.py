@@ -33,7 +33,7 @@ def get_IDEAS_input(id_input, script_dir, working_dir, output_dir, binfile, emai
 	parafile_file.write('bed= '+binfile+'\n')
 	parafile_file.write('sig= mean'+'\n')
 	parafile_file.write('ideas= 1'+'\n')
-	parafile_file.write('train= 50'+'\n')
+	parafile_file.write('train= 100'+'\n')
 	parafile_file.write('trainsz= 500000'+'\n')
 	parafile_file.write('log2= 0'+'\n')
 	parafile_file.write('cap= '+cap_input+'\n')
