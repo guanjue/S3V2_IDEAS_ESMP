@@ -95,35 +95,37 @@ http://hgdownload.soe.ucsc.edu/admin/exe/
 ##### 5th column: absolute path to the CONTROL bigwig files (If there is no control signal track, this column can be leave as empty)
 ```
 >>> head metadata.for_master_peak_calls.txt
-Cell1	ATAC	01	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs/bw/c10_chr16_read.ATAC.bw
-Cell1	H3K4me3	01	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_EP/bw/c11_chr16_read.H3K4me3.bw
-Cell2	ATAC	02	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_cCREs/bw/c11_chr16_read.ATAC.bw
-Cell2	H3K4me3	02	/storage/home/gzx103/scratch/S3V2norm_compare/hg38_EP/bw/c11_chr16_read.H3K4me3.bw
-```
+CMP	H3K27ac	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K27ac.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K27ac.r1.chr11.ctrl.bw
+CMP	H3K4me1	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me1.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me1.r1.chr11.ctrl.bw
+CMP	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me3.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me3.r1.chr11.ctrl.bw
+ERY_fl	H3K27ac	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.ctrl.bw
+ERY_fl	H3K4me1	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.ctrl.bw
+ERY_fl	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.ctrl.bw```
 
 #####################################################################################
 
 ## How to run S3V2_IDEAS_ESMP pipeline
-#### Use 'run_S3V2_IDEAS_ESMP.sh' to run S3norm pipeline.
+#### We prepared a testing dataset in the "test_data/" folder.
+#### User can use the 'test_data/run_S3V2_IDEAS_ESMP.sh' script to run S3V2_IDEAS_ESMP pipeline on these datasets.
 ##### After perparing the input data, user just need to set the parameters in "run_S3V2_IDEAS_ESMP.sh" to run S3V2_IDEAS_ESMP.
+##### Users just need to change abosolute path in the follow parameters to run the pipeline on the test dataset: "script_dir=, output_dir=, metadata=, GENOMESIZES=, BLACK="
 ```
 ### required inputs
 ###### the absolute path to the bin folder
-script_dir='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/bin/'
+script_dir='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/bin/'
 ###### your output folder
-output_dir='/storage/home/gzx103/scratch/S3V2norm_compare/S3V2_cCRE_pipeline_test/'
+output_dir='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/'
 ###### the absolute path to the your modified "metadata.for_master_peak_calls.txt" file
-metadata='/storage/home/gzx103/scratch/S3V2norm_compare/S3V2_cCRE_pipeline_test/input_files/metadata.for_master_peak_calls.txt'
+metadata='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/metadata.forEScall.txt'
 ###### The output name
-id_name='test_S3V2_IDEAS_ESMP_pipeline'
-
+id_name='test_S3V2_IDEAS_pipeline'
 
 ###### genome
-GENOME='hg38'
+GENOME='mm10'
 ###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
-GENOMESIZES='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/genomesize/hg38.chrom.chr16.fortest.sizes'
+GENOMESIZES='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
 ###### blacklist (can be found in the "S3V2_IDEAS_ESMP/blacklist/" folder)
-BLACK='/storage/home/gzx103/group/software/S3V2_IDEAS_ESMP/blacklist/hg38-blacklist.v2.bed'
+BLACK='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
 ###### number of threads in system
 ###### When the number of threads is too large, the multi-threads in python may fail. So it is more stable to keep it below 4. 
@@ -133,9 +135,24 @@ bin_size=200
 ###### email address
 email='your_email@xxx.edu'
 
-###### User can use the "other_parafile" parameter to incorporate previous epigenetic state model
-###### We provided two epigenetic state models with 8/7 epigenetic features that can be found in the "prior_ES_models/" folder
+###### other parameters 
+get_sigtrack='T'
+normalization='T'
+get_bw='T'
+run_ideas='T'
+local_bg_bin=5
+cap_sig=16
+### User can use the "other_parafile" parameter to incorporate previous epigenetic state model
+### We provided two epigenetic state models with 8/7 epigenetic features that can be found in the "prior_ES_models/" folder
 other_parafile='F'
+IDEAS_track_link='http://your_acess_link_that_can_be_used_for_track_hub_in_genome_browser/'
+
+cd $output_dir
+time python $script_dir/S3V2_IDEAS_pipeline.py \
+-u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas \
+-s $script_dir -o $output_dir -g $GENOME -c $GENOMESIZES -b $BLACK \
+-i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile \
+-l $bin_size -n $local_bg_bin -a $cap_sig
 
 ```
 
@@ -159,13 +176,13 @@ time bash run_S3V2_IDEAS_ESMP.sh
 ### All outputs will be saved in the user provided "$output_dir".
 ##### The epigenetic state genome segmentation (multiple epigenetic features) and master peak list (one epigenetic feature) will be saved in the following folder: "your_output_name_IDEAS_output/"
 ```
-ls -ltrh test_S3V2_IDEAS_ESMP_pipeline_IDEAS_output/
+ls -ltrh test_S3V2_IDEAS_pipeline_IDEAS_output/
 ```
-##### The S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_cCRE_pipeline_bws_RC" folder
-##### The -log10(p-value) based on S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_cCRE_pipeline_bws_NBP" folder
-##### The signal composition of the epigenetic state will be the "test_S3V2_IDEAS_cCRE_pipeline.pdf"
-##### The genome segmentation will be saved in "test_S3V2_IDEAS_ESMP_pipeline_IDEAS_output/Tracks/" folder
-##### If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_ESMP_pipeline.cCRE.M.bed" file
+##### The S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_pipeline_bws_RC" folder
+##### The -log10(p-value) based on S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_pipeline_bws_NBP" folder
+##### The signal composition of the epigenetic state will be the "test_S3V2_IDEAS_pipeline.pdf"
+##### The genome segmentation will be saved in "test_S3V2_IDEAS_pipeline_IDEAS_output/Tracks/" folder
+##### If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_pipeline.cCRE.M.bed" file
 
 
 
