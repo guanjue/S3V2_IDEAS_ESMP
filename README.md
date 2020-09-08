@@ -182,7 +182,7 @@ ls -ltrh test_S3V2_IDEAS_package_IDEAS_output/
 ##### The S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_package_bws_RC" folder
 ##### The -log10(p-value) based on S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_package_bws_NBP" folder
 ##### The signal composition of the epigenetic state will be the "test_S3V2_IDEAS_package.pdf"
-##### The genome segmentation will be saved in "test_S3V2_IDEAS_package_IDEAS_output/Tracks/" folder
+##### The genome segmentation will be saved in "test_S3V2_IDEAS_package_IDEAS_output/Tracks/" folder. These bigBed files can be loaded into UCSC genome browser as track hub by the "hub_test_S3V2_IDEAS_pipeline.txt" file in the "Tracks/" folder.
 ##### If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_package.cCRE.M.bed" file
 
 
