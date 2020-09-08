@@ -100,7 +100,7 @@ CMP	H3K4me1	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/
 CMP	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me3.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me3.r1.chr11.ctrl.bw
 ERY_fl	H3K27ac	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.ctrl.bw
 ERY_fl	H3K4me1	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.ctrl.bw
-ERY_fl	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.ctrl.bw```
+ERY_fl	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.ctrl.bw
 ```
 #####################################################################################
 
@@ -109,7 +109,7 @@ ERY_fl	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_da
 #### User can use the 'test_data/run_S3V2_IDEAS_ESMP.sh' script to run S3V2_IDEAS_ESMP pipeline on these datasets.
 ##### After perparing the input data, user just need to set the parameters in "run_S3V2_IDEAS_ESMP.sh" to run S3V2_IDEAS_ESMP.
 ##### Users just need to change abosolute path in the follow parameters to run the pipeline on the test dataset: "script_dir=, output_dir=, metadata=, GENOMESIZES=, BLACK="
-##### For the testing datasets, they include three histone marks (H3K4me3, H3K4me1, H3K27ac) in two cell types (CMP and ERY_fl). It can finish running within 2.5 hours by using 50GB with 4 threads.
+##### For the testing datasets, they include three histone marks (H3K4me3, H3K4me1, H3K27ac) in two cell types (CMP and ERY_fl) in the VISION project (http://usevision.org). The S3V2-IDEAS package can finish running on this set of data within 2.5 hours by using 50GB with 4 threads.
 ```
 ### required inputs
 ###### the absolute path to the bin folder
