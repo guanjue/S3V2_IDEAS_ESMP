@@ -101,7 +101,7 @@ CMP	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/
 ERY_fl	H3K27ac	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.ctrl.bw
 ERY_fl	H3K4me1	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.ctrl.bw
 ERY_fl	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.bw	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.ctrl.bw```
-
+```
 #####################################################################################
 
 ## How to run S3V2_IDEAS_ESMP pipeline
