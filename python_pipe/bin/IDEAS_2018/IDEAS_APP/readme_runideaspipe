@@ -1,0 +1,13 @@
+This R script is developed for the purpose of runing ideas in a hopefully more stable way. The motivation is that each time IDEAS can produce slightly different results, especially different number of states, due to different starting values of the model. This R script will automatically start from different start values and combine results from different runs to come up with a concensus, followed by retraining of IDEAS. As a result, the output will be more stable and the states will be more reproducible. It however does not mean that you'll get identical result each time, as the problem that IDEAS solves is not a convex problem. 
+
+You'll need R environment, preinstalled in most linux machines. If not, grab a free copy from https://cran.r-project.org/ and install it.
+
+To use this script, instead of running IDEAS, you will start the command line with 
+"Rscript runideaspipe.R" followed by arguments
+The same arguments for IDEAS can be added here, starting with data files. An example is in the included runpipe.script. 
+
+**However, you probably need to modify the runideaspipe.R script for the parameter part and the job submitting commands (defheader function), all on the top of the R script**
+
+There is one additional argument for this R script, "-randomstart 10 100000", which tells the program to run ideas 10 times independently and each time use 100K windows as training. So totally you will be running IDEAS on 10*100000 more windows than before, but if you are dealing with genome-wide data sets, this will literally just cost 10% more time. You may increase the 2nd number, but I do not suggest reducing it, as the less training data there is, the less likely you'll find subtler and rarer epigenetic states. You do not need this option if the default value 10, 100000 is good for you.
+
+Unlike IDEAS, this script will run IDEAS with just 20 burnins and 1 maximization. This will reduce the computation time of IDEAS down to one third of its default, and empirically this produces good but slightly worse result than the defaultof IDEAS (-sample 50 50). If the result is not good, consider increasing 20 to 50 and 1 to 10 using '-sample' argument in the command line.

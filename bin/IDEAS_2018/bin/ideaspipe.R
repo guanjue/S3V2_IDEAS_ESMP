@@ -469,7 +469,7 @@ if(randstart[1]>1)
 	} else
 	{	targs = c(targs, "-impute none");
 	}
-	mycut=0.6;
+	mycut=0.5;
 
 	#if(length(t)>0)
 	#{	targs = targs[-c(t,t+1,t+2)];

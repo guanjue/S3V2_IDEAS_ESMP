@@ -1,0 +1,66 @@
+prepMat by Yu Zhang
+
+This program generate the input files for IDEAS from BAM and BigWig files.
+
+**before running the program, you need to create a tmp/ folder in the folder where you run this program. all processed data will be stored in the tmp/ folder**
+**you must have bigWigAverageOverBed utility tool from ucsc genome browser first; you may use "chrmod 755" to change the permission level of the utility tool.**
+**if you want this program to process data files in BAM format, you must also have the following utility tools from ucsc browser: bedSort, bedGraphToBigWig, genomeCoverageBed. And you will also need bedtools (https://github.com/arq5x/bedtools2/releases).**
+**make sure that you update your $PATH variable so that the program can find those tools (e.g., PATH=$PATH:[paths to those tools]).**
+
+
+Usage: ./prepMat input [OPTIONS]
+
+<Input file format>
+The input file contains a list of data files that you want to convert from. Each row in the input file specifies one data file as follows:
+cellname1 factorname1 datafile1
+cellname2 factorname2 datafile2
+...
+
+Example:
+GM12878 H3k27ac ftp://abc.org/H3k27ac.bam
+GM12878 H3k27me3 http://abc.org/ENCFF0728.bw
+K562 Pol2 ../mydatafolder/mypol2.bw.gz
+
+The first column specifies the cell type name. The second column specifies the epigenetic factor name. The third column specifies the URL or local path for the file that you want to convert from. Currently the program only supports BAM format or BigWig format. However, the file can be in gz format.
+
+If you provide a URL, the program will use wget to download the data first, such as downloading from ENCODE or Roadmap Epigenomics, both of which allow you to select a set of data and provide you URLs in excel format. So by using this program, you DON'T have to download those data to your local machine first. You only need to provide URLs.
+
+You will need to create a tmp/ folder before running this program in the place where you will run the program. The processed data will be named as cellname.factorname.signal (e.g., GM12878.H3k27ac.signal) and stored in the tmp/ folder, which can then be read by IDEAS. 
+
+Since the data will be automatically converted and stored in the above mentioned files, the cellname+factorname must be unique for each row in the input file. For example, if you have replicate data, you may want to specify the factor name as "factor_rep1", "factor_rep2", etc.
+
+After the data sets have been converted to IDEAS format, you can manipulate the files in tmp/ folder however you want, but keep the same format. For instance, if you want to merge the replicate data (e.g., GM12878.H3k27ac_rep1.signal and GM12878.H3k27ac_rep2.signal), you can take the average of those replicate signals and store the result in a new file, e.g., GM12878.H3k27ac.signal, and then delete the replicate data.
+
+When the program finishes running, you'll have all processed data stored in tmp/ folder, each factor per cell is stored in a separate file, and each file has one column that contains the average signals of the factor per genomic window you specify (see OPTIONS).
+
+**Also in the tmp/ folder, there is a missingdata.txt file. The file contains the list of files that failed to be converted. This happens if the URL you provide is invalid or the file is not accessible. So do check on this each time after runing the program. If this file is empty, then all data files should have been processed properly.** 
+
+
+<Options>
+-bed bedfile	This is a BED file specifying the genomic windows that you want to process the data on (and so IDEAS will segment genomes in the unit of these windows). This can be in BED3, BED4 or BED5 format, but only the first three columns (chr posst posed) will be used. 
+		You can skip this option if you want to run whole genome segmentation. However, in such case you must use -gsz option below.
+		Make sure your window coordinates are from the correct assembly version.
+
+-gsz gszfile	**you need this option if your data is in BAM format**
+		This option allows you to provide a genome size file, which will be used to process BAM files and to create tiling windows along the genome if -bed option is not used (in which case the tiling windows will be stored in the tmp/ folder).
+		If you skip -bed option, then this option must be specified.
+		The gszfile is a two column file in format <chromesome name> <size in bases>
+		For human and mouse, the gszfile for can be obtained from the following URL
+  			http://hgdownload.cse.ucsc.edu/goldenPath/<db>/bigZips/<db>.chrom.sizes
+		or you may use the script fetchChromSizes to download the chrom.sizes file.
+
+-wsz number	This option specifies the window size. Default is 200 basepairs. This option is useful only if you skip -bed option.
+
+-chr[...]	This option allows you to process data in specific chromosomes only. Useful only if -bed option is skipped. 
+
+-bychr		This option will tell the program to store the processed data on different chromosomes in seperate files, in case you want to run IDEAS on different chromosomes separately.
+
+-c number	The program uses the bigWigAverageOverBed utility from UCSC genome browser to calculate average signal in each genomic window (in unit of # of reads per bp). If you want maximum signal within windows instead, then you should use this option as "-c 8", because "maximum" is the 8th column output by bigWigAverageOverBed.
+
+-exclude bedfile If you have blacklist regions that you want to remove from the data, you can specify the blacklist bed file here
+
+-norm		You may use this option to let the program to standardize all data sets (e.g., reads / total_reads * 20million) so that the signals from different cell types become comparable. Your input data do not have to be read counts, but -logp-values or fold change are fine too.
+
+
+<Output>
+The output from this program are the processed data, one factor/cell per file, to be read by the IDEAS program. See IDEAS readme for how to load these data files.
