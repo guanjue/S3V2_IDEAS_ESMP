@@ -35,6 +35,7 @@ cap_sig=16
 other_parafile='F'
 IDEAS_track_link='http://your_acess_link_that_can_be_used_for_track_hub_in_genome_browser/'
 
+[[ -d $output_dir ]] || mkdir $output_dir
 cd $output_dir
 time python $script_dir/S3V2_IDEAS_pipeline.py \
 -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas \
