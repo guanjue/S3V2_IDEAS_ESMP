@@ -108,7 +108,8 @@ ERY_fl	H3K4me3	r1	/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_da
 #### We prepared a testing dataset in the "test_data/" folder.
 #### User can use the 'test_data/run_S3V2_IDEAS_ESMP.sh' script to run S3V2_IDEAS_ESMP package on these datasets.
 ##### After perparing the input data, user just need to set the parameters in "run_S3V2_IDEAS_ESMP.sh" to run S3V2_IDEAS_ESMP.
-##### Users just need to change abosolute path in the follow parameters to run the package on the test dataset: "script_dir=, output_dir=, metadata=, GENOMESIZES=, BLACK="
+##### Users just need to change abosolute path in the follow parameters to run the package on the test dataset: "script_dir=, output_dir=, metadata=, GENOMESIZES=, BLACK=".
+##### Users also need to change the abosolute path to the bigWig files in the "metadata.forEScall.txt" file.
 ##### For the testing datasets, they include three histone marks (H3K4me3, H3K4me1, H3K27ac) in two cell types (CMP and ERY_fl) in the VISION project (http://usevision.org). The S3V2-IDEAS package can finish running on this set of data within 2.5 hours by using 50GB with 4 threads.
 ```
 ### required inputs
@@ -129,7 +130,6 @@ GENOMESIZES='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/genomesize/m
 BLACK='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
 ###### number of threads in system
-###### When the number of threads is too large, the multi-threads in python may fail. So it is more stable to keep it below 4. 
 threads=4
 ###### bin size of the signal resolution
 bin_size=200
