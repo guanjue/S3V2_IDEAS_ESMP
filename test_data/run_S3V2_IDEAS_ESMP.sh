@@ -2,7 +2,7 @@
 ###### the absolute path to the bin folder
 script_dir='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/bin/'
 ###### your output folder
-output_dir='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/'
+output_dir='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/outputs/'
 ###### the absolute path to the your modified "metadata.for_master_peak_calls.txt" file
 metadata='/storage/home/gzx103/scratch/test_S3V2/S3V2_IDEAS_ESMP/test_data/metadata.forEScall.txt'
 ###### The output name
