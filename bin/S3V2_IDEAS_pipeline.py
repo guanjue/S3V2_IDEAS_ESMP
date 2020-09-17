@@ -179,9 +179,11 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		c=call('cat '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print $1"_"$3,$2,S3norm_NBP_dir$1"_"$3"."$2".S3V2.bedgraph.NBP.txt"}\' | sort -u > '+OUTDIR+'/'+id_name+'.input', shell=True)
 		# add average track for input
 		if uniq_mk_num==1:
-			d=call('head -1 '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print "AVERAGE",$2,S3norm_NBP_dir$2".average_sig.bedgraph.S3V2.bedgraph.NBP.txt"}\' | sort -u >> '+OUTDIR+'/'+id_name+'.input', shell=True)
-			d=call('cat '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print $1"_"$3,$2"_1",S3norm_NBP_dir$1"_"$3"."$2".S3V2.bedgraph.NBP.txt"}\' | sort -u >> '+OUTDIR+'/'+id_name+'.input', shell=True)
-			d=call('head -1 '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print "AVERAGE",$2"_1",S3norm_NBP_dir$2".average_sig.bedgraph.S3V2.bedgraph.NBP.txt"}\' | sort -u >> '+OUTDIR+'/'+id_name+'.input', shell=True)
+			d=call('head -1 '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print "AVERAGE",$2,S3norm_NBP_dir$2".average_sig.bedgraph.S3V2.bedgraph.NBP.txt"}\' | sort -u > '+OUTDIR+'/'+id_name+'.input.tmp', shell=True)
+			d=call('cat '+OUTDIR+'/'+id_name+'.input >> '+OUTDIR+'/'+id_name+'.input.tmp', shell=True)
+			d=call('head -1 '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print "AVERAGE",$2"_1",S3norm_NBP_dir$2".average_sig.bedgraph.S3V2.bedgraph.NBP.txt"}\' | sort -u >> '+OUTDIR+'/'+id_name+'.input.tmp', shell=True)
+			d=call('cat '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print $1"_"$3,$2"_1",S3norm_NBP_dir$1"_"$3"."$2".S3V2.bedgraph.NBP.txt"}\' | sort -u >> '+OUTDIR+'/'+id_name+'.input.tmp', shell=True)
+			d=call('mv '+OUTDIR+'/'+id_name+'.input.tmp'+' '+OUTDIR+'/'+id_name+'.input', shell=True)
 		### run IDEAS
 		e=call('time bash '+id_name+'.sh', shell=True)
 		### get cCRE list
