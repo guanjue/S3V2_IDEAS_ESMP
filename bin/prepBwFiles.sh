@@ -62,6 +62,7 @@ METADATA=$4
 WORKFLOWDIR=$5
 nthreads=$6
 logfile=$7
+bin_size=$8
 
 ## create the output directory if necessary
 if [ ! -d "$OUTDIR" ]; then
@@ -74,12 +75,12 @@ export PATH=/gpfs/group/rch8/legacy/group/bin:$PATH
 
 if [ ! -f "$OUTDIR/windowsNoBlack.noid.bed" ]; then
    echo "makewindow noid"
-   command="bedtools makewindows -g $GENOMESIZES -w 200"
+   command="bedtools makewindows -g $GENOMESIZES -w "$bin_size
    $command > $OUTDIR/windows.bed
    test $? -eq 0 || die "failed: $command"
    echo $command
 
-   command="bedtools subtract -a $OUTDIR/windows.bed -b $BLACK"
+   command="bedtools subtract -a $OUTDIR/windows.bed -b $BLACK -A"
    $command > $OUTDIR/windowsNoBlack.noid.bed
    test $? -eq 0 || die "failed: $command"
    echo $command

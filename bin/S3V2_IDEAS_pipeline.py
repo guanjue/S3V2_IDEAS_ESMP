@@ -56,7 +56,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 	if get_sigtrack=='T':
 		add2log('get signal track......', log_file)
 		#a=call('python '+script_dir+'/get_signal_track.multithreads.py -s '+script_dir+' -o '+OUTDIR+' -t '+str(threads)+' -g '+GENOMESIZES+' -l '+str(bin_size)+' -b '+BLACK+' -i '+metadata, shell=True)
-		a=call(script_dir+'/prepBwFiles.sh '+OUTDIR+' '+GENOMESIZES+' '+BLACK+' '+metadata+' '+script_dir+' '+str(threads)+' '+log_file, shell=True)
+		a=call(script_dir+'/prepBwFiles.sh '+OUTDIR+' '+GENOMESIZES+' '+BLACK+' '+metadata+' '+script_dir+' '+str(threads)+' '+log_file+' '+str(bin_size), shell=True)
 		add2log('get signal track......Done', log_file)
 	else:
 		add2log('skip get signal track', log_file)
