@@ -53,8 +53,8 @@ def get_IDEAS_input(id_input, script_dir, working_dir, output_dir, binfile, emai
 	parafile_file.write('hubURL= "'+hubURL_input+'"\n')
 	if otherpara_input!='F':
 		parafile_file.write('otherpara= '+otherpara_input+'\n')
-	if (uniq_mk_num=='1'):
-		parafile_file.write('otherpara= '+script_dir+'/prior/'+'bp24_v2_cCRE_max1.para'+'\n')
+	#if (uniq_mk_num=='1'):
+	#	parafile_file.write('otherpara= '+script_dir+'/prior/'+'bp24_v2_cCRE_max1.para'+'\n')
 	parafile_file.close()
 
 ############################################################################
