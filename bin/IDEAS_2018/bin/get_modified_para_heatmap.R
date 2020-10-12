@@ -5,7 +5,8 @@ scale_use = as.logical(args[3])
 source_file = args[4]
 
 ### get bin number & cell number
-d = read.table(input_statefile)
+library(data.table)
+d = as.data.frame(fread(input_statefile))
 bin_num = dim(d)[1]
 cell_num = dim(d)[2]-5
 
