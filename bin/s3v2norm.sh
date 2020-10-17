@@ -79,7 +79,7 @@ while read -r line; do
    echo $command >> ${log_file}
    $command &
    let i++
-   if [ $i -ge $nthreads ]; then
+   if [ $i -ge $threads_num ]; then
       wait
       i=0
    fi
