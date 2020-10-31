@@ -8,6 +8,12 @@ output = args[2]
 ### read input
 file_list = read.table(file_list_file, header=F)
 
+set.seed(2020)
+if (dim(file_list)[1]>50){
+used_id_sample = sample(dim(file_list)[1], 50)
+file_list = file_list[used_id_sample,]
+}
+
 common_pk = c()
 
 print('read the first one')

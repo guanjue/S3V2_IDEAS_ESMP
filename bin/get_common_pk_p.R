@@ -104,6 +104,10 @@ get_nb_fdrp = function(d){
 ### read input
 file_list = read.table(file_list_file, header=F)
 set.seed(2020)
+if (dim(file_list)[1]>50){
+used_id_sample = sample(dim(file_list)[1], 50)
+file_list = file_list[used_id_sample,]
+}
 used_id = sample(13000000, 100000)
 #used_id = 1:2000000
 d00 = as.data.frame(fread(toString(file_list[1,1])))

@@ -82,7 +82,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 			add2log(mk[0], log_file)
 			if uniq_mk_num==1:
 				add2log('One mk mode...', log_file)
-				a=call('Rscript '+script_dir+'/get_max_median1.R'+' '+'max1'+' '+mk[0]+'.file_list_tmp1'+' '+mk[0]+'.average_sig.max1.bedgraph', shell=True)
+				#a=call('Rscript '+script_dir+'/get_max_median1.R'+' '+'max1'+' '+mk[0]+'.file_list_tmp1'+' '+mk[0]+'.average_sig.max1.bedgraph', shell=True)
 				#a=call('python '+script_dir+'/s3norm_1mk.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.max1.bedgraph.S3.bedgraph'+' -c T', shell=True)
 				a=call('cp '+mk[0]+'.average_sig.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph', shell=True)
 			else:
