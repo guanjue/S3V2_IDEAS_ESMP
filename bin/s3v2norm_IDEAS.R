@@ -537,6 +537,8 @@ d2_sig_norm_nb_pval_out = get_p_r1(d2_sig_norm)
 write.table(cbind(d20[,1:3], d2_sig_norm), output_target, sep='\t', quote=F, col.names=F, row.names=F)
 write.table(c(pksf[1], (2^pksf[2]), bgsf_bg[1], bgsf_bg[2]), paste(output_target, '.info.txt', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
 
+rm(d10)
+rm(d20)
 #write.table(cbind(d20[,1:3], d2pk_sig_norm), paste(output_target, '.pk.sig.bedgraph', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
 #write.table(cbind(d20[,1:3], d2bg_sig_norm), paste(output_target, '.bg.sig.bedgraph', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
 #write.table(cbind(d20[,1:3], d2pk_sig), paste(output_target, '.pkraw.sig.bedgraph', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
