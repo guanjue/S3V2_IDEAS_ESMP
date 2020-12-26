@@ -10,6 +10,6 @@ dp[dp<=1e-323] = 1e-323
 dp[dp>1] = 1.0
 dpfdr = -log10(p.adjust(dp, 'fdr'))
 
-fwrite(cbind(d[,1:3],dpfdr), output, quote=F, sep='\t', row.names=F, col.names=F)
+write.table(cbind(d[,1:3],dpfdr), output, quote=F, sep='\t', row.names=F, col.names=F)
 rm(d)
 

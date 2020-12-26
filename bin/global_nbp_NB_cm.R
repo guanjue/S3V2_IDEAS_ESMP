@@ -132,7 +132,7 @@ IP_neglog10_nb_pval[IP_neglog10_nb_pval<0] = 0
 neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
 ### write output
 output_file_tmp = paste(average_sig_file, '.NBP.bedgraph', sep='')
-fwrite(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
+write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
 
 
 # for each sample
@@ -182,7 +182,7 @@ for (i in 1:dim(file_list)[1]){
 	print(sum(IP_neglog10_nb_pval>1)/length(IP_neglog10_nb_pval)*dim(bed)[1])
         ### write output
 	output_file_tmp = paste(toString(file_list[i,1]), '.NBP.bedgraph', sep='')
-        fwrite(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
+        write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
 }
 
 

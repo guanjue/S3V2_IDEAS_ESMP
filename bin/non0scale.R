@@ -56,7 +56,7 @@ for (i in 1:dim(file_list)[1]){
 	}else{
 		dmat_sigi_norm = dmat_sigi
 	}
-	fwrite(cbind(dbed, dmat_sigi_norm), output_name_tmp, row.names=F, col.names=F, quote=F, sep='\t')
+	write.table(cbind(dbed, dmat_sigi_norm), output_name_tmp, row.names=F, col.names=F, quote=F, sep='\t')
 	rm(dmat_sigi)
 }
 
