@@ -25,14 +25,14 @@ bin_num_used = 100000
 
 dmat_s = matrix(0, nrow=bin_num_used, ncol=dim(file_list)[1])
 
-dmat_s[,1]=d1[1:bin_num_used,4]
+used_id = sample(bin_num, bin_num_used)
+dmat_s[,1]=d1[used_id,4]
 
 ### get dmat
 for (i in 2:dim(file_list)[1]){
 	file_tmp = toString(file_list[i,1])
 	print(file_tmp)
-	#dtmp = as.data.frame(fread(file_tmp, nrows=bin_num_used))[,4]
-	dtmp = read.table(file_tmp, header=F, sep='\t')[,4]
+	dtmp = read.table(file_tmp, header=F, sep='\t')[used_id,4]
 	#dmat = cbind(dmat, dtmp)
 	dmat_s[,i]=dtmp
 	rm(dtmp)
