@@ -1,4 +1,3 @@
-library(data.table)
 args = commandArgs(trailingOnly=TRUE)
 
 
@@ -57,7 +56,7 @@ mk = unlist(strsplit(file_list_file, split='\\.'))[1]
 #file_tmp = paste(mk, '.average_sig.bedgraph.S3.bedgraph', sep='')
 file_tmp = average_sig_file
 
-AVE = as.data.frame(fread(file_tmp))
+AVE = read.table(file_tmp, header=F, sep='\t')
 bed = AVE[,1:3]
 AVEmat = AVE[,4]
 ### cbg
@@ -142,7 +141,7 @@ for (i in 1:dim(file_list)[1]){
 	### get IP
 	file_tmp = toString(file_list[i,1])
 	print(file_tmp)
-	IP_tmp0 = as.data.frame(fread(file_tmp))
+	IP_tmp0 = read.table(file_tmp, header=F, sep='\t')
 	if (i==1){
 		bed = IP_tmp0[,1:3]
 	}
@@ -151,7 +150,7 @@ for (i in 1:dim(file_list)[1]){
 	### get CTRL
 	file_tmp1 = toString(file_list[i,2])
 	print(file_tmp1)	
-	CTRL_tmp = as.data.frame(fread(file_tmp1))[,4]
+	CTRL_tmp = read.table(file_tmp1, header=F, sep='\t')[,4]
 	### get both
 #	obs_0_num = sum(IP_tmp==0)
 	CTRL_tmp_mean = mean(CTRL_tmp)

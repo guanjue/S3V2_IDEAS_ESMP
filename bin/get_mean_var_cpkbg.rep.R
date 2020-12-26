@@ -1,5 +1,4 @@
 ### r
-library(data.table)
 args = commandArgs(trailingOnly=TRUE)
 mk = args[1]
 
@@ -18,8 +17,8 @@ return(r2_x12)
 
 get_pk_bg_non0mean_non0var_mse_r2 = function(f1_file,f2_file, cpk_used, cbg_used){
 	### read data
-	f1 = as.data.frame(fread(f1_file))[,4]
-	f2 = as.data.frame(fread(f2_file))[,4]
+	f1 = read.table(f1_file, header=F, sep='\t')[,4]
+	f2 = read.table(f2_file, header=F, sep='\t')[,4]
 	### cpk
 	f1cpk = f1[cpk_used]
 	f2cpk = f2[cpk_used]

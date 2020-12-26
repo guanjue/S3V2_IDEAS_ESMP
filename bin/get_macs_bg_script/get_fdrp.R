@@ -2,9 +2,7 @@ args = commandArgs(trailingOnly=TRUE)
 input_neglog10 = args[1]
 output = args[2]
 
-library(data.table)
-
-d = as.data.frame(fread(input_neglog10))
+d = read.table(input_neglog10, header=F, sep='\t')
 ds = d[,4]
 ds[ds>323] = 323
 dp = 10^(-ds)

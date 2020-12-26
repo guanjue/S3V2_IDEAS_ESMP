@@ -1,5 +1,4 @@
 
-library(data.table)
 args = commandArgs(trailingOnly=TRUE)
 filelist_file = args[1]
 
@@ -10,7 +9,7 @@ cpk_b = cpk!=0
 for (i in 1:dim(files)[1]){
 f = toString(files[i,1])
 print(f)
-d=as.data.frame(fread(f))[,4]
+d=read.table(f, header=F, sep='\t')[,4]
 print(summary(d[cpk_b]))
 print(sum(d>10))
 rm(d)

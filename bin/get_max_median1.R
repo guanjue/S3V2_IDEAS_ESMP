@@ -1,6 +1,5 @@
 ### get parameters
 args = commandArgs(trailingOnly=TRUE)
-library(data.table)
 
 method = args[1]
 file_list = args[2]
@@ -37,9 +36,9 @@ filenames_new = c()
 for (file in filenames){
 	print(file)
 	if (is.na(input_filename_end)){
-		bedgraph_tmp = as.data.frame(fread(file))[,4]
+		bedgraph_tmp = read.table(file, header=F, sep='\t')[,4]
 	} else{
-		bedgraph_tmp = as.data.frame(fread(paste(file, input_filename_end, sep='')))[,4]
+		bedgraph_tmp = read.table(paste(file, input_filename_end, sep=''), header=F, sep='\t')[,4]
 	}
 	frip_tmp = get_frip(bedgraph_tmp)
 	print(frip_tmp)

@@ -1,5 +1,3 @@
-library(data.table)
-
 args = commandArgs(trailingOnly=TRUE)
 
 file_list_file = args[1]
@@ -17,7 +15,7 @@ file_list = file_list[used_id_sample,]
 common_pk = c()
 
 print('read the first one')
-d10 = as.data.frame(fread(toString(file_list[1,1])))
+d10 = read.table(toString(file_list[1,1]), header=F, sep='\t')
 bed = d10[,1:3]
 sum_sig = d10[,4]
 non0mean = mean(sum_sig[sum_sig>0])
@@ -33,7 +31,7 @@ if (dim(file_list)[1]>1){
 for (i in 2:dim(file_list)[1]){
 	print(i)
         print(file_list[i,1])
-        d10 = as.data.frame(fread(toString(file_list[i,1])))[,4]
+        d10 = read.table(toString(file_list[i,1]), header=F, sep='\t')[,4]
 	print(summary(d10[d10>0]))
 	non0mean = mean(d10[d10>0])
 	if (non0mean<0.01){

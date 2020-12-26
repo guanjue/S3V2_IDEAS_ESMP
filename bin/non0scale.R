@@ -1,4 +1,3 @@
-library(data.table)
 args = commandArgs(trailingOnly=TRUE)
 
 non0scale = function(sig, refmean, refsd){
@@ -17,7 +16,7 @@ file_list = read.table(file_list_file, header=F)
 
 ### get d1 sig
 file_tmp = toString(file_list[1,1])
-d1 = as.data.frame(fread(file_tmp))
+d1 = read.table(file_tmp, header=F, sep='\t')
 dbed = d1[,1:3]
 #dmat = d1[,4]
 bin_num = dim(dbed)[1]
@@ -32,7 +31,8 @@ dmat_s[,1]=d1[1:bin_num_used,4]
 for (i in 2:dim(file_list)[1]){
 	file_tmp = toString(file_list[i,1])
 	print(file_tmp)
-	dtmp = as.data.frame(fread(file_tmp, nrows=bin_num_used))[,4]
+	#dtmp = as.data.frame(fread(file_tmp, nrows=bin_num_used))[,4]
+	dtmp = read.table(file_tmp, header=F, sep='\t')[,4]
 	#dmat = cbind(dmat, dtmp)
 	dmat_s[,i]=dtmp
 	rm(dtmp)
@@ -50,7 +50,7 @@ print(average_non0sd)
 for (i in 1:dim(file_list)[1]){
 	file_tmp = toString(file_list[i,1])
 	output_name_tmp = paste(toString(file_list[i,1]), '.norm.bedgraph', sep='')
-	dmat_sigi = as.data.frame(fread(file_tmp))[,4]
+	dmat_sigi = read.table(file_tmp, header=F, sep='\t')[,4]
 	if (length(unique(dmat_sigi))!=1){
 		dmat_sigi_norm = non0scale(dmat_sigi, average_non0mean, average_non0sd)
 	}else{

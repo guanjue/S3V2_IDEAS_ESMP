@@ -1,5 +1,3 @@
-library(data.table)
-
 ### get parameters
 args = commandArgs(trailingOnly=TRUE)
 
@@ -316,8 +314,8 @@ get_local_bg_sig = function(exp_win, d_sig_all, d_pkb, d_lim){
 }
 
 ### read signal
-d10 = as.data.frame(fread(input_ref))
-d20 = as.data.frame(fread(input_target))
+d10 = read.table(input_ref, header=F, sep='\t')
+d20 = read.table(input_target, header=F, sep='\t')
 d1 = d10[,4]
 d2 = d20[,4]
 

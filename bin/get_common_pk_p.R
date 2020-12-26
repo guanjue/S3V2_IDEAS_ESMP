@@ -1,5 +1,3 @@
-library(data.table)
-
 ### get parameters
 args = commandArgs(trailingOnly=TRUE)
 file_list_file = args[1]
@@ -110,11 +108,11 @@ file_list = file_list[used_id_sample,]
 }
 used_id = sample(13000000, 100000)
 #used_id = 1:2000000
-d00 = as.data.frame(fread(toString(file_list[1,1])))
+d00 = read.table(toString(file_list[1,1]), header=F, sep='\t')
 common_pk = matrix(0, nrow=dim(d00)[1],ncol=dim(file_list)[1])
 for (i in 1:dim(file_list)[1]){
 	print(file_list[i,1])
-	d10 = as.data.frame(fread(toString(file_list[i,1])))
+	d10 = read.table(toString(file_list[i,1]), header=F, sep='\t')
 	sig_tmp = d10[,4]
 	#sig_tmp[sig_tmp<1]=0
 	if (method =='z'){
