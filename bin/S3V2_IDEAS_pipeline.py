@@ -55,7 +55,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 	### get signal track
 	if get_sigtrack=='T':
 		add2log('get signal track......', log_file)
-		#a=call('python '+script_dir+'/get_signal_track.multithreads.py -s '+script_dir+' -o '+OUTDIR+' -t '+str(threads)+' -g '+GENOMESIZES+' -l '+str(bin_size)+' -b '+BLACK+' -i '+metadata, shell=True)
+		#a=call('python3 '+script_dir+'/get_signal_track.multithreads.py -s '+script_dir+' -o '+OUTDIR+' -t '+str(threads)+' -g '+GENOMESIZES+' -l '+str(bin_size)+' -b '+BLACK+' -i '+metadata, shell=True)
 		a=call(script_dir+'/prepBwFiles.sh '+OUTDIR+' '+GENOMESIZES+' '+BLACK+' '+metadata+' '+script_dir+' '+str(threads)+' '+log_file+' '+str(bin_size), shell=True)
 		add2log('get signal track......Done', log_file)
 	else:
@@ -83,11 +83,11 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 			if uniq_mk_num==1:
 				add2log('One mk mode...', log_file)
 				#a=call('Rscript '+script_dir+'/get_max_median1.R'+' '+'max1'+' '+mk[0]+'.file_list_tmp1'+' '+mk[0]+'.average_sig.max1.bedgraph', shell=True)
-				#a=call('python '+script_dir+'/s3norm_1mk.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.max1.bedgraph.S3.bedgraph'+' -c T', shell=True)
+				#a=call('python3 '+script_dir+'/s3norm_1mk.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.max1.bedgraph.S3.bedgraph'+' -c T', shell=True)
 				a=call('cp '+mk[0]+'.average_sig.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph', shell=True)
 			else:
 				add2log('multiple mks mode...', log_file)
-				a=call('python '+script_dir+'/s3norm.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' -c T', shell=True)
+				a=call('python3 '+script_dir+'/s3norm.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' -c T', shell=True)
 		add2log('S3norm average across marks......Done', log_file)
 		# 3: S3V2 across samples
 		add2log('S3V2 across samples......', log_file)
@@ -158,7 +158,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 	### get_bw, redo as bash
 	if get_bw=='T':
 		add2log('get_bw......', log_file)
-		#a=call('python '+script_dir+'/get_bw.multithreads.py -s '+script_dir+' -o '+OUTDIR+id_name+'_bws'+' -t '+str(threads)+' -g '+GENOMESIZES+' -i '+metadata, shell=True)
+		#a=call('python3 '+script_dir+'/get_bw.multithreads.py -s '+script_dir+' -o '+OUTDIR+id_name+'_bws'+' -t '+str(threads)+' -g '+GENOMESIZES+' -i '+metadata, shell=True)
 		a=call(script_dir+'/get_bws.sh '+script_dir+' '+OUTDIR+id_name+'_bws'+' '+str(threads)+' '+GENOMESIZES+' '+log_file, shell=True)
 		add2log('get_bw......Done', log_file)
 
@@ -174,7 +174,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		print(uniq_mk_num)
 		a=call('cat '+OUTDIR+'/windowsNoBlack.withid.bed'+' | awk -F \'\\t\' -v OFS=\' \' \'{print $1,$2,$3,$4}\' > '+OUTDIR+'/windowsNoBlack.withid.IDEASbins.txt', shell=True)
 		# get sh & parafile
-		b=call('python '+script_dir+'/get_IDEAS_input.py'+' -i '+id_name+' -s '+script_dir+'/IDEAS_2018/'+' -w '+OUTDIR+' -o '+OUTDIR+'/'+id_name+'_IDEAS_output/'+' -b '+OUTDIR+'/windowsNoBlack.withid.IDEASbins.txt'+' -e '+email+' -t '+str(threads)+' -g '+GENOME+' -c '+str(cap_sig)+' -u '+IDEAS_track_link+' -p '+other_parafile+' -n '+str(uniq_mk_num), shell=True)
+		b=call('python3 '+script_dir+'/get_IDEAS_input.py'+' -i '+id_name+' -s '+script_dir+'/IDEAS_2018/'+' -w '+OUTDIR+' -o '+OUTDIR+'/'+id_name+'_IDEAS_output/'+' -b '+OUTDIR+'/windowsNoBlack.withid.IDEASbins.txt'+' -e '+email+' -t '+str(threads)+' -g '+GENOME+' -c '+str(cap_sig)+' -u '+IDEAS_track_link+' -p '+other_parafile+' -n '+str(uniq_mk_num), shell=True)
 		# get input file
 		c=call('cat '+metadata+' | awk -F \'\\t\' -v OFS=\' \' -v S3norm_NBP_dir='+OUTDIR+'/'+id_name+'_IDEAS_input_NB/'+' \'{print $1"_"$3,$2,S3norm_NBP_dir$1"_"$3"."$2".S3V2.bedgraph.NBP.txt"}\' | sort -u > '+OUTDIR+'/'+id_name+'.input', shell=True)
 		# add average track for input
@@ -189,7 +189,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		### get cCRE list
 		if uniq_mk_num==1:
 			#redo as bash
-			f=call('python '+script_dir+'/get_cCRE.pipeline.py -s '+script_dir+' -i '+id_name+' -w '+OUTDIR+'/'+id_name+'_IDEAS_output/'+' -l '+str(bin_size), shell=True)
+			f=call('python3 '+script_dir+'/get_cCRE.pipeline.py -s '+script_dir+' -i '+id_name+' -w '+OUTDIR+'/'+id_name+'_IDEAS_output/'+' -l '+str(bin_size), shell=True)
 	else:
 		add2log('skip run_ideas......', log_file)
 
@@ -206,7 +206,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hu:v:y:z:s:o:g:c:b:i:l:n:d:e:t:a:w:x:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python $script_dir/S3V2_IDEAS_pipeline.py -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas -s $script_dir -o $OUTDIR -g $GENOME -c $GENOMESIZES -b $BLACK -i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile -l $bin_size -n $local_bg_bin -a $cap_sig')
+			print('time python3 $script_dir/S3V2_IDEAS_pipeline.py -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas -s $script_dir -o $OUTDIR -g $GENOME -c $GENOMESIZES -b $BLACK -i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile -l $bin_size -n $local_bg_bin -a $cap_sig')
 			return()	
 		elif opt=="-u":
 			get_sigtrack=str(arg.strip())
@@ -256,7 +256,7 @@ def main(argv):
 		print('User provide metadata: -i '+str(metadata))
 		print('User provide id_name: -d '+str(id_name))
 	except NameError:
-		print('Missing required parameter(s): time python ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt')	
+		print('Missing required parameter(s): time python3 ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt')	
 		return()
 
 	###

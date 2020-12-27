@@ -98,7 +98,7 @@ def get_bw(script_folder, OUTDIR, threads_num, GENOMESIZES, metadata):
 #GENOMESIZES='/storage/home/gzx103/scratch/S3V2norm_compare/hg38_IDEAS_state_SC/GRCh38_basic_chroms.sizes.tsv'
 #metadata='/storage/home/gzx103/scratch/S3V2norm_compare/hg38_IDEAS_state_SC/metadata.for.test.txt'
 
-#time python get_bw.multithreads.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -i $metadata
+#time python3 get_bw.multithreads.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -i $metadata
 
 import getopt
 import sys
@@ -107,7 +107,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hs:o:t:g:i:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python get_bw.multithreads.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -i $metadata')
+			print('time python3 get_bw.multithreads.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -i $metadata')
 			return()	
 		elif opt=="-s":
 			script_folder=str(arg.strip())

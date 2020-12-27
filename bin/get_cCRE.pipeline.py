@@ -89,7 +89,7 @@ def get_cCRE_pipeline(script_dir, id_name, working_dir, bin_size):
 		os.remove(filename)
 
 ############################################################################
-#time python get_cCRE.pipeline.py -s $script_dir -i $id_name -w $working_dir -l $bin_size
+#time python3 get_cCRE.pipeline.py -s $script_dir -i $id_name -w $working_dir -l $bin_size
 
 import getopt
 import sys
@@ -98,7 +98,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hs:i:w:l:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python get_cCRE.pipeline.py -s $script_dir -i $id_name -w $working_dir -l $bin_size')
+			print('time python3 get_cCRE.pipeline.py -s $script_dir -i $id_name -w $working_dir -l $bin_size')
 			return()	
 		elif opt=="-s":
 			script_dir=str(arg.strip())

@@ -1,4 +1,3 @@
-#module load python/2.7
 import os
 from subprocess import call
 
@@ -58,7 +57,7 @@ def get_IDEAS_input(id_input, script_dir, working_dir, output_dir, binfile, emai
 	parafile_file.close()
 
 ############################################################################
-### time python bin/get_IDEAS_input.py -i run_IDEAS -s '/storage/home/gzx103/group/software/IDEAS/IDEAS_2018/' -w '/storage/home/gzx103/group/software/IDEAS/IDEAS_2018/test_data/' -o '/storage/home/gzx103/group/software/IDEAS/IDEAS_2018/test_data/run_IDEAS_result/' -b 'mm10_noblacklist_200bin.bin' -e 'gzx103' -t 8 -g hg38 -c 16 -u http://bx.psu.edu/~gzx103/tmp/ -p F
+### time python3 bin/get_IDEAS_input.py -i run_IDEAS -s '/storage/home/gzx103/group/software/IDEAS/IDEAS_2018/' -w '/storage/home/gzx103/group/software/IDEAS/IDEAS_2018/test_data/' -o '/storage/home/gzx103/group/software/IDEAS/IDEAS_2018/test_data/run_IDEAS_result/' -b 'mm10_noblacklist_200bin.bin' -e 'gzx103' -t 8 -g hg38 -c 16 -u http://bx.psu.edu/~gzx103/tmp/ -p F
 
 import getopt
 import sys
@@ -67,7 +66,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hi:s:w:o:b:e:t:g:c:u:p:n:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python get_IDEAS_input.py -i id_input -s script_dir -w working_dir -o output_dir -b binfile -e email_input -t thread_input -g build_input -c cap_input -u hubURL_input -p otherpara_input')
+			print('time python3 get_IDEAS_input.py -i id_input -s script_dir -w working_dir -o output_dir -b binfile -e email_input -t thread_input -g build_input -c cap_input -u hubURL_input -p otherpara_input')
 			return()
 		elif opt=="-i":
 			id_input=str(arg.strip())

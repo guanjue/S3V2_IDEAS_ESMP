@@ -1,4 +1,3 @@
-#module load python/2.7
 import os
 import numpy as np
 import matplotlib
@@ -61,7 +60,7 @@ def bed2inv(input_bed, output_inv):
 
 
 ############################################################################
-#time python bed2inv.py -i input.bed -o output.inv
+#time python3 bed2inv.py -i input.bed -o output.inv
 
 import getopt
 import sys
@@ -69,12 +68,12 @@ def main(argv):
 	try:
 		opts, args = getopt.getopt(argv,"hi:o:")
 	except getopt.GetoptError:
-		print 'time python bed2inv.py -i input.bed -o output.inv'
+		print 'time python3 bed2inv.py -i input.bed -o output.inv'
 		sys.exit(2)
 
 	for opt,arg in opts:
 		if opt=="-h":
-			print 'time python bed2inv.py -i input.bed -o output.inv'
+			print 'time python3 bed2inv.py -i input.bed -o output.inv'
 			sys.exit()
 		elif opt=="-i":
 			input_bed=str(arg.strip())

@@ -60,11 +60,11 @@ def S3norm_pipeline(threads_num, exp_win, fdr_thresh, rank_lim, upperlim, lowerl
 
 
 ############################################################################
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target
 
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
-### time python ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
+### time python3 ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt
 
 import getopt
 import sys
@@ -73,7 +73,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hn:e:f:l:a:b:p:k:g:i:s:t:r:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python ../src/S3norm_pipeline.py -s script_folder -t input_file_list -r reference_method -m (Method for matching peaks and background: non0mean, non0median, mean, median) -i initial_B -f FDR_thresh -l rank_lim_p -a upperlimit -b lowerlimit -p (p-value_method: neglog10p, z) -k common_pk_binary (0 for nocommon_pk; common_pk_binary.txt) -g common_bg_binary (0 for nocommon_pk; common_bg_binary.txt)')
+			print('time python3 ../src/S3norm_pipeline.py -s script_folder -t input_file_list -r reference_method -m (Method for matching peaks and background: non0mean, non0median, mean, median) -i initial_B -f FDR_thresh -l rank_lim_p -a upperlimit -b lowerlimit -p (p-value_method: neglog10p, z) -k common_pk_binary (0 for nocommon_pk; common_pk_binary.txt) -g common_bg_binary (0 for nocommon_pk; common_bg_binary.txt)')
 			return()	
 		elif opt=="-n":
 			threads_num=int(arg.strip())
@@ -108,7 +108,7 @@ def main(argv):
 		print('User provide script_folder: -s '+str(script_folder))
 		print('User provide input_file_list: -t '+str(file_list))
 	except NameError:
-		print('Missing required parameter(s): time python ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt')	
+		print('Missing required parameter(s): time python3 ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt')	
 		return()	
 	###
 	###### optional parameters

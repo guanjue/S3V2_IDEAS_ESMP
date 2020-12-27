@@ -18,11 +18,11 @@ def read2d_array(filename,dtype_used):
 	return(data0)
 
 def run_S3V2norm(script_folder, input_tar_file, reference_name, output_tar_file, fdr_thresh, exp_win, rank_lim, upperlim, lowerlim, pmethod, cpk_file, cbg_file):
-	step1=call('python '+script_folder+'/s3norm.py '+input_tar_file+' '+reference_name+' '+output_tar_file+' '+fdr_thresh+' '+exp_win+' F F '+rank_lim+' '+upperlim+' '+lowerlim+' '+pmethod+' '+cpk_file+' '+cbg_file, shell=True)
+	step1=call('python3 '+script_folder+'/s3norm.py '+input_tar_file+' '+reference_name+' '+output_tar_file+' '+fdr_thresh+' '+exp_win+' F F '+rank_lim+' '+upperlim+' '+lowerlim+' '+pmethod+' '+cpk_file+' '+cbg_file, shell=True)
 	return(0)
 
 def run_S3norm(script_folder, input_tar_file, reference_name, output_name, NTmethod, B_init, fdr_thresh, rank_lim, upperlim, lowerlim, p_method, common_pk_binary, common_bg_binary):
-	step1=call('python '+script_folder+'/s3norm.py -r '+reference_name+' -t '+input_tar_file+' -o '+output_name+' -m '+NTmethod+' -i '+B_init+' -f '+fdr_thresh+' -l '+rank_lim+' -a '+upperlim+' -b '+lowerlim+' -p '+p_method+' -k '+common_pk_binary+' -g '+common_bg_binary, shell=True)
+	step1=call('python3 '+script_folder+'/s3norm.py -r '+reference_name+' -t '+input_tar_file+' -o '+output_name+' -m '+NTmethod+' -i '+B_init+' -f '+fdr_thresh+' -l '+rank_lim+' -a '+upperlim+' -b '+lowerlim+' -p '+p_method+' -k '+common_pk_binary+' -g '+common_bg_binary, shell=True)
 
 def run_QTnorm(script_folder, input_tar_file, reference_name, output_name, upperlim, lowerlim):
 	step1=call('Rscript '+script_folder+'/QTnorm_rc.R '+reference_name+' '+input_tar_file+' '+output_name+' '+upperlim+' '+lowerlim, shell=True)
@@ -97,11 +97,11 @@ def S3norm_pipeline(threads_num, script_folder, file_list, thresh):
 
 
 ############################################################################
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target
 
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
-### time python ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
+### time python3 ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt
 
 import getopt
 import sys
@@ -110,7 +110,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hn:s:i:t:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python ../src/S3norm_pipeline.py -s script_folder -t input_file_list -r reference_method -m (Method for matching peaks and background: non0mean, non0median, mean, median) -i initial_B -f FDR_thresh -l rank_lim_p -a upperlimit -b lowerlimit -p (p-value_method: neglog10p, z) -k common_pk_binary (0 for nocommon_pk; common_pk_binary.txt) -g common_bg_binary (0 for nocommon_pk; common_bg_binary.txt)')
+			print('time python3 ../src/S3norm_pipeline.py -s script_folder -t input_file_list -r reference_method -m (Method for matching peaks and background: non0mean, non0median, mean, median) -i initial_B -f FDR_thresh -l rank_lim_p -a upperlimit -b lowerlimit -p (p-value_method: neglog10p, z) -k common_pk_binary (0 for nocommon_pk; common_pk_binary.txt) -g common_bg_binary (0 for nocommon_pk; common_bg_binary.txt)')
 			return()	
 		elif opt=="-n":
 			threads_num=int(arg.strip())
@@ -128,7 +128,7 @@ def main(argv):
 		print('User provide input_file_list: -i '+str(file_list))
 		print('User provide input_file_list: -t '+str(thresh))
 	except NameError:
-		print('Missing required parameter(s): time python ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt -g mm10.chrom.size')	
+		print('Missing required parameter(s): time python3 ../src/S3norm_pipeline.py -s /Users/universe/Documents/2018_BG/S3norm/src/ -t file_list.txt -g mm10.chrom.size')	
 		return()	
 	###
 	###### optional parameters

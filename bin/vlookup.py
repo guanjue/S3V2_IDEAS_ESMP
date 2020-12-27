@@ -46,12 +46,12 @@ def main(argv):
 	try:
 		opts, args = getopt.getopt(argv,"ht:m:s:n:o:k:")
 	except getopt.GetoptError:
-		print('python vlookup.py -t first_table_file -m first_table_ID -s second_table_file -n second_table_ID -o output_name -k keep2nd_matrix')
+		print('python3 vlookup.py -t first_table_file -m first_table_ID -s second_table_file -n second_table_ID -o output_name -k keep2nd_matrix')
 		sys.exit(2)
 
 	for opt,arg in opts:
 		if opt=="-h":
-			print('python vlookup.py -t first_table_file -m first_table_ID -s second_table_file -n second_table_ID -o output_name -k keep2nd_matrix')
+			print('python3 vlookup.py -t first_table_file -m first_table_ID -s second_table_file -n second_table_ID -o output_name -k keep2nd_matrix')
 			sys.exit()
 		elif opt=="-t":
 			file1=str(arg.strip())

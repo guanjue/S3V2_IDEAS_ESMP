@@ -1,4 +1,3 @@
-#module load python/2.7
 import os
 from subprocess import call
 import numpy as np
@@ -320,8 +319,8 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 
 
 ############################################################################
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
-### time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m non0mean -i 2.0 -f 0.05 -l 0.001 -a 100 -b 0 -p z -k 0 -g 0
+### time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target
 
 import getopt
 import sys
@@ -330,7 +329,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hr:t:o:m:i:f:l:a:b:p:k:g:c:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m (Method for matching peaks and background: non0mean, non0median, mean, median) -i initial_B -f FDR_thresh -l rank_lim_p -a upperlimit -b lowerlimit -p (p-value_method: neglog10p, z) -k common_pk_binary (0 for nocommon_pk; common_pk_binary.txt) -g common_bg_binary (0 for nocommon_pk; common_bg_binary.txt) -c cross_mark (T for using dataset pk; F using cpk & cbg)')
+			print('time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target -m (Method for matching peaks and background: non0mean, non0median, mean, median) -i initial_B -f FDR_thresh -l rank_lim_p -a upperlimit -b lowerlimit -p (p-value_method: neglog10p, z) -k common_pk_binary (0 for nocommon_pk; common_pk_binary.txt) -g common_bg_binary (0 for nocommon_pk; common_bg_binary.txt) -c cross_mark (T for using dataset pk; F using cpk & cbg)')
 			return()	
 		elif opt=="-r":
 			sig1_wg_raw=str(arg.strip())				
@@ -366,7 +365,7 @@ def main(argv):
 		print('User provide target.bedgraph: -t '+str(sig2_wg_raw))
 		print('User provide outputname: -o '+str(sig2_output_name))
 	except NameError:
-		print('Missing required parameter(s): time python ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target')	
+		print('Missing required parameter(s): time python3 ../src/s3norm.py -r reference.bedgraph -t target.bedgraph -o target')	
 		return()	
 	###
 	###### optional parameters

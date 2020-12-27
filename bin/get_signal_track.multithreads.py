@@ -100,7 +100,7 @@ def get_signal_track(script_folder, OUTDIR, threads_num, GENOMESIZES, bin_size, 
 #BLACK='/gpfs/group/rch8/legacy/group/genomes/hg38/blacklist.lifted.hg38.bed'
 #metadata='/storage/home/gzx103/scratch/S3V2norm_compare/hg38_IDEAS_state_SC/metadata.for.test.txt'
 
-#time python get_signal_track.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -l $bin_size -b $BLACK -i $metadata
+#time python3 get_signal_track.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -l $bin_size -b $BLACK -i $metadata
 
 import getopt
 import sys
@@ -109,7 +109,7 @@ def main(argv):
 	opts, args = getopt.getopt(argv,"hs:o:t:g:l:b:i:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python get_signal_track.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -l $bin_size -b $BLACK -i $metadata')
+			print('time python3 get_signal_track.py -s $script_dir -o $OUTDIR -t $threads_num -g $GENOMESIZES -l $bin_size -b $BLACK -i $metadata')
 			return()	
 		elif opt=="-s":
 			script_folder=str(arg.strip())
