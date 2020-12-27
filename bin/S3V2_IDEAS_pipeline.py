@@ -57,7 +57,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		add2log('get signal track......', log_file)
 		#a=call('python3 '+script_dir+'/get_signal_track.multithreads.py -s '+script_dir+' -o '+OUTDIR+' -t '+str(threads)+' -g '+GENOMESIZES+' -l '+str(bin_size)+' -b '+BLACK+' -i '+metadata, shell=True)
 		#a=call(script_dir+'/prepBwFiles.sh '+OUTDIR+' '+GENOMESIZES+' '+BLACK+' '+metadata+' '+script_dir+' '+str(threads)+' '+log_file+' '+str(bin_size), shell=True)
-		a=call(script_dir+'/prepBwFiles.sh '+OUTDIR+' '+GENOMESIZES+' '+BLACK+' '+metadata+' '+script_dir+' '+str(1)+' '+log_file+' '+str(bin_size), shell=True)
+		a=call(script_dir+'/prepBwFiles.sh '+OUTDIR+' '+GENOMESIZES+' '+BLACK+' '+metadata+' '+script_dir+' '+str(threads)+' '+log_file+' '+str(bin_size), shell=True)
 		add2log('get signal track......Done', log_file)
 	else:
 		add2log('skip get signal track', log_file)
@@ -101,14 +101,14 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 				a=call('cat '+mk[0]+'.file_list_tmp1'+' | awk -F \'.\' -v OFS=\'\\t\' -v average='+mk[0]+'.average_sig.bedgraph.S3.bedgraph \'{print $0, average, $1"_"$3, $2}\' > '+mk[0]+'.file_list.S3V2.txt', shell=True)
 				### S3V2 normalization
 				#b=call(script_dir+'/s3v2norm.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
-				b=call(script_dir+'/s3v2norm.sh'+' -n '+str(1)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
+				b=call(script_dir+'/s3v2norm.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
 			else:
 				add2log('S3V2norm each sample multiple mks mode......', log_file)
 				### get input file list
 				a=call('cat '+mk[0]+'.file_list_tmp1'+' | awk -F \'.\' -v OFS=\'\\t\' -v average='+mk[0]+'.average_sig.bedgraph.S3.bedgraph \'{print $0, average, $1"_"$3, $2}\' > '+mk[0]+'.file_list.S3V2.txt', shell=True)
 				### S3V2 normalization
 				#b=call(script_dir+'/s3v2norm.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+mk[0]+'_commonpkfdr01_z.allpk.txt'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
-				b=call(script_dir+'/s3v2norm.sh'+' -n '+str(1)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+mk[0]+'_commonpkfdr01_z.allpk.txt'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
+				b=call(script_dir+'/s3v2norm.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+mk[0]+'_commonpkfdr01_z.allpk.txt'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
 			### get S3V2 ave
 			add2log('get S3V2 ave......', log_file)
 			a=call('cat '+metadata+' | awk -F \'\\t\' -v OFS=\'\\t\' -v used_mk='+mk[0]+' \'{if ($2==used_mk) print $1"_"$3"."$2".S3V2.bedgraph"}\' > '+mk[0]+'.tmp1.list.txt', shell=True)
@@ -163,7 +163,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		add2log('get_bw......', log_file)
 		#a=call('python3 '+script_dir+'/get_bw.multithreads.py -s '+script_dir+' -o '+OUTDIR+id_name+'_bws'+' -t '+str(threads)+' -g '+GENOMESIZES+' -i '+metadata, shell=True)
 		#a=call(script_dir+'/get_bws.sh '+script_dir+' '+OUTDIR+id_name+'_bws'+' '+str(threads)+' '+GENOMESIZES+' '+log_file, shell=True)
-		a=call(script_dir+'/get_bws.sh '+script_dir+' '+OUTDIR+id_name+'_bws'+' '+str(1)+' '+GENOMESIZES+' '+log_file, shell=True)
+		a=call(script_dir+'/get_bws.sh '+script_dir+' '+OUTDIR+id_name+'_bws'+' '+str(threads)+' '+GENOMESIZES+' '+log_file, shell=True)
 		add2log('get_bw......Done', log_file)
 
 	####################################
