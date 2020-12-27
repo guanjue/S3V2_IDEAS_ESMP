@@ -1,0 +1,6 @@
+CMP	H3K27ac	r1	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K27ac.r1.chr11.bw	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K27ac.r1.chr11.ctrl.bw
+CMP	H3K4me1	r1	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me1.r1.chr11.bw	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me1.r1.chr11.ctrl.bw
+CMP	H3K4me3	r1	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me3.r1.chr11.bw	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/CMP.H3K4me3.r1.chr11.ctrl.bw
+ERY_fl	H3K27ac	r1	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.bw	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K27ac.r1.chr11.ctrl.bw
+ERY_fl	H3K4me1	r1	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.bw	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me1.r1.chr11.ctrl.bw
+ERY_fl	H3K4me3	r1	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.bw	/opt/S3V2_IDEAS_ESMP/test_data/input_bw_files/ERY_fl.H3K4me3.r1.chr11.ctrl.bw

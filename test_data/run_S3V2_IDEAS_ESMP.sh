@@ -1,23 +1,23 @@
 ### required inputs
 ###### the absolute path to the bin folder
-script_dir='/opt/S3V2_IDEAS_ESMP/bin/'
+script_dir='/app/S3V2_IDEAS_ESMP/bin/'
 ###### your output folder
-output_dir='/opt/S3V2_IDEAS_ESMP/test_data/outputs/'
+output_dir='/app/S3V2_IDEAS_ESMP/test_data/outputs/'
 ###### the absolute path to the your modified "metadata.for_master_peak_calls.txt" file
-metadata='/opt/S3V2_IDEAS_ESMP/test_data/metadata.forEScall.txt'
+metadata='/app/S3V2_IDEAS_ESMP/test_data/metadata.forEScall.txt'
 ###### The output name
 id_name='test_S3V2_IDEAS_pipeline'
 
 ###### genome
 GENOME='mm10'
 ###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
-GENOMESIZES='/opt/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
+GENOMESIZES='/app/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
 ###### blacklist (can be found in the "S3V2_IDEAS_ESMP/blacklist/" folder)
-BLACK='/opt/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
+BLACK='/app/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
 ###### number of threads in system
 ###### When the number of threads is too large, the multi-threads in python3 may fail. So it is more stable to keep it below 4. 
-threads=4
+threads=1
 ###### bin size of the signal resolution
 bin_size=200
 ###### email address
