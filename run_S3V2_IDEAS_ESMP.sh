@@ -37,7 +37,7 @@ IDEAS_track_link='http://your_acess_link_that_can_be_used_for_track_hub_in_genom
 
 [[ -d $output_dir ]] || mkdir $output_dir
 cd $output_dir
-time python $script_dir/S3V2_IDEAS_pipeline.py \
+time python3 $script_dir/S3V2_IDEAS_pipeline.py \
 -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas \
 -s $script_dir -o $output_dir -g $GENOME -c $GENOMESIZES -b $BLACK \
 -i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile \
