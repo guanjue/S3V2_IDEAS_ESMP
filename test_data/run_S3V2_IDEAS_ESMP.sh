@@ -16,7 +16,7 @@ GENOMESIZES='/opt/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
 BLACK='/opt/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
 ###### number of threads in system
-###### When the number of threads is too large, the multi-threads in python may fail. So it is more stable to keep it below 4. 
+###### When the number of threads is too large, the multi-threads in python3 may fail. So it is more stable to keep it below 4. 
 threads=4
 ###### bin size of the signal resolution
 bin_size=200
