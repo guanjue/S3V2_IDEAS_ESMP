@@ -555,7 +555,7 @@ d2_sig_norm[d2_sig_norm<lowerlim] = lowerlim
 
 print(summary(d2_sig_norm))
 
-d2_sig_norm_nb_pval_out = get_p_r1(d2_sig_norm)
+#d2_sig_norm_nb_pval_out = get_p_r1(d2_sig_norm)
 
 ### write output
 write.table(cbind(d20[,1:3], d2_sig_norm), output_target, sep='\t', quote=F, col.names=F, row.names=F)
