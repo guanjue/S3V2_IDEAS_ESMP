@@ -13,10 +13,12 @@ cd S3V2_IDEAS_ESMP/test_data
 time bash run_S3V2_IDEAS_ESMP.sh
 
 ### get Docker container ID
-docker container ls
+docker container ls           
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+350c8c6d806c   4d3a38fbe43f   "/bin/bash"   27 minutes ago   Up 27 minutes             wizardly_lamport
 
-### Extract output from Docker container (container ID: 5f5a44199278)
-docker cp 5f5a44199278:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/2020_BG/test_S3V2_docker/
+### Extract output from Docker container (container ID: 350c8c6d806c)
+docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/2020_BG/test_S3V2_docker/
 
 #real	60m22.976s
 #user	272m45.208s
