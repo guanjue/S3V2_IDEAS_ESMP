@@ -11,7 +11,7 @@ id_name='test_S3V2_IDEAS_pipeline'
 ###### genome
 GENOME='mm10'
 ###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
-GENOMESIZES='/app/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
+GENOMESIZES='/app/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.1_19XY.sizes'
 ###### blacklist (can be found in the "S3V2_IDEAS_ESMP/blacklist/" folder)
 BLACK='/app/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
