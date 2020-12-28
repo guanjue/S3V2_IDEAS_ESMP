@@ -11,13 +11,13 @@ id_name='test_S3V2_IDEAS_pipeline'
 ###### genome
 GENOME='mm10'
 ###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
-GENOMESIZES='/app/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.1_19XY.sizes'
+GENOMESIZES='/app/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
 ###### blacklist (can be found in the "S3V2_IDEAS_ESMP/blacklist/" folder)
 BLACK='/app/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
 ###### number of threads in system
 ###### When the number of threads is too large, the multi-threads in python3 may fail. So it is more stable to keep it below 4. 
-threads=1
+threads=4
 ###### bin size of the signal resolution
 bin_size=200
 ###### email address
