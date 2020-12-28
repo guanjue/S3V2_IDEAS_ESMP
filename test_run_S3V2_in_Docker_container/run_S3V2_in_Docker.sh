@@ -23,3 +23,5 @@ docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pi
 #real	60m22.976s
 #user	272m45.208s
 #sys	2m27.606s
+
+

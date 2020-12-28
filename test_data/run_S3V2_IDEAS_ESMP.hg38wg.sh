@@ -43,3 +43,6 @@ time python3 $script_dir/S3V2_IDEAS_pipeline.py \
 -i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile \
 -l $bin_size -n $local_bg_bin -a $cap_sig
 
+
+43m47.179s
+

@@ -301,6 +301,14 @@ get_local_bg_sig = function(exp_win, d_sig_all, d_pkb, d_lim){
 	d_exp_sig = cbind(d_exp_sig_up, d_exp_sig_down)
 	d_exp_pkb = cbind(d_exp_sig_up_pkb, d_exp_sig_down_pkb)
 	d_exp_pkb_sig = cbind(d_sig_all, d_pkb, d_exp_pkb, d_exp_sig)
+	rm(d_exp_sig)
+	rm(d_exp_pkb)
+	rm(d_exp_sig_up)
+	rm(d_exp_sig_down)
+	rm(d_exp_sig_up_pkb)
+	rm(d_exp_sig_down_pkb)
+	rm(d_sig_all)
+	rm(d_pkb)
 	### get local bg signal
 	### the matrix first 1:(2*exp_win) is the binary info, the (2*exp_win+1):length(x) is the signal
 #	print(head(d_exp_pkb_sig))
@@ -319,7 +327,7 @@ d20 = read.table(input_target, header=F, sep='\t')
 d1 = d10[,4]
 d2 = d20[,4]
 
-
+rm(d10)
 #d1_3rd_qt = quantile(d1[d1>0],0.75,type=1)
 #if (d1_3rd_qt<1){
 #        d1 = d1/d1_3rd_qt
@@ -405,13 +413,31 @@ allpk_used_id = d2s_nb_pval_out_binary_pk#(potential_pk)|(d12_pkb)
 
 d1_sig_all = d1
 d1_pkb = allpk_used_id#d1s_nb_pval_out_binary_pk|d2s_nb_pval_out_binary_pk
-print(summary(allpk_used_id))
-print(summary(d2_pkb))
-d1_exp_pkb_sig_bg_sig = get_local_bg_sig(exp_win, d1_sig_all, allpk_used_id, d1s_lim)
+if (length(d1_sig_all)<100000){
+	d1_exp_pkb_sig_bg_sig = get_local_bg_sig(exp_win, d1_sig_all, allpk_used_id, d1s_lim)
+} else{
+	d1_exp_pkb_sig_bg_sig = rep(0, length(d1_sig_all))
+	split_range = cbind(seq(1,length(d1_sig_all), by=100000), c(seq(1,length(d1_sig_all), by=100000)[-1],length(d1_sig_all)) )
+	for (i in 1:dim(split_range)[1]){
+		used_id_i = split_range[i,1]:split_range[i,2]
+		d1_exp_pkb_sig_bg_sig[used_id_i] = get_local_bg_sig(exp_win, d1_sig_all[used_id_i], allpk_used_id[used_id_i], d1s_lim)
+	}
+
+}
 
 d2_sig_all = d2
 d2_pkb = allpk_used_id#d1s_nb_pval_out_binary_pk|d2s_nb_pval_out_binary_pk
-d2_exp_pkb_sig_bg_sig = get_local_bg_sig(exp_win, d2_sig_all, allpk_used_id, d2s_lim)
+if (length(d1_sig_all)<100000){
+	d2_exp_pkb_sig_bg_sig = get_local_bg_sig(exp_win, d2_sig_all, allpk_used_id, d2s_lim)
+} else{
+	d2_exp_pkb_sig_bg_sig = rep(0, length(d2_sig_all))
+	split_range = cbind(seq(1,length(d2_sig_all), by=100000), c(seq(1,length(d2_sig_all), by=100000)[-1],length(d2_sig_all)) )
+	for (i in 1:dim(split_range)[1]){
+		used_id_i = split_range[i,1]:split_range[i,2]
+		d2_exp_pkb_sig_bg_sig[used_id_i] = get_local_bg_sig(exp_win, d2_sig_all[used_id_i], allpk_used_id[used_id_i], d2s_lim)
+	}
+
+}
 
 
 if (for_ref == 'T'){
@@ -535,7 +561,6 @@ d2_sig_norm_nb_pval_out = get_p_r1(d2_sig_norm)
 write.table(cbind(d20[,1:3], d2_sig_norm), output_target, sep='\t', quote=F, col.names=F, row.names=F)
 write.table(c(pksf[1], (2^pksf[2]), bgsf_bg[1], bgsf_bg[2]), paste(output_target, '.info.txt', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
 
-rm(d10)
 rm(d20)
 #write.table(cbind(d20[,1:3], d2pk_sig_norm), paste(output_target, '.pk.sig.bedgraph', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
 #write.table(cbind(d20[,1:3], d2bg_sig_norm), paste(output_target, '.bg.sig.bedgraph', sep=''), sep='\t', quote=F, col.names=F, row.names=F)
