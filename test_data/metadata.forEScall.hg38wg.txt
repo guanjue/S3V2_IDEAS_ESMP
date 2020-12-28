@@ -1,0 +1,12 @@
+ERY	H3K27ac	S002R5	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX406952.H3K27ac.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX337057.Input.bwa.GRCh38.20150528.bw
+ERY	H3K4me1	S002R5	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX300713.H3K4me1.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX337057.Input.bwa.GRCh38.20150528.bw
+ERY	H3K4me3	S002R5	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX300721.H3K4me3.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX337057.Input.bwa.GRCh38.20150528.bw
+ERY	H3K9me3	S002R5	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX300679.H3K9me3.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX337057.Input.bwa.GRCh38.20150528.bw
+ERY	H3K36me3	S002R5	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX300712.H3K36me3.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX337057.Input.bwa.GRCh38.20150528.bw
+ERY	H3K27me3	S002R5	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX300727.H3K27me3.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/S002R5H1.ERX337057.Input.bwa.GRCh38.20150528.bw
+MONc	H3K27ac	C0011IH1	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197160.H3K27ac.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197159.Input.bwa.GRCh38.20150529.bw
+MONc	H3K4me3	C0011IH1	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197165.H3K4me3.bwa.GRCh38.20150529.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197159.Input.bwa.GRCh38.20150529.bw
+MONc	H3K4me1	C0011IH1	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197177.H3K4me1.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197159.Input.bwa.GRCh38.20150529.bw
+MONc	H3K9me3	C0011IH1	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197178.H3K9me3.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197159.Input.bwa.GRCh38.20150529.bw
+MONc	H3K27me3	C0011IH1	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197179.H3K27me3.bwa.GRCh38.20150528.bw	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011IH1.ERX197159.Input.bwa.GRCh38.20150529.bw
+MONc	ATAC	C0011IH1	/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/C0011I43.ERX197155.Dnase.bwa.GRCh38.20151104.bw
