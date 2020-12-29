@@ -44,5 +44,6 @@ time python3 $script_dir/S3V2_IDEAS_pipeline.py \
 -l $bin_size -n $local_bg_bin -a $cap_sig
 
 
-43m47.179s
+#43m47.179s
+#68m22.114s
 
