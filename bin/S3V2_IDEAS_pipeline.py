@@ -168,6 +168,14 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		#a=call(script_dir+'/get_bws.sh '+script_dir+' '+OUTDIR+id_name+'_bws'+' '+str(threads)+' '+GENOMESIZES+' '+log_file, shell=True)
 		a=call(script_dir+'/get_bws.sh '+script_dir+' '+OUTDIR+id_name+'_bws'+' '+str(threads)+' '+GENOMESIZES+' '+log_file, shell=True)
 		add2log('get_bw......Done', log_file)
+		### rm bedgraphs
+		a=call('rm *.bedgraph.norm.bedgraph', shell=True)
+		b=call('rm *.S3V2.bedgraph.NBP.bedgraph', shell=True)
+		c=call('rm *.S3V2.ave.bedgraph.NBP.bedgraph', shell=True)
+		d=call('rm *.bedgraph.S3.bedgraph', shell=True)
+		e=call('rm *.S3V2.bedgraph', shell=True)
+		f=call('rm *.S3V2.ave.bedgraph', shell=True)
+		g=call('rm *.average_sig.bedgraph', shell=True)
 
 	####################################
 	### run_ideas

@@ -5,7 +5,7 @@ cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_docker/
 docker image build -t test_s3v2 .
 
 ### start docker container
-docker container run --rm -it -m 10G test_s3v2
+docker container run --rm -it -m 15G test_s3v2
 
 ### run S3V2 in docker container
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
@@ -26,5 +26,4 @@ docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pi
 #sys	2m27.606s
 
 docker cp 725076b71d65:/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg ~/Documents/2020_BG/test_S3V2_docker/
-
-release some space
+docker cp ~/Documents/2020_BG/test_S3V2_docker/input_bw_files_wg 725076b71d65:/app/S3V2_IDEAS_ESMP/test_data/
