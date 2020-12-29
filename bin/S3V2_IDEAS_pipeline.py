@@ -123,6 +123,9 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		a=call('cat '+metadata+' | awk -F \'\\t\' -v OFS=\'\\t\' \'{print $1"."$2"."$3".ctrl.idsort.bedgraph"}\' > all.ctrl.list.txt', shell=True)
 		b=call('Rscript '+script_dir+'/non0scale.R all.ctrl.list.txt', shell=True)
 		add2log('normalize controls......Done', log_file)
+		# release some space
+		a=call('rm *.ip.idsort.bedgraph', shell=True)
+		b=call('rm *.ctrl.idsort.bedgraph', shell=True)
 		# 5: Get NBP
 		add2log('Get NBP......', log_file)
 		for mk in mks:
