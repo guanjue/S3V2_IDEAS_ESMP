@@ -75,8 +75,8 @@ CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          POR
 ```
 
 ##### Extract output from Docker container 
-##### Here, the container ID of my test run is: 350c8c6d806c
-##### Then, you can use the "docker cp 350c8c6d806c:..." command to extract the outputs to a local folder in your laptop or desktop. 
+###### Here, the container ID of my test run is: 350c8c6d806c
+###### Then, you can use the "docker cp 350c8c6d806c:..." command to extract the outputs to a local folder in your laptop or desktop. 
 ```
 ### mkdir ~/Documents/test_S3V2_docker_outputs/
 ### Get the bigWig files for the S3V2 normalized signals
