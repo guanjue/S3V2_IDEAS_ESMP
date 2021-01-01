@@ -9,7 +9,9 @@
 ###### After open Docker package in MAC OS system, you should be able to see the following page.
 ###### Got to Setting resource page (highlighted by the red dash box).
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource1.png" width="800"/>
+
 ###### Change the default resource to the following settings (Or the resource your laptop or desktop can support).
+
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource2.png" width="800"/>
 
 #### Step1: Enter the Dockerfile folder
