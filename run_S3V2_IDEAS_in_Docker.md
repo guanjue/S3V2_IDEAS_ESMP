@@ -1,7 +1,7 @@
 # Running S3V2-IDEAS in Docker
 
 ### Outline
-**[(1) Step0: Set up Docker package in a laptop or desktop.](#Step0:-Set-up-Docker-package-in-a-laptop-or-desktop.)**<br>
+**[(1) Step0: Set up Docker package in a laptop or desktop.](#Step0-Set-up-Docker-package-in-a-laptop-or-desktop.)**<br>
 #####
 **[(2) Running S3V2-IDEAS in Docker](# Running S3V2-IDEAS in Docker)**<br>
 #####
@@ -9,7 +9,7 @@
 
 ####
 
-## Step0: Set up Docker package in a laptop or desktop.
+## Step0 Set up Docker package in a laptop or desktop.
 
 ###### Download and Install Docker in the (https://www.docker.com/get-started)
 ###### Set the DResources that can be assigned to Docker
