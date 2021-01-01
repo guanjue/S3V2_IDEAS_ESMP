@@ -1,10 +1,13 @@
 ## Prerequisites and S3V2_IDEAS_ESMP installation
+
 ### S3V2_IDEAS_ESMP dependencies are as follows:
-#### python3 (https://www.python.org/download/releases/3.0/)
-#### python dependencies: 'numpy', 'scipy', 'multiprocess'
-#### R (https://www.r-project.org/)
-#### R dependencies: 'data.table', 'doParallel', 'foreach', 'LSD', 'pheatmap'
-#### gawk
+```
+python3 (https://www.python.org/download/releases/3.0/)
+python dependencies: 'numpy', 'scipy', 'multiprocess'
+R (https://www.r-project.org/)
+R dependencies: 'data.table', 'doParallel', 'foreach', 'LSD', 'pheatmap'
+gawk
+```
 
 ### Installing S3V2_IDEAS_ESMP package
 #### Clone the github repository 
