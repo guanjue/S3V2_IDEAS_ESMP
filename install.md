@@ -3,10 +3,10 @@
 ### 
 ### Operating System are as follows:
 ```
-The pipeline needs to be run on a linux-64 operating system. 
+The pipeline needs to be run on a linux-64 operating system with at least 8GB memory to run. 
 For users without access to the linux-64 system, people can use the Docker to set up a Operating System environment to run the pipeline.
-
-We have tested this pipeline in different linux-64 operating systems. The pipeline can be run on, but not limited to, the following two version of the linux-64 systems:
+We have tested this pipeline in different linux-64 operating systems. 
+The pipeline can be run on, but not limited to, the following two version of the linux-64 systems:
 
 (1)
 LSB Version:	:base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch
@@ -37,14 +37,7 @@ The pipeline should work in the latest version of R. We have also tested other v
 After installing the GSL system, users need to add the ~/gsl/lib into the LD_LIBRARY_PATH
 ```
 
-### Installing Dependencies and Setting Up Environment:
-#### Clone the github repository 
-```
-cd /where_user_clone_the_S3norm_GitHub/
-git clone https://github.com/guanjue/S3V2_IDEAS_ESMP.git
-```
-
-#### Installing dependency by command line: 
+### Installing Dependencies and Setting Up Environment 
 ```
 ### Use 'apt-get' to install python3, R, bedtools and some basic softwares in Linux-64 system.
 apt-get update && apt-get install -y --no-install-recommends build-essential r-base r-cran-randomforest python3.6 python3-pip python3-setuptools python3-dev git time bash wget make bedtools vim
@@ -63,12 +56,15 @@ Rscript -e "install.packages('foreach')"
 # The Admin permission is required to install the package. 
 # However, it is often not available for users using the public linux servers. 
 # Please contact the Administrator of server to see how to use this package.
-cd /app && mkdir /app/gsl && cd /app/gsl && wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.2.1.tar.gz && tar -zxvf gsl-2.2.1.tar.gz && cd /app/gsl/gsl-2.2.1 && mkdir /app/gsl/gsl && ./configure --prefix=/app/gsl/gsl && make && make check && make install 
+cd /where_you_install_gsl_2_2_1/ && mkdir /where_you_install_gsl_2_2_1/gsl && cd /where_you_install_gsl_2_2_1/gsl && wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.2.1.tar.gz && tar -zxvf gsl-2.2.1.tar.gz && cd /where_you_install_gsl_2_2_1/gsl/gsl-2.2.1 && mkdir /where_you_install_gsl_2_2_1/gsl/gsl && ./configure --prefix=/where_you_install_gsl_2_2_1/gsl/gsl && make && make check && make install 
 
 ### Clone the S3V2_IDEAS_ESMP from GitHub.
 cd  /The_folder_you_want_to_install_S3V2_IDEAS_ESMP_package/
 git clone https://github.com/guanjue/S3V2_IDEAS_ESMP.git
 
-### 
+### Add the /where_you_install_gsl_2_2_1/gsl/gsl/lib into the LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/where_you_install_gsl_2_2_1/gsl/gsl/lib/
+
+# The S3V2_IDEAS_ESMP pipeline should be able to run.
 ```
 
