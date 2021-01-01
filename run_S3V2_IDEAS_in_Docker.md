@@ -11,10 +11,21 @@
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource1.png" width="800"/>
 
 ###### Change the default resource to the following settings (Or the resource your laptop or desktop can support).
+###### Click the "Apply & Restart" button at the bottom right corner (highlighted by the red dash box).
 
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource2.png" width="800"/>
 
-#### Step1: Enter the Dockerfile folder
+###### Open a Terminal in MAC and try the following command to see if the Docker has been successfully installed.
+
+```
+Docker system
+```
+###### If the Docker has been successfully installed, you should be able to see something similar to the followings:
+
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource3.png" width="800"/>
+
+
+#### Step1: Open a Terminal in MAC and Enter the Dockerfile folder
 ```
 cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_docker/
 ```
