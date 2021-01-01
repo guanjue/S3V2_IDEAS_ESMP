@@ -11,7 +11,7 @@
 
 ## Table of Contents
 **[(1) Prerequisites and S3V2_IDEAS_ESMP installation](#Prerequisites-and-S3V2_IDEAS_ESMP-installation)**<br>
-**[(1) Prerequisites and S3V2_IDEAS_ESMP installation](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/install.txt)**<br>
+**[(1) Prerequisites and S3V2_IDEAS_ESMP installation](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/install.md)**<br>
 
 
 #####
