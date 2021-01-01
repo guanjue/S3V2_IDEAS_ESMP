@@ -5,6 +5,8 @@
 #####
 **[(2) Running S3V2-IDEAS in Docker](#Running-S3V2-IDEAS-in-Docker)**<br>
 #####
+**[(3) Extract the outputs in Docker](#Extract-the-outputs-in-Docker)**<br>
+#####
 
 
 ####
@@ -40,35 +42,45 @@ Docker system
 cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_docker/
 ```
 
-#### Step2: Set up docker container
+#### Step2: Set up Docker container. 
+##### This step may take a few minutes to install all of the Dependencies in the Linux-64 operating system in Docker container
 ```
 docker image build -t test_s3v2 .
 ```
 
-#### Step3: Start docker container
+#### Step3: Start the Docker container
+##### This command will start interaction mode within the Linux-64 operating system in Docker container
 ```
 docker container run --rm -it -m 15G test_s3v2
 ```
 
-#### Step4: run S3V2 in docker container
+#### Step4: run S3V2-IDEAS pipeline on the testing datasets in Docker container
+##### For the testing dataset, it will take around 2 hours to finish one run of the S3V2-IDEAS pipeline.
 ```
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
 cd S3V2_IDEAS_ESMP/test_data
 time bash run_S3V2_IDEAS_ESMP.sh
 ```
 
-### get Docker container ID
-docker container ls           
+## Extract the outputs in Docker 
+##### After the S3V2-IDEAS run is finished, you can extract the outputs generated in the Docker container.
+##### Open a new tab in the Terminal and Get Docker container ID by the following command:
+```
+docker container ls      
+```
+##### You should see something like the following containing the "CONTAINER ID":
+```
 CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
 350c8c6d806c   4d3a38fbe43f   "/bin/bash"   27 minutes ago   Up 27 minutes             wizardly_lamport
+```
 
-### Extract output from Docker container (container ID: 350c8c6d806c)
-docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/2020_BG/test_S3V2_docker/
-docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_bws ~/Documents/2020_BG/test_S3V2_docker/
+##### Extract output from Docker container (container ID: 350c8c6d806c)
+```
+### mkdir ~/Documents/test_S3V2_docker_outputs/
+### Get the bigWig files for the S3V2 normalized signals
+docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_bws_RC ~/Documents/test_S3V2_docker_outputs/
 
-#real	60m22.976s
-#user	272m45.208s
-#sys	2m27.606s
+### Get the IDEAS genome segmentation results (Heatmap for the Epigenetic states and the corresponding state genome browser Tracks)
+docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/test_S3V2_docker_outputs/
+```
 
-docker cp 725076b71d65:/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg ~/Documents/2020_BG/test_S3V2_docker/
-docker cp ~/Documents/2020_BG/test_S3V2_docker/input_bw_files_wg 725076b71d65:/app/S3V2_IDEAS_ESMP/test_data/
