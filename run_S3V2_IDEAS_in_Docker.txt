@@ -25,6 +25,9 @@ Docker system
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource3.png" width="800"/>
 
 
+## 
+## Running S3V2-IDEAS in Docker
+
 #### Step1: Open a Terminal in MAC and Enter the Dockerfile folder
 ```
 cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_docker/
