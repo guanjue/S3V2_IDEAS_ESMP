@@ -1,20 +1,33 @@
+### Running S3V2-IDEAS in Docker
 
-### Step1: Enter the Dockerfile folder
+####
+
+#### Step0: Set up Docker package in a laptop or desktop.
+
+###### Download and Install Docker in the (https://www.docker.com/get-started)
+###### Set the DResources that can be assigned to Docker
+###### After open Docker package in MAC OS system, you should be able to see the following page.
+###### Got to Setting resource page (highlighted by the red dash box).
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource1.png" width="800"/>
+###### Change the default resource to the following settings (Or the resource your laptop or desktop can support).
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource2.png" width="800"/>
+
+#### Step1: Enter the Dockerfile folder
 ```
 cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_docker/
 ```
 
-### Step2: Set up docker container
+#### Step2: Set up docker container
 ```
 docker image build -t test_s3v2 .
 ```
 
-### Step3: Start docker container
+#### Step3: Start docker container
 ```
 docker container run --rm -it -m 15G test_s3v2
 ```
 
-### Step4: run S3V2 in docker container
+#### Step4: run S3V2 in docker container
 ```
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
 cd S3V2_IDEAS_ESMP/test_data
