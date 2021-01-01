@@ -3,7 +3,8 @@
 ### 
 ### Operating System are as follows:
 ```
-The pipeline needs to be run on a linux-64 operating system. For users without access to the linux-64 system, people can use the Docker to set up a Operating System environment to run the pipeline.
+The pipeline needs to be run on a linux-64 operating system. 
+For users without access to the linux-64 system, people can use the Docker to set up a Operating System environment to run the pipeline.
 
 We have tested this pipeline in different linux-64 operating systems. The pipeline can be run on, but not limited to, the following two version of the linux-64 systems:
 
@@ -28,50 +29,46 @@ Codename:	Core
 (1) python3 (https://www.python.org/download/releases/3.0/)
 (2) python dependencies: 'numpy', 'scipy', 'multiprocess'
 (3) R (https://www.r-project.org/)
-(4) R dependencies: 'data.table', 'doParallel', 'foreach', 'LSD', 'pheatmap'
+(4) R dependencies: 'data.table', 'doParallel', 'foreach'
 The pipeline should work in the latest version of R. We have also tested other versions of R and the pipeline should also work in the following versions: 3.5.2; 3.6.2; 4.0.0
 (5) gawk
-(6) bedtools (https://bedtools.readthedocs.io/en/latest/content/installation.html)
-
+(6) bedtools: The instruction about bedtools can be found in the following link(https://bedtools.readthedocs.io/en/latest/content/installation.html)
+(7) GSL 2.2.1: The instruction about GSL can be found in the following link (https://www.gnu.org/software/gsl/manual/gsl-ref.html)
+After installing the GSL system, users need to add the ~/gsl/lib into the LD_LIBRARY_PATH
 ```
 
-### Installing S3V2_IDEAS_ESMP package
+### Installing Dependencies and Setting Up Environment:
 #### Clone the github repository 
 ```
 cd /where_user_clone_the_S3norm_GitHub/
 git clone https://github.com/guanjue/S3V2_IDEAS_ESMP.git
 ```
-#### Install dependency: 
-##### If some of dependencies were not installed, user can use the following command to install them
+
+#### Installing dependency by command line: 
 ```
-###### For python dependencies, they can be installed by the following scripts
-pip install --upgrade pip --user
-pip install --upgrade numpy --user
-pip install --upgrade scipy --user
-pip install multiprocess --user
+### Use 'apt-get' to install python3, R, bedtools and some basic softwares in Linux-64 system.
+apt-get update && apt-get install -y --no-install-recommends build-essential r-base r-cran-randomforest python3.6 python3-pip python3-setuptools python3-dev git time bash wget make bedtools vim
 
-R packages
-install.packages('data.table')
-install.packages('doParallel')
-install.packages('foreach')
-install.packages('LSD')
-install.packages('pheatmap')
+### python3 packages
+pip3 install numpy --user
+pip3 install scipy --user
+pip3 install multiprocess --user
 
+### R packages
+Rscript -e "install.packages('data.table')"
+Rscript -e "install.packages('doParallel')"
+Rscript -e "install.packages('foreach')"
 
-bedtools
-######(https://bedtools.readthedocs.io/en/latest/content/installation.html)
+### GSL 2.2.1: 
+# The Admin permission is required to install the package. 
+# However, it is often not available for users using the public linux servers. 
+# Please contact the Administrator of server to see how to use this package.
+cd /app && mkdir /app/gsl && cd /app/gsl && wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.2.1.tar.gz && tar -zxvf gsl-2.2.1.tar.gz && cd /app/gsl/gsl-2.2.1 && mkdir /app/gsl/gsl && ./configure --prefix=/app/gsl/gsl && make && make check && make install 
 
-IDEAS requires GSL 2.2.1 and python.
-The instruction about GSL can be found in the following link:
+### Clone the S3V2_IDEAS_ESMP from GitHub.
+cd  /The_folder_you_want_to_install_S3V2_IDEAS_ESMP_package/
+git clone https://github.com/guanjue/S3V2_IDEAS_ESMP.git
 
-https://www.gnu.org/software/gsl/manual/gsl-ref.html
-Add the ~/gsl/lib into the LD_LIBRARY_PATH
-
-
-IDEAS also requires UCSC utilities
-IDEAS already include the required utilities in the package. But if user is using different system, please replace the UCSC utilities by the version of user's system.
-The follow link includes the UCSC utilities for other systems.
-
-http://hgdownload.soe.ucsc.edu/admin/exe/
-
+### 
+```
 
