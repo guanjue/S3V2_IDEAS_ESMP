@@ -13,6 +13,7 @@
 **[(4) Outputs-for-S3V2_IDEAS_ESMP](#Outputs-for-S3V2_IDEAS_ESMP)**<br>
 #####
 
+#####################################################################################
 
 ### Inputs for S3V2_IDEAS_ESMP
 #### (1) The bigWig files of interested epigenetic features in interested cell types.
@@ -92,6 +93,8 @@ time python $script_dir/S3V2_IDEAS_package.py \
 
 ```
 
+#####################################################################################
+
 ### run S3V2_IDEAS_ESMP
 ##### The package will generated several whole genome matrix which require large memory such as:
 ##### For our analysis in 20 cell types in mouse, we usually ask 30GB memories and 4 threads to run the package.
@@ -106,10 +109,6 @@ time python $script_dir/S3V2_IDEAS_package.py \
 ```
 time bash run_S3V2_IDEAS_ESMP.sh
 ```
-
-
-#####################################################################################
-#####################################################################################
 #####################################################################################
 
 
