@@ -23,6 +23,12 @@ Release:	7.8.2003
 Codename:	Core
 
 ```
+##### The pipeline will generated several whole genome matrix which require large memory.
+##### For example, a system has 7 epigenetic features in 21 cell types in human, we used 30GB memories and 4 threads to run the S3V2-IDEAS pipeline. It will take around 25 hours to be done.
+##### Other systems and the computing time that we have tried have been shown in the following table:
+
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/computing_resource_timing.png" width="600"/>
+
 
 ### Dependencies are as follows:
 ```

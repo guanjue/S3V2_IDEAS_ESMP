@@ -105,7 +105,7 @@ time python $script_dir/S3V2_IDEAS_package.py \
 ```
 time bash run_S3V2_IDEAS_ESMP.sh
 ```
-##### The package will generated several whole genome matrix which require large memory.
+##### The pipeline will generated several whole genome matrix which require large memory.
 ##### For example, a system has 7 epigenetic features in 21 cell types in human, we used 30GB memories and 4 threads to run the S3V2-IDEAS pipeline. It will take around 25 hours to be done.
 ##### Other systems and the computing time that we have tried have been shown in the following table:
 
