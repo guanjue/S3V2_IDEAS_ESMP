@@ -25,7 +25,7 @@
 ##### gzx103@psu.edu
 
 #### S3V2-IDEAS
-Guanjue Xiang, Belinda M. Giardine, Shaun Mahony, Yu Zhang, Ross C Hardison. "Snapshot: clustering and visualizing epigenetic history during cell differentiation." bioRxiv (2020): .
+Guanjue Xiang, Belinda M. Giardine, Shaun Mahony, Yu Zhang, Ross C Hardison. "S3V2-IDEAS: a package for normalizing, denoising and integrating epigenomic datasets across different cell types" bioRxiv (2020): .
 #### S3norm
 Guanjue, Xiang, Cheryl A. Keller, ..., Yu Zhang, Ross C. Hardison. "S3norm: simultaneous normalization of sequencing depth and signal-to-noise ratio in epigenomic data." Nucleic Acids Research 48.8 (2020): e43-e43.
 #### IDEAS
