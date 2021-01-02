@@ -33,30 +33,36 @@ Codename:	Core
 ### Dependencies are as follows:
 ```
 (1) python3 (https://www.python.org/download/releases/3.0/)
-(2) python dependencies: 'numpy', 'scipy', 'multiprocess'
-(3) R (https://www.r-project.org/)
-(4) R dependencies: 'data.table', 'doParallel', 'foreach'
-The pipeline should work in the latest version of R. We have also tested other versions of R and the pipeline should also work in the following versions: 3.5.2; 3.6.2; 4.0.0
+(2) python dependencies: 'numpy_1.13.3', 'scipy_0.19.1', 'multiprocess_0.70.11.1' & later versions
+(3) R (https://www.r-project.org/): The pipeline should work in the latest version of R. We have also tested other versions of R and the pipeline should also work in the following versions: 3.5.2; 3.6.2; 4.0.0
+(4) R dependencies: 'doParallel_1.0.16', 'foreach_1.4.8', 'data.table_1.12.0' & later versions
 (5) gawk
-(6) bedtools: The instruction about bedtools can be found in the following link(https://bedtools.readthedocs.io/en/latest/content/installation.html)
+(6) bedtools (v2.27.1 and above): The instruction about bedtools can be found in the following link(https://bedtools.readthedocs.io/en/latest/content/installation.html)
 (7) GSL 2.2.1: The instruction about GSL can be found in the following link (https://www.gnu.org/software/gsl/manual/gsl-ref.html)
 After installing the GSL system, users need to add the ~/gsl/lib into the LD_LIBRARY_PATH
 ```
 
 ### Installing Dependencies and Setting Up Environment. 
 ```
-### Use 'apt-get' to install python3, R, bedtools and some basic softwares in Linux-64 system.
+### Use 'apt-get' to install python3, R 3.5.2, bedtools (v2.27.1) and some basic softwares in Linux-64 system.
 apt-get update && apt-get install -y --no-install-recommends build-essential r-base r-cran-randomforest python3.6 python3-pip python3-setuptools python3-dev git time bash wget make bedtools vim
 
 ### python3 packages
 pip3 install numpy --user
 pip3 install scipy --user
 pip3 install multiprocess --user
+### Version of the python modules works for our operating system:
+### numpy_1.13.3 scipy_0.19.1     multiprocess_0.70.11.1
+### Other versions especially the latest version of the python modules should works as well
+
 
 ### R packages
 Rscript -e "install.packages('data.table')"
 Rscript -e "install.packages('doParallel')"
 Rscript -e "install.packages('foreach')"
+### Version of the R libraries works for our operating system:
+### doParallel_1.0.16 foreach_1.4.8     data.table_1.12.0
+### Other versions especially the latest version of the R libraries should works as well
 
 ### GSL 2.2.1: 
 # The Admin permission is required to install the package. 
