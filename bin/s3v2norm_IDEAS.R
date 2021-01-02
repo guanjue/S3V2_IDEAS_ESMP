@@ -337,13 +337,11 @@ rm(d10)
 #        d1 = d1/d1_3rd_qt
 #}
 
-d2_mode = getmode(d2[d2>0])
-if (d2_mode<1){d2 = d2/d2_mode}
 
 if (cpk_file=='F'){
-	d2_mode = getmode(d2[d2>0])#quantile(d2[d2>0],0.75,type=1)
-	if (d2_mode<1){
-		d2 = d2/d2_mode
+	d2_quantile = quantile(d2[d2>0],0.5,type=1)
+	if (d2_quantile<1){
+		d2 = d2/d2_quantile
 	}
 } else{
 	cpk_id = (scan(cpk_file)!=0)
