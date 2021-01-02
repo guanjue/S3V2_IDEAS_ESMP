@@ -339,7 +339,7 @@ rm(d10)
 
 
 if (cpk_file=='F'){
-	d2_quantile = quantile(d2[d2>0],0.5,type=1)
+	d2_quantile = quantile(d2[d2>0],0.75,type=1)
 	if (d2_quantile<1){
 		d2 = d2/d2_quantile
 	}
