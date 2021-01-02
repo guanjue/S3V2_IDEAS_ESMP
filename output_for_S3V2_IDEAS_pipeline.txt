@@ -1,0 +1,27 @@
+#####################################################################################
+
+## Outputs of S3V2_IDEAS_ESMP
+### All outputs will be saved in the user provided "$output_dir".
+##### The epigenetic state genome segmentation (multiple epigenetic features) and master peak list (one epigenetic feature) will be saved in the following folder: "your_output_name_IDEAS_output/"
+```
+ls -ltrh test_S3V2_IDEAS_pipeline_IDEAS_output/
+total 21M
+-rw-rw---- 1 gzx103 gzx103_collab 2.3K Sep  8 04:00 test_S3V2_IDEAS_pipeline.profile0
+-rw-rw---- 1 gzx103 gzx103_collab 2.0K Sep  8 04:00 test_S3V2_IDEAS_pipeline.para0
+-rw-rw---- 1 gzx103 gzx103_collab  22K Sep  8 04:02 test_S3V2_IDEAS_pipeline.cluster
+-rw-rw---- 1 gzx103 gzx103_collab  21M Sep  8 04:02 test_S3V2_IDEAS_pipeline.state
+-rw-rw---- 1 gzx103 gzx103_collab 2.1K Sep  8 04:02 test_S3V2_IDEAS_pipeline.para
+-rw-rw---- 1 gzx103 gzx103_collab 1.1K Sep  8 04:02 test_S3V2_IDEAS_pipeline.profile
+-rw-rw---- 1 gzx103 gzx103_collab 4.9K Sep  8 04:02 test_S3V2_IDEAS_pipeline.pdf
+drwxrws--- 2 gzx103 gzx103_collab 4.0K Sep  8 04:02 Tracks
+-rw-rw---- 1 gzx103 gzx103_collab 1.8K Sep  8 04:02 log.txt
+
+##### (1) The S3V2 normalized average read counts will be save in the "test_S3V2_IDEAS_package_bws_RC" folder
+##### (2) The -log10(p-value) based on S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_package_bws_NBP" folder
+##### (3) The signal composition of the epigenetic state will be the "test_S3V2_IDEAS_package.pdf"
+##### (4) The genome segmentation will be saved in "test_S3V2_IDEAS_package_IDEAS_output/Tracks/" folder. These bigBed files can be loaded into UCSC genome browser as track hub by the "hub_test_S3V2_IDEAS_pipeline.txt" file in the "Tracks/" folder.
+##### (5) If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_package.cCRE.M.bed" file
+```
+
+
+#####################################################################################
