@@ -1,4 +1,4 @@
-## Inputs, parameter settings, and Outputs for S3V2_IDEAS_ESMP
+## Inputs, Parameter Settings, Running Steps, and Outputs for S3V2_IDEAS_ESMP
 
 #### Outline
 **[(1) Inputs for S3V2_IDEAS_ESMP](#Inputs-for-S3V2_IDEAS_ESMP)**<br>
@@ -93,19 +93,26 @@ time python $script_dir/S3V2_IDEAS_package.py \
 #####################################################################################
 
 ### run S3V2_IDEAS_ESMP
-##### The package will generated several whole genome matrix which require large memory such as:
-##### For our analysis in 20 cell types in mouse, we usually ask 30GB memories and 4 threads to run the package.
+##### Set threads and memory in HPC servers:
 ```
 #PBS -l nodes=1:ppn=4
 #PBS -l walltime=50:00:00
 #PBS -j oe
-#PBS -l pmem=50gb
+#PBS -l pmem=30gb
 ```
 
 ##### Then Run:
 ```
 time bash run_S3V2_IDEAS_ESMP.sh
 ```
+##### The package will generated several whole genome matrix which require large memory.
+##### For example, a system has 7 epigenetic features in 21 cell types in human, we used 30GB memories and 4 threads to run the S3V2-IDEAS pipeline. It will take around 25 hours to be done.
+##### Other systems and the computing time that we have tried have been shown in the following table:
+
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/computing_resource_timing.png" width="600"/>
+
+
+
 #####################################################################################
 
 
