@@ -7,6 +7,8 @@
 #####
 **[(3) Extract the outputs in Docker](#Extract-the-outputs-in-Docker)**<br>
 #####
+**[(4) Download whole genome data and run the pipeline in Docker](#Download-whole-genome-data-and-run-the-pipeline-in-Docker)**<br>
+#####
 
 
 ####
@@ -105,6 +107,16 @@ time bash get_hg38wgbw.sh
 ### run the S3V2-IDEAS pipeline
 time bash run_S3V2_IDEAS_ESMP.hg38wg.sh
 ```
+##### For the user's own data analysis, user can also modified the "get_hg38wgbw.sh" script to download the data into Docker container.
+##### Or directly cp into the Docker container from the local folder:
+```
+### cp local bigWig files into the Docker container
+docker cp ~/local_folder/some_ct_mk.bigWig 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/ 
+```
+##### Then, user need to modified the "metadata.forEScall.hg38wg.txt" and "run_S3V2_IDEAS_ESMP.hg38wg.sh" files to run the pipeline on their own datasets.
+##### The instruction for setting up the "metadata.forEScall.hg38wg.txt" and "run_S3V2_IDEAS_ESMP.hg38wg.sh" files can be found in the following page:
+**[Inputs-ParameterSettings-RunningSteps-Outputs for S3V2_IDEAS_ESMP](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/manuals/inoutput_for_S3V2_IDEAS_pipeline.md)**<br>
+
 
 
 
