@@ -8,6 +8,10 @@ For users without access to the linux-64 system, people can use the Docker to se
 We have tested this pipeline in different linux-64 operating systems. 
 The pipeline can be run on, but not limited to, the following two version of the linux-64 systems:
 
+Noted: This pipeline was designed to incorporate multiple epigenomic dataset across multiple cell types. 
+This type of analysis is typically run on the high-performance servers. 
+So, running the pipeline in HPC server is suggested.
+
 (1)
 LSB Version:	:base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch
 Distributor ID:	RedHatEnterpriseServer
