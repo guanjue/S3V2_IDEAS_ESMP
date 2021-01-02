@@ -54,13 +54,19 @@ docker image build -t test_s3v2 .
 docker container run --rm -it -m 15G test_s3v2
 ```
 
-#### Step4: run S3V2-IDEAS pipeline on the testing datasets in Docker container
-##### For the testing dataset, it will take around 2 hours to finish one run of the S3V2-IDEAS pipeline.
+#### Step4: run S3V2-IDEAS pipeline on the testing datasets in Docker container.
+##### A Docker container is similar to a Terminal. 
+##### The user can type the following command to run the S3V2-IDEAS pipeline for the testing data in the Docker container
 ```
+### set the GSL PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
+### enter the 'test_data' folder
 cd S3V2_IDEAS_ESMP/test_data
+### run the S3V2-IDEAS pipeline
 time bash run_S3V2_IDEAS_ESMP.sh
 ```
+##### For the testing dataset, it will take around 2 hours to finish one run of the S3V2-IDEAS pipeline.
+
 
 ## Extract the outputs in Docker 
 ##### After the S3V2-IDEAS run is finished, you can extract the outputs generated in the Docker container.
@@ -85,4 +91,20 @@ docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pi
 ### Get the IDEAS genome segmentation results (Heatmap for the Epigenetic states and the corresponding state genome browser Tracks)
 docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/test_S3V2_docker_outputs/
 ```
+
+## Download whole genome data and run the pipeline in Docker 
+##### For testing the whole genome data analysis, user can also use the script in "get_hg38wgbw.sh" in the following link to download some whole genome data into the Docker container. (https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/test_data/)
+##### Then, use the script in "run_S3V2_IDEAS_ESMP.hg38wg.sh" to run the S3V2-IDEAS pipeline in the whole genome data
+```
+### set the GSL PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
+### enter the 'test_data' folder
+cd S3V2_IDEAS_ESMP/test_data
+### Download the bigWig files into a "input_bw_files_wg/" folder in the Docker container
+time bash get_hg38wgbw.sh
+### run the S3V2-IDEAS pipeline
+time bash run_S3V2_IDEAS_ESMP.hg38wg.sh
+```
+
+
 
