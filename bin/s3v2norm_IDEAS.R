@@ -321,6 +321,10 @@ get_local_bg_sig = function(exp_win, d_sig_all, d_pkb, d_lim){
 	return(d_exp_pkb_sig_bg_sig)
 }
 
+getmode = function(v) {
+   uniqv = unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
 ### read signal
 d10 = read.table(input_ref, header=F, sep='\t')
 d20 = read.table(input_target, header=F, sep='\t')
@@ -333,10 +337,13 @@ rm(d10)
 #        d1 = d1/d1_3rd_qt
 #}
 
+d2_mode = getmode(d2[d2>0])
+if (d2_mode<1){d2 = d2/d2_mode}
+
 if (cpk_file=='F'){
-	d2_3rd_qt = quantile(d2[d2>0],0.75,type=1)
-	if (d2_3rd_qt<1){
-		d2 = d2/d2_3rd_qt
+	d2_mode = getmode(d2[d2>0])#quantile(d2[d2>0],0.75,type=1)
+	if (d2_mode<1){
+		d2 = d2/d2_mode
 	}
 } else{
 	cpk_id = (scan(cpk_file)!=0)
