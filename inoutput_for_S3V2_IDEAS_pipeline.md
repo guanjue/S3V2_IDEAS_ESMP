@@ -1,4 +1,4 @@
-## Inputs, parameter settings, Outputs for S3V2_IDEAS_ESMP
+## Inputs, parameter settings, and Outputs for S3V2_IDEAS_ESMP
 
 ### Outline
 **[(1) Inputs for S3V2_IDEAS_ESMP](#Inputs-for-S3V2_IDEAS_ESMP)**<br>
