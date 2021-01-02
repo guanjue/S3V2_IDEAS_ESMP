@@ -20,10 +20,3 @@ CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          POR
 ### Extract output from Docker container (container ID: 350c8c6d806c)
 docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/2020_BG/test_S3V2_docker/
 docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_bws ~/Documents/2020_BG/test_S3V2_docker/
-
-#real	60m22.976s
-#user	272m45.208s
-#sys	2m27.606s
-
-docker cp 725076b71d65:/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg ~/Documents/2020_BG/test_S3V2_docker/
-docker cp ~/Documents/2020_BG/test_S3V2_docker/input_bw_files_wg 725076b71d65:/app/S3V2_IDEAS_ESMP/test_data/
