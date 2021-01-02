@@ -43,7 +43,7 @@ The pipeline should work in the latest version of R. We have also tested other v
 After installing the GSL system, users need to add the ~/gsl/lib into the LD_LIBRARY_PATH
 ```
 
-### Installing Dependencies and Setting Up Environment. [(Running the S3V2_IDEAS pipeline in Docker)](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/run_S3V2_IDEAS_in_Docker.md)
+### Installing Dependencies and Setting Up Environment. 
 ```
 ### Use 'apt-get' to install python3, R, bedtools and some basic softwares in Linux-64 system.
 apt-get update && apt-get install -y --no-install-recommends build-essential r-base r-cran-randomforest python3.6 python3-pip python3-setuptools python3-dev git time bash wget make bedtools vim
@@ -73,4 +73,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/where_you_install_gsl_2_2_1/gsl/gsl/lib
 
 # The S3V2_IDEAS_ESMP pipeline should be able to run.
 ```
+
+## If the installations have problems cannot be solve, you can try to run the package in Docker with preset environment:
+[(Running the S3V2_IDEAS pipeline in Docker)](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/run_S3V2_IDEAS_in_Docker.md)
 
