@@ -1,6 +1,6 @@
 # S3V2_IDEAS_ESMP
 
-## In the package, it can first normalize average read counts signal by S3norm ver2 and then use IDEAS to either to do genome segmentations or to call master peaks list across multiple datasets. This package will use bigWig file as input files. 
+### In the package, it can first normalize average read counts signal by S3norm ver2 and then use IDEAS to either to do genome segmentations or to call master peaks list across multiple datasets. This package will use bigWig file as input files. 
 
 
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/overall_pipeline.png" width="600"/>
