@@ -371,8 +371,8 @@ if (p_method=='neglog10p'){
 	#d1s_nb_pval_out = get_p_r2(d1, d1r1)
 	#d2s_nb_pval_out = get_p_r2(d2, d2r1)
 }else if (p_method=='z') {
-        d1s_nb_pval_out = get_p_z(d1, 0.999)
-        d2s_nb_pval_out = get_p_z(d2, 0.999)
+        d1s_nb_pval_out = get_p_z(d1, 1)
+        d2s_nb_pval_out = get_p_z(d2, 1)
 }
 
 
