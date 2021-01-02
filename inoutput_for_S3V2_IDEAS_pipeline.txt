@@ -1,6 +1,3 @@
-
-#####################################################################################
-
 ## Inputs, parameter settings, Outputs for S3V2_IDEAS_ESMP
 
 ### Outline
