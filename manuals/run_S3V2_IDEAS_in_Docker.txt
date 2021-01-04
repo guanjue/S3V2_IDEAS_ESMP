@@ -41,7 +41,7 @@ Docker system
 
 #### Step1: Open a Terminal in MAC and Enter the Dockerfile folder
 ```
-cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_docker/
+cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_run_S3V2_in_Docker_container/
 ```
 
 #### Step2: Set up Docker container. 
