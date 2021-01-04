@@ -55,6 +55,8 @@ docker image build -t test_s3v2 .
 ```
 docker container run --rm -it -m 15G test_s3v2
 ```
+##### Noted! For request 5GB is enough for just running the testing data. So user can simply change the "15G" to "5G" in this command.
+
 
 #### Step4: run S3V2-IDEAS pipeline on the testing datasets in Docker container.
 ##### A Docker container is similar to a Terminal. 
