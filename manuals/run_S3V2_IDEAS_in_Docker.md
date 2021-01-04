@@ -22,6 +22,7 @@
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource1.png" width="500"/>
 
 ###### Change the default resource to the following settings (Or the resource your laptop or desktop can support).
+###### For memory, at least 5GB is required to run the testing data.
 ###### Click the "Apply & Restart" button at the bottom right corner (highlighted by the red dash box).
 
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource2.png" width="500"/>
