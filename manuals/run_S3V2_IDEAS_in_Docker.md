@@ -40,7 +40,7 @@ Docker system
 ## 
 ## Running S3V2-IDEAS in Docker
 
-#### Step1: Open a Terminal in MAC. Clone the S3V2_IDEAS_ESMP pipeline from GitHub and then Enter the "test_run_S3V2_in_Docker_container" folder include the Docker image file in the S3V2_IDEAS_ESMP pipeline folder.
+#### Step1: Open a Terminal in MAC. --> Clone the S3V2_IDEAS_ESMP pipeline from GitHub. --> Then Enter the "test_run_S3V2_in_Docker_container" folder include the Docker image file in the S3V2_IDEAS_ESMP pipeline folder.
 ```
 ### Enter a local folder
 cd /Path_to_S3V2_folder/
