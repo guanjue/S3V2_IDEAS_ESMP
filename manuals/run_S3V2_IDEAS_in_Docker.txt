@@ -114,25 +114,34 @@ docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pi
 
 
 ## Download whole genome data and run the pipeline in Docker 
-##### For testing the whole genome data analysis, user can also use the script in "get_hg38wgbw.sh" in the following link to download some whole genome data into the Docker container. (https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/test_data/)
-##### Then, use the script in "run_S3V2_IDEAS_ESMP.hg38wg.sh" to run the S3V2-IDEAS pipeline in the whole genome data
+#### 1.) Download exemplary whole genome data sets
+###### For the whole genome data analysis, user can use the script in "get_hg38wgbw.sh" in the following link to download some exemplary whole genome datasets into the Docker container. (https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/test_data/)
+
+#### 2.) Run the S3V2-IDEAS pipeline on the exemplary data sets
+##### Then, user can use the script in "run_S3V2_IDEAS_ESMP.hg38wg.sh" to run the S3V2-IDEAS pipeline on these whole genome data sets
 ```
 ### set the GSL PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
 ### enter the 'test_data' folder
 cd S3V2_IDEAS_ESMP/test_data
+
 ### Download the bigWig files into a "input_bw_files_wg/" folder in the Docker container
 time bash get_hg38wgbw.sh
+
 ### run the S3V2-IDEAS pipeline
 time bash run_S3V2_IDEAS_ESMP.hg38wg.sh
 ```
-##### For the user's own data analysis, user can also modified the "get_hg38wgbw.sh" script to download the data into Docker container.
-##### Or directly cp into the Docker container from the local folder:
+
+#### 3.) Run the S3V2-IDEAS pipeline on users' own whole genome data sets
+##### For the user's own data analysis, user can also modify the "get_hg38wgbw.sh" script to download the data into Docker container.
+##### Or directly copy the data sets into the Docker container from the local folder:
 ```
 ### cp local bigWig files into the Docker container
 docker cp ~/local_folder/some_ct_mk.bigWig 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/input_bw_files_wg/ 
 ```
-##### Then, user need to modified the "metadata.forEScall.hg38wg.txt" and "run_S3V2_IDEAS_ESMP.hg38wg.sh" files to run the pipeline on their own datasets.
+
+##### Then, users need to modify the "metadata.forEScall.hg38wg.txt" and "run_S3V2_IDEAS_ESMP.hg38wg.sh" files to run the pipeline on their own datasets.
+
 ##### The instruction for setting up the "metadata.forEScall.hg38wg.txt" and "run_S3V2_IDEAS_ESMP.hg38wg.sh" files can be found in the following page:
 **[Inputs-ParameterSettings-RunningSteps-Outputs for S3V2_IDEAS_ESMP](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/manuals/inoutput_for_S3V2_IDEAS_pipeline.md)**<br>
 
