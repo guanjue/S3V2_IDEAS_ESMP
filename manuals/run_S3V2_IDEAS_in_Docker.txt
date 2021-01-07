@@ -40,7 +40,7 @@ Docker system
 ## 
 ## Running S3V2-IDEAS in Docker
 
-#### Step1: Open a Terminal in MAC and Enter the Dockerfile folder
+#### Step1: Open a Terminal in MAC and Enter the "test_run_S3V2_in_Docker_container" folder include the Docker image file in the S3V2_IDEAS_ESMP package folder.
 ```
 cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_run_S3V2_in_Docker_container/
 ```
