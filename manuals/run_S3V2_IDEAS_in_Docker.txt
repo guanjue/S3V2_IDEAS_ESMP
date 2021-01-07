@@ -15,9 +15,9 @@
 
 ## Set up Docker package in a laptop or desktop.
 
-###### 1.) Download and Install Docker in the (https://www.docker.com/get-started)
+#### 1.) Download and Install Docker in the (https://www.docker.com/get-started)
 
-###### 2.) Set the Resources that can be assigned to Docker:
+#### 2.) Set the Resources that can be assigned to Docker:
 ###### After opening the Docker package on MAC OS, you should be able to see the following page.
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource1.png" width="500"/>
 
@@ -28,7 +28,7 @@
 ###### Click the "Apply & Restart" button at the bottom right corner (highlighted by the red dash box).
 
 
-###### 3.) Open a terminal and try the following command to see if the Docker has been successfully installed.
+#### 3.) Open a terminal and try the following command to see if the Docker has been successfully installed.
 ```
 docker system
 ```
