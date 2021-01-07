@@ -15,82 +15,90 @@
 
 ## Set up Docker package in a laptop or desktop.
 
-###### Download and Install Docker in the (https://www.docker.com/get-started)
-###### Set the DResources that can be assigned to Docker
-###### After open Docker package in MAC OS system, you should be able to see the following page.
-###### Got to Setting resource page (highlighted by the red dash box).
+###### 1.) Download and Install Docker in the (https://www.docker.com/get-started)
+
+###### 2.) Set the Resources that can be assigned to Docker:
+###### After opening the Docker package on MAC OS, you should be able to see the following page.
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource1.png" width="500"/>
 
+###### Go to the Setting resource page (highlighted by the red dash box).
 ###### Change the default resource to the following settings (Or the resource your laptop or desktop can support).
-#### For memory, at least 5GB is required to run the pipeline on the testing data.
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource2.png" width="500"/>
+###### For memory, at least 5GB is required to run the pipeline on the testing data.
 ###### Click the "Apply & Restart" button at the bottom right corner (highlighted by the red dash box).
 
-<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource2.png" width="500"/>
 
-###### Open a Terminal in MAC and try the following command to see if the Docker has been successfully installed.
-
+###### 3.) Open a terminal and try the following command to see if the Docker has been successfully installed.
 ```
-Docker system
+docker system
 ```
-###### If the Docker has been successfully installed, you should be able to see something similar to the followings:
-
+###### If the Docker has been successfully installed, you should be able to see something similar to the following:
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/set_docker_resource3.png" width="300"/>
 
 
 ## 
 ## Running S3V2-IDEAS in Docker
 
-#### Step1: Open a Terminal in MAC. --> Clone the S3V2_IDEAS_ESMP pipeline from GitHub. --> Then Enter the "test_run_S3V2_in_Docker_container" folder include the Docker image file in the S3V2_IDEAS_ESMP pipeline folder.
+#### 1.) Open a Terminal in MAC. Clone the S3V2-IDEAS pipeline from GitHub
 ```
 ### Enter a local folder
 cd /Path_to_S3V2_folder/
 
 ### clone S3V2_IDEAS_ESMP pipeline
 git clone https://github.com/guanjue/S3V2_IDEAS_ESMP.git
+```
 
-### Enter the "test_run_S3V2_in_Docker_container" folder with Docker image file
+
+#### 2.) Open a terminal and change directory to the "test_run_S3V2_in_Docker_container" folder include the Docker image file in the S3V2_IDEAS_ESMP package folder.
+```
 cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_run_S3V2_in_Docker_container/
 ```
 
-#### Step2: Set up Docker container. 
-##### This step may take a few minutes to install all of the Dependencies in the Linux-64 operating system in Docker container
+
+#### 3.) Set up Docker container. 
+#### Run the following command:
 ```
 docker image build -t test_s3v2 .
 ```
+##### Notice: There is a period at the end of the above command
+##### This step may take a few minutes to install all of the dependencies.
 
-#### Step3: Start the Docker container
-##### This command will start interaction mode within the Linux-64 operating system in Docker container
+
+#### 4.) Start the Docker container
+##### Run the following command:
 ```
 docker container run --rm -it -m 15G test_s3v2
 ```
-##### Noted! For request 5GB is enough for just running the testing data. So user can simply change the "15G" to "5G" in this command.
+##### Note: 5GB is enough to run the testing data. So, you can change the "15G" to "5G" in this command if you don't have enough ram.
 
 
-#### Step4: run S3V2-IDEAS pipeline on the testing datasets in Docker container.
-##### A Docker container is similar to a Terminal. 
-##### The user can type the following command to run the S3V2-IDEAS pipeline for the testing data in the Docker container
+#### 5.) run S3V2-IDEAS pipeline on the testing datasets in the Docker container.
+##### A Docker container is similar to a terminal. Run the following commands in the container:
 ```
 ### set the GSL PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
+
 ### enter the 'test_data' folder
 cd S3V2_IDEAS_ESMP/test_data
+
 ### run the S3V2-IDEAS pipeline
 time bash run_S3V2_IDEAS_ESMP.sh
 ```
-##### For the testing dataset, it will take around 2 hours to finish one run of the S3V2-IDEAS pipeline.
+##### For the testing dataset, it should take around 2 hours to finish running the S3V2-IDEAS pipeline.
 
 
 ## Extract the outputs in Docker 
-##### After the S3V2-IDEAS run is finished, you can extract the outputs generated in the Docker container.
-##### Open a new tab in the Terminal and Get Docker container ID by the following command:
+##### After the above S3V2-IDEAS run is finished, you can extract the outputs generated in the Docker container.
+##### 1.) Open a new tab in the terminal and get the docker container ID by running the following:
 ```
-docker container ls      
+docker container ls
 ```
 ##### You should see something like the following containing the "CONTAINER ID":
 ```
 CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
 350c8c6d806c   4d3a38fbe43f   "/bin/bash"   27 minutes ago   Up 27 minutes             wizardly_lamport
 ```
+
 
 ##### Extract output from Docker container 
 ###### Here, the container ID of my test run is: 350c8c6d806c
@@ -103,6 +111,7 @@ docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pi
 ### Get the IDEAS genome segmentation results (Heatmap for the Epigenetic states and the corresponding state genome browser Tracks)
 docker cp 350c8c6d806c:/app/S3V2_IDEAS_ESMP/test_data/outputs/test_S3V2_IDEAS_pipeline_IDEAS_output ~/Documents/test_S3V2_docker_outputs/
 ```
+
 
 ## Download whole genome data and run the pipeline in Docker 
 ##### For testing the whole genome data analysis, user can also use the script in "get_hg38wgbw.sh" in the following link to download some whole genome data into the Docker container. (https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/test_data/)
