@@ -56,16 +56,16 @@ cd /Path_to_S3V2_folder/S3V2_IDEAS_ESMP/test_run_S3V2_in_Docker_container/
 
 
 #### 3.) Set up Docker container. 
-#### Run the following command:
+###### Run the following command:
 ```
 docker image build -t test_s3v2 .
 ```
-##### Notice: There is a period at the end of the above command
-##### This step may take a few minutes to install all of the dependencies.
+###### Notice: There is a period at the end of the above command
+###### This step may take a few minutes to install all of the dependencies.
 
 
 #### 4.) Start the Docker container
-##### Run the following command:
+###### Run the following command:
 ```
 docker container run --rm -it -m 15G test_s3v2
 ```
@@ -73,7 +73,7 @@ docker container run --rm -it -m 15G test_s3v2
 
 
 #### 5.) run S3V2-IDEAS pipeline on the testing datasets in the Docker container.
-##### A Docker container is similar to a terminal. Run the following commands in the container:
+###### A Docker container is similar to a terminal. Run the following commands in the container:
 ```
 ### set the GSL PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/gsl/gsl/lib/
@@ -88,19 +88,19 @@ time bash run_S3V2_IDEAS_ESMP.sh
 
 
 ## Extract the outputs in Docker 
-##### After the above S3V2-IDEAS run is finished, you can extract the outputs generated in the Docker container.
-##### 1.) Open a new tab in the terminal and get the docker container ID by running the following:
+###### After the above S3V2-IDEAS run is finished, you can extract the outputs generated in the Docker container.
+#### 1.) Open a new tab in the terminal and get the docker container ID by running the following:
 ```
 docker container ls
 ```
-##### You should see something like the following containing the "CONTAINER ID":
+###### You should see something like the following containing the "CONTAINER ID":
 ```
 CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
 350c8c6d806c   4d3a38fbe43f   "/bin/bash"   27 minutes ago   Up 27 minutes             wizardly_lamport
 ```
 
 
-##### Extract output from Docker container 
+#### 2.) Extract output from Docker container 
 ###### Here, the container ID of my test run is: 350c8c6d806c
 ###### Then, you can use the "docker cp 350c8c6d806c:..." command to extract the outputs to a local folder in your laptop or desktop. 
 ```
