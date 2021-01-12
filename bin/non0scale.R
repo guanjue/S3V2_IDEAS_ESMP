@@ -33,6 +33,9 @@ for (i in 2:dim(file_list)[1]){
 	file_tmp = toString(file_list[i,1])
 	print(file_tmp)
 	dtmp = read.table(file_tmp, header=F, sep='\t')[used_id,4]
+        if (is.na(mean(dtmp)) || (max(dtmp)==0)){
+        print('!!!Something wrong with the bigWig to signal step!!!')
+        next}
 	#dmat = cbind(dmat, dtmp)
 	dmat_s[,i]=dtmp
 	rm(dtmp)
