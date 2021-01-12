@@ -114,6 +114,9 @@ for (i in 1:dim(file_list)[1]){
 	print(file_list[i,1])
 	d10 = read.table(toString(file_list[i,1]), header=F, sep='\t')
 	sig_tmp = d10[,4]
+        if (is.na(mean(sig_tmp)) || (max(sig_tmp)==0)){
+        print('!!!Something wrong with the bigWig to signal step!!!')
+        next}
 	#sig_tmp[sig_tmp<1]=0
 	if (method =='z'){
 	sig_tmp_fdr = get_fdr(sig_tmp)
