@@ -31,17 +31,19 @@ if (dim(file_list)[1]>1){
 for (i in 2:dim(file_list)[1]){
 	print(i)
         print(file_list[i,1])
-        d10 = read.table(toString(file_list[i,1]), header=F, sep='\t')[,4]
-	if (is.na(mean(d10)) || (max(d10)==0)){
-        print('!!!Something wrong with the bigWig to signal step!!!')
-        next}
-	print(summary(d10[d10>0]))
-	non0mean = mean(d10[d10>0])
-	if (non0mean<0.01){
-		d10 = d10/non0mean
+	if (file.exists(toString(file_list[i,1]))){
+        	d10 = read.table(toString(file_list[i,1]), header=F, sep='\t')[,4]
+		if (is.na(mean(d10)) || (max(d10)==0)){
+        		print('!!!Something wrong with the bigWig to signal step!!!')
+        	next}
+		print(summary(d10[d10>0]))
+		non0mean = mean(d10[d10>0])
+		if (non0mean<0.01){
+			d10 = d10/non0mean
+		}
+        	sum_sig = sum_sig + d10
+		rm(d10)
 	}
-        sum_sig = sum_sig + d10
-	rm(d10)
 }
 }
 
