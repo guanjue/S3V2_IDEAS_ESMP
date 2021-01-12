@@ -27,6 +27,7 @@ if (non0mean<0.01){
 }
 
 print('read other files')
+notused_n = 0
 if (dim(file_list)[1]>1){
 for (i in 2:dim(file_list)[1]){
 	print(i)
@@ -35,6 +36,7 @@ for (i in 2:dim(file_list)[1]){
         	d10 = read.table(toString(file_list[i,1]), header=F, sep='\t')[,4]
 		if (is.na(mean(d10)) || (max(d10)==0)){
         		print('!!!Something wrong with the bigWig to signal step!!!')
+        		notused_n = notused_n+1
         	next}
 		print(summary(d10[d10>0]))
 		non0mean = mean(d10[d10>0])
@@ -47,7 +49,7 @@ for (i in 2:dim(file_list)[1]){
 }
 }
 
-average_sig = sum_sig / dim(file_list)[1]
+average_sig = sum_sig / (dim(file_list)[1]-notused_n)
 
 write.table(cbind(bed, average_sig), output, col.names=F, row.names=F, quote=F, sep='\t')
 
