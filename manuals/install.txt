@@ -85,5 +85,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/where_you_install_gsl_2_2_1/gsl/gsl/lib
 ```
 
 ## If the installations have problems cannot be solve, you can try to run the package in Docker with preset environment:
-### [(Running the S3V2_IDEAS pipeline in Docker)](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/run_S3V2_IDEAS_in_Docker.md)
+### [(Running the S3V2_IDEAS pipeline in Docker)](https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/manuals/run_S3V2_IDEAS_in_Docker.md)
 
