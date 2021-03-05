@@ -31,7 +31,7 @@ Guanjue Xiang, Cheryl A Keller, Belinda Giardine, Lin An, Qunhua Li, Yu Zhang, R
 #### IDEAS genome segmentation
 Yu Zhang, Lin An, Feng Yue, Ross C Hardison, Jointly characterizing epigenetic dynamics across multiple human cell types, Nucleic Acids Research, Volume 44, Issue 14, 19 August 2016, Pages 6721–6731, https://doi.org/10.1093/nar/gkw278
 #### Vision project 
-###### IDEAS analysis with 8 epigenetic features in 20 mouse  hematopoietic cell types & Updates in IDEAS
+###### IDEAS analysis with 8 epigenetic features in 20 mouse hematopoietic cell types & Updates in IDEAS
 Guanjue, Xiang, Cheryl A. Keller, ..., Yu Zhang, Ross C. Hardison. "An integrative view of the regulatory and transcriptional landscapes in mouse hematopoiesis." Genome research. 2020 Mar 1;30(3):472-84, https://doi.org/10.1101/gr.255760.119
 
 
