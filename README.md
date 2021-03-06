@@ -1,6 +1,6 @@
-# S3V2_IDEAS_ESMP
+# S3V2_IDEAS_ESMP: a package for normalizing, denoising and integrating epigenomic datasets across different cell types
 
-### In the package, it can first normalize average read counts signal by S3norm ver2 and then use IDEAS to either to do genome segmentations or to call master peaks list across multiple datasets. This package will use bigWig file as input files. 
+### The S3V2-IDEAS package first normalizes average read counts by S3V2 and then uses IDEAS to either do genome segmentations or call master peaks list across multiple datasets. This package uses bigWig files as the inputs. 
 
 
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/overall_pipeline.png" width="600"/>
