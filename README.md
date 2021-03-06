@@ -22,7 +22,7 @@
 
 ## Contacts and References
 #### Contacts: 
-##### gzx103@psu.edu
+##### rch8@psu.edu, gzx103@psu.edu
 
 #### S3V2-IDEAS
 Guanjue Xiang, Belinda M Giardine, Shaun Mahony, Yu Zhang, Ross C Hardison, S3V2-IDEAS: a package for normalizing, denoising and integrating epigenomic datasets across different cell types, Bioinformatics, 2021;, btab148, https://doi.org/10.1093/bioinformatics/btab148
