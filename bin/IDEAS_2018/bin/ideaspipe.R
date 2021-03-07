@@ -543,7 +543,7 @@ if(randstart[1]>1)
 	#args = c(args, "-mixpara", paste(out, ".mixpara",sep=""));
 
 	for(i in 1:randstart[1])
-	{	for(j in c("para","state","cluster","profile"))
+	{	for(j in c("state","cluster","profile"))
 		{	if(file.exists(paste(out, ".tmp.",i,".",j, sep="")))
 			{	system(paste("rm ", out, ".tmp.",i,".", j, sep=""));	
 			}
