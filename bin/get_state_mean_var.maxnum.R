@@ -4,6 +4,9 @@ library(pheatmap)
 #IDEAS_output_name = 'hg38bp0402'
 #output_name='.var_mean.pdf'
 
+#time Rscript S3V2_IDEAS_ESMP/bin/get_state_mean_var.maxnum.R '/S3V2_IDEAS_outputs_hg38/' 'S3V2_IDEAS_hg38_r2' '.m_v.pdf' '_IDEAS_output/'
+
+
 args = commandArgs(trailingOnly=TRUE)
 IDEAS_folder = args[1]
 IDEAS_output_name = args[2]
@@ -15,14 +18,19 @@ print(IDEAS_output_folder_tail)
 
 d = read.table(paste(IDEAS_folder, IDEAS_output_name, '.input', sep=''), header=F, sep=' ')
 
-uniq_mk = unique(d[,2])
+print(head(d))
+uniq_mk = unique(apply(d,1,function(x) as.character(x[2])))
 uniq_mk_num = length(uniq_mk)
 
-ct_num = table(d[,1])
+ct_rep = apply(d,1,function(x) as.character(x[1]))
+ct_num = table(ct_rep)
 print(ct_num)
 #fullset_ct = rownames(ct_num)[ct_num==uniq_mk_num]
 fullset_ct = rownames(ct_num)[ct_num==max(ct_num)]
-uniq_mk = d[d[,1]==fullset_ct,2]
+
+
+
+uniq_mk = d[ct_rep==fullset_ct[1],2]
 print(uniq_mk)
 uniq_mk_num = length(uniq_mk)
 
@@ -42,8 +50,8 @@ for (i in 1:length(fullset_ct)){
 #
 ### get file list
 print(fullset_ct[i])
-files_tmp = d[d[,1]==fullset_ct[i],3]
-mk_tmp = d[d[,1]==fullset_ct[i],2]
+files_tmp = d[ct_rep==fullset_ct[i],3]
+mk_tmp = d[ct_rep==fullset_ct[i],2]
 ### get signal mat
 sigmat_tmp = c()
 for (mk_i in uniq_mk){
