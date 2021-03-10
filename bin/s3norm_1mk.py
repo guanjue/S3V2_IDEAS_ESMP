@@ -406,8 +406,8 @@ def main(argv):
 	try:
 		print('User provide upperlim: -a '+str(upperlim))
 	except NameError:
-		print('Default upperlim: -a 100000')
-		upperlim = 100000
+		print('Default upperlim: -a 500')
+		upperlim = 500
 	###
 	try:
 		print('User provide lowerlim: -b '+str(lowerlim))

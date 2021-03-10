@@ -102,6 +102,9 @@ get_p_r1 = function(d){
 
 get_p_z = function(d, notop_p){
         d_notop = d[d<=quantile(d, notop_p)]
+        if (max(d_notop)<=1){
+        	d_notop = d[d<=quantile(d[d>0], notop_p)]
+        }
         dz = (d - mean(d_notop))/sd(d_notop)
         dzp = pnorm(-(dz))
         dzpfdr = p.adjust(dzp,'fdr')
