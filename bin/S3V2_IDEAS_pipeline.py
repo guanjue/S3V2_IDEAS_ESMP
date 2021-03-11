@@ -101,7 +101,7 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 				a=call('cat '+mk[0]+'.file_list_tmp1'+' | awk -F \'.\' -v OFS=\'\\t\' -v average='+mk[0]+'.average_sig.bedgraph.S3.bedgraph \'{print $0, average, $1"_"$3, $2}\' > '+mk[0]+'.file_list.S3V2.txt', shell=True)
 				### S3V2 normalization
 				#b=call(script_dir+'/s3v2norm.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
-				b=call(script_dir+'/s3v2norm.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
+				b=call(script_dir+'/s3v2norm_1mk.sh'+' -n '+str(threads)+' -e '+str(local_bg_bin)+' -t '+mk[0]+'.file_list.S3V2.txt'+' -k '+mk[0]+'_commonpkfdr01_z.cpk.txt'+' -g '+mk[0]+'_commonpkfdr01_z.cbg.txt'+' -s '+script_dir+' -i '+'F'+' -l '+str(0.0001)+' -x '+log_file, shell=True)
 			else:
 				add2log('S3V2norm each sample multiple mks mode......', log_file)
 				### get input file list
