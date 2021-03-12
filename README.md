@@ -34,9 +34,9 @@
 #### (4) IDEAS genome segmentation Resource
 >>###### (IDEAS genome segmentation analysis for VISION project: IDEAS Updates and the corresponding genome segmentation analysis with 8 epigenetic features in 20 mouse hematopoietic cell types http://usevision.org/)
 >>##### Guanjue, Xiang, Cheryl A. Keller, ..., Yu Zhang, Ross C. Hardison. "An integrative view of the regulatory and transcriptional landscapes in mouse hematopoiesis." Genome research. 2020 Mar 1;30(3):472-84, https://doi.org/10.1101/gr.255760.119
->>>###### Genome segmentation tracks: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr5&g=meryIdeasSuper
+>>>###### The Genome segmentation tracks is in the IDEAS... tab: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTracks?db=mm10
 >>###### (IDEAS genome segmentation analysis for ROADMAP)
 >>##### Zhang Y, Hardison RC. Accurate and reproducible functional maps in 127 human cell types via 2D genome segmentation. Nucleic acids research. 2017 Sep 29;45(17):9823-36, https://doi.org/10.1093/nar/gkx659
->>>###### Genome segmentation tracks: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr10&g=meryIdeasSuper
+>>>###### Genome segmentation tracks: http://bx.psu.edu/~yuzhang/Roadmap_ideas/
 
 
