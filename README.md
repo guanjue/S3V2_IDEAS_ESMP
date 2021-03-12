@@ -37,7 +37,6 @@
 >>>###### Genome segmentation tracks: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr5&g=meryIdeasSuper
 >>###### (IDEAS genome segmentation analysis for ROADMAP)
 >>##### Zhang Y, Hardison RC. Accurate and reproducible functional maps in 127 human cell types via 2D genome segmentation. Nucleic acids research. 2017 Sep 29;45(17):9823-36, https://doi.org/10.1093/nar/gkx659
-https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr10&g=meryIdeasSuper
 >>>###### Genome segmentation tracks: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr10&g=meryIdeasSuper
 
 
