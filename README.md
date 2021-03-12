@@ -31,12 +31,13 @@
 ##### Zhang Y, Mahony S. Direct prediction of regulatory elements from partial data without imputation. PLoS computational biology. 2019 Nov 4;15(11):e1007399, https://doi.org/10.1371/journal.pcbi.1007399
 #### S3norm
 ##### Guanjue Xiang, Cheryl A Keller, Belinda Giardine, Lin An, Qunhua Li, Yu Zhang, Ross C Hardison, S3norm: simultaneous normalization of sequencing depth and signal-to-noise ratio in epigenomic data, Nucleic Acids Research, Volume 48, Issue 8, 07 May 2020, Page e43, https://doi.org/10.1093/nar/gkaa105
-#### Vision project 
-###### (IDEAS Updates and the corresponding genome segmentation analysis with 8 epigenetic features in 20 mouse hematopoietic cell types)
+#### IDEAS genome segmentation Resource
+###### (IDEAS genome segmentation analysis for VISION project: IDEAS Updates and the corresponding genome segmentation analysis with 8 epigenetic features in 20 mouse hematopoietic cell types http://usevision.org/)
 ##### Guanjue, Xiang, Cheryl A. Keller, ..., Yu Zhang, Ross C. Hardison. "An integrative view of the regulatory and transcriptional landscapes in mouse hematopoiesis." Genome research. 2020 Mar 1;30(3):472-84, https://doi.org/10.1101/gr.255760.119
+###### Genome segmentation tracks: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr5&g=meryIdeasSuper
 ###### (IDEAS genome segmentation analysis for ROADMAP)
 ##### Zhang Y, Hardison RC. Accurate and reproducible functional maps in 127 human cell types via 2D genome segmentation. Nucleic acids research. 2017 Sep 29;45(17):9823-36, https://doi.org/10.1093/nar/gkx659
-
-
+https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr10&g=meryIdeasSuper
+###### Genome segmentation tracks: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTrackUi?hgsid=721824_4aB9hK8q0LsA6MMSc1TPCFLusGIc&c=chr10&g=meryIdeasSuper
 
 
