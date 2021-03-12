@@ -32,10 +32,11 @@
 #### (3) S3norm
 >>##### Guanjue Xiang, Cheryl A Keller, Belinda Giardine, Lin An, Qunhua Li, Yu Zhang, Ross C Hardison, S3norm: simultaneous normalization of sequencing depth and signal-to-noise ratio in epigenomic data, Nucleic Acids Research, Volume 48, Issue 8, 07 May 2020, Page e43, https://doi.org/10.1093/nar/gkaa105
 #### (4) IDEAS genome segmentation Resource
->>###### (IDEAS genome segmentation analysis for VISION project: IDEAS Updates and the corresponding genome segmentation analysis with 8 epigenetic features in 20 mouse hematopoietic cell types http://usevision.org/)
+>>###### a. IDEAS genome segmentation analysis for VISION project: 
+>>###### IDEAS Updates and the corresponding genome segmentation analysis with 8 epigenetic features in 20 mouse hematopoietic cell types http://usevision.org/
 >>##### Guanjue, Xiang, Cheryl A. Keller, ..., Yu Zhang, Ross C. Hardison. "An integrative view of the regulatory and transcriptional landscapes in mouse hematopoiesis." Genome research. 2020 Mar 1;30(3):472-84, https://doi.org/10.1101/gr.255760.119
 >>>###### The Genome segmentation tracks is in the IDEAS... tab: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTracks?db=mm10
->>###### (IDEAS genome segmentation analysis for ROADMAP)
+>>###### b. IDEAS genome segmentation analysis for ROADMAP
 >>##### Yu Zhang, Ross C Hardison. Accurate and reproducible functional maps in 127 human cell types via 2D genome segmentation. Nucleic acids research. 2017 Sep 29;45(17):9823-36, https://doi.org/10.1093/nar/gkx659
 >>>###### Genome segmentation tracks: http://bx.psu.edu/~yuzhang/Roadmap_ideas/
 
