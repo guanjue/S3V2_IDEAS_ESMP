@@ -28,7 +28,7 @@
 >>##### Guanjue Xiang, Belinda M Giardine, Shaun Mahony, Yu Zhang, Ross C Hardison, S3V2-IDEAS: a package for normalizing, denoising and integrating epigenomic datasets across different cell types, Bioinformatics, 2021;, btab148, https://doi.org/10.1093/bioinformatics/btab148
 #### (2) IDEAS genome segmentation
 >>##### Yu Zhang, Lin An, Feng Yue, Ross C Hardison, Jointly characterizing epigenetic dynamics across multiple human cell types, Nucleic Acids Research, Volume 44, Issue 14, 19 August 2016, Pages 6721–6731, https://doi.org/10.1093/nar/gkw278
->>##### Zhang Y, Mahony S. Direct prediction of regulatory elements from partial data without imputation. PLoS computational biology. 2019 Nov 4;15(11):e1007399, https://doi.org/10.1371/journal.pcbi.1007399
+>>##### Yu Zhang, Shaun Mahony. Direct prediction of regulatory elements from partial data without imputation. PLoS computational biology. 2019 Nov 4;15(11):e1007399, https://doi.org/10.1371/journal.pcbi.1007399
 #### (3) S3norm
 >>##### Guanjue Xiang, Cheryl A Keller, Belinda Giardine, Lin An, Qunhua Li, Yu Zhang, Ross C Hardison, S3norm: simultaneous normalization of sequencing depth and signal-to-noise ratio in epigenomic data, Nucleic Acids Research, Volume 48, Issue 8, 07 May 2020, Page e43, https://doi.org/10.1093/nar/gkaa105
 #### (4) IDEAS genome segmentation Resource
@@ -36,7 +36,7 @@
 >>##### Guanjue, Xiang, Cheryl A. Keller, ..., Yu Zhang, Ross C. Hardison. "An integrative view of the regulatory and transcriptional landscapes in mouse hematopoiesis." Genome research. 2020 Mar 1;30(3):472-84, https://doi.org/10.1101/gr.255760.119
 >>>###### The Genome segmentation tracks is in the IDEAS... tab: https://main.genome-browser.bx.psu.edu/cgi-bin/hgTracks?db=mm10
 >>###### (IDEAS genome segmentation analysis for ROADMAP)
->>##### Zhang Y, Hardison RC. Accurate and reproducible functional maps in 127 human cell types via 2D genome segmentation. Nucleic acids research. 2017 Sep 29;45(17):9823-36, https://doi.org/10.1093/nar/gkx659
+>>##### Yu Zhang, Ross C Hardison. Accurate and reproducible functional maps in 127 human cell types via 2D genome segmentation. Nucleic acids research. 2017 Sep 29;45(17):9823-36, https://doi.org/10.1093/nar/gkx659
 >>>###### Genome segmentation tracks: http://bx.psu.edu/~yuzhang/Roadmap_ideas/
 
 
