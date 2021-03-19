@@ -5,7 +5,7 @@
 
 <img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/overall_pipeline.png" width="600"/>
 
-##### Figure 1. The overview of S3V2-IDEAS package. There are two main steps in the S3V2-IDEAS package: (A) the data normalization and denoising step by S3V2 and (B and C) the data integration step by IDEAS. The data integration step has two modes. (B) In the epi-genetic state mode, multiple epigenetic features can be integrated into the epigenetic states model (D). (C) In the signal intensity state mode, the signal of one epigenetic feature can be clustered into different signal intensity states (E). (F) An additional master peak list can be extracted from the signal intensity state tracks in multiple cell types. 
+##### Overview of S3V2-IDEAS pipeline. (A) Module 1 normalizes and denoises input data using the S3V2 method. Examples of normalized epigenetic signals from the Hba locus in G1E-ER4 cells (ER4) are shown. (B and C) In Module 2, the normalized data is integrated by IDEAS in one of two modes. (B) The epigenetic state mode integrates multiple epigenetic features into an epigenetic states model. (C) The signal intensity state mode finds frequently occurring signal intensity states for a single epigenetic feature, along with a master peak list derived from those states (D). AVE = average, LSK, MEP, ER4, ERY = abbreviations for cell types 
 
 #####################################################################################
 
