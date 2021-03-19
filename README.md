@@ -3,7 +3,7 @@
 #### The S3V2-IDEAS package first normalizes average read counts by S3V2 and then uses IDEAS to either do genome segmentations or call master peaks list across multiple datasets. This package uses bigWig files as the inputs. 
 
 
-<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/overall_pipeline.png" width="600"/>
+<img src="https://github.com/guanjue/S3V2_IDEAS_ESMP/blob/master/figures/overall_pipeline.png" width="800"/>
 
 ##### Overview of S3V2-IDEAS pipeline. (A) Module 1 normalizes and denoises input data using the S3V2 method. Examples of normalized epigenetic signals from the Hba locus in G1E-ER4 cells (ER4) are shown. (B and C) In Module 2, the normalized data is integrated by IDEAS in one of two modes. (B) The epigenetic state mode integrates multiple epigenetic features into an epigenetic states model. (C) The signal intensity state mode finds frequently occurring signal intensity states for a single epigenetic feature, along with a master peak list derived from those states (D). AVE = average, LSK, MEP, ER4, ERY = abbreviations for cell types 
 
