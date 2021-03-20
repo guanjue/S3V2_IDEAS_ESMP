@@ -314,10 +314,6 @@ get_local_bg_sig = function(exp_win, d_sig_all, d_pkb, d_lim){
 	rm(d_pkb)
 	### get local bg signal
 	### the matrix first 1:(2*exp_win) is the binary info, the (2*exp_win+1):length(x) is the signal
-#	print(head(d_exp_pkb_sig))
-#	print(head(d_pkb))
-#	print(sum(d_pkb))
-#	print(length(d_pkb))
 	d_exp_pkb_sig_bg_sig = apply(d_exp_pkb_sig, 1, function(x) get_local_bg_sig_each_row(x[3:length(x)], exp_win, d_lim, x[1], x[2]))
 	### replace all pk region by gloabal bg
 	d_exp_pkb_sig_bg_sig[!is.finite(d_exp_pkb_sig_bg_sig)] = d_lim
@@ -412,15 +408,11 @@ all_pk = scan(allpk_file)
 print(summary(all_pk))
 allpk_used_id = all_pk!=0
 }else{
-#d2pk_sig_z = (d2-mean(d2))/sd(d2)
-#d2pk_sig_zp = 2*pnorm(-(d2pk_sig_z))
-#d2pk_sig_zp_fdr = p.adjust(d2pk_sig_zp, 'fdr')
-#potential_pk = d2pk_sig_zp_fdr<threshold
 allpk_used_id = d2s_nb_pval_out_binary_pk#(potential_pk)|(d12_pkb)
 }
 
 d1_sig_all = d1
-d1_pkb = allpk_used_id#d1s_nb_pval_out_binary_pk|d2s_nb_pval_out_binary_pk
+d1_pkb = allpk_used_id
 if (length(d1_sig_all)<100000){
 	d1_exp_pkb_sig_bg_sig = get_local_bg_sig(exp_win, d1_sig_all, allpk_used_id, d1s_lim)
 } else{
