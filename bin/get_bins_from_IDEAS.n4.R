@@ -25,7 +25,11 @@ for (i in 5:(dim(d)[2]-1)){
 	#bin3 = bed_info[(used_col!=state_sig_ordered[1])&(used_col!=state_sig_ordered[2])&(used_col!=state_sig_ordered[3]),]
 	### write output
 	output_name3 = paste(jobname, '.', output_name, '.3.bed', sep='')
-	write.table(bin3, output_name3, quote=F, col.names=F, row.names=F, sep='\t')
+	if (dim(bin3)[1]>1){
+		write.table(bin3, output_name3, quote=F, col.names=F, row.names=F, sep='\t')
+	} else{
+		write.table(bin32, output_name3, quote=F, col.names=F, row.names=F, sep='\t')
+	}
 	output_name32 = paste(jobname, '.', output_name, '.32.bed', sep='')
 	write.table(bin32, output_name32, quote=F, col.names=F, row.names=F, sep='\t')
 	output_name321 = paste(jobname, '.', output_name, '.321.bed', sep='')
