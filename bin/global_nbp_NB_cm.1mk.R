@@ -173,16 +173,16 @@ for (i in 1:dim(file_list)[1]){
 	### get both
 #	obs_0_num = sum(IP_tmp==0)
 	CTRL_tmp_mean = mean(CTRL_tmp)
-    if (use_pois){
-    	CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)
+	if (use_pois){
+		CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)
 	} else{
-	    CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)*AVEmat_cbg_size
-    }
-    IP_CTRL_tmp = cbind(IP_tmp, CTRL_tmp_adj)
+		CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)*AVEmat_cbg_size
+	}
+	IP_CTRL_tmp = cbind(IP_tmp, CTRL_tmp_adj)
 
-    rm(IP_tmp0)
+	rm(IP_tmp0)
 	rm(CTRL_tmp)
-    ### get negative binomial p-value 
+	### get negative binomial p-value 
 #	IP_nb_pval = apply(IP_CTRL_tmp, MARGIN=1, function(x) get_pval(x[1], bin_num, x[2], AVEmat_cbg_prob, obs_0_num) )
 	if (use_pois){
 		IP_nb_pval = ppois(IP_CTRL_tmp[,1], IP_CTRL_tmp[,2]*pois_mean0, lower.tail=F)
@@ -190,24 +190,24 @@ for (i in 1:dim(file_list)[1]){
 		IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) #/ pnbinom(0, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) * (bin_num-obs_0_num)/bin_num
 	}
 
-    ### remove extrame p-value
-    IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
-    IP_nb_pval[IP_nb_pval>1] = 1.0
+	### remove extrame p-value
+	IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
+	IP_nb_pval[IP_nb_pval>1] = 1.0
 
-    IP_neglog10_nb_pval = -log10(IP_nb_pval)
+	IP_neglog10_nb_pval = -log10(IP_nb_pval)
 	IP_neglog10_nb_pval[IP_neglog10_nb_pval<0] = 0
-    neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
-    print(toString(file_list[i,1]))
-    print('summary negative log10 NB p-value:')
-    print(summary(IP_neglog10_nb_pval))
+	neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
+	print(toString(file_list[i,1]))
+	print('summary negative log10 NB p-value:')
+	print(summary(IP_neglog10_nb_pval))
 	print(sum(IP_neglog10_nb_pval>16)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>10)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>5)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>2)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>1)/length(IP_neglog10_nb_pval)*dim(bed)[1])
-    ### write output
+	### write output
 	output_file_tmp = paste(toString(file_list[i,1]), '.NBP.bedgraph', sep='')
-    write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
+	write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
 }
 
 
