@@ -97,10 +97,10 @@ AVEmat_cbg_size = AVEmat_cbg_NBmodel[2]
 AVEmat_cbg_prob = AVEmat_cbg_NBmodel[1]
 ### set limit for prob
 if (AVEmat_cbg_prob<0.001){
-        AVEmat_cbg_prob = 0.001
+	AVEmat_cbg_prob = 0.001
 }
 if (AVEmat_cbg_prob>=0.999){
-        AVEmat_cbg_prob = 0.999
+	AVEmat_cbg_prob = 0.999
 }
 
 
@@ -112,10 +112,9 @@ print(bin_num)
 print(obs_0_num)
 
 get_p_z = function(d, mean_i, sd_i){
-        dz = (d - mean_i)/sd_i
-#        dzp = ppois(d,mean_i, lower.tail=F)#pnorm(-(dz))
+	dz = (d - mean_i)/sd_i
 	dzp = pnorm(-(dz))
-        return(dzp)
+	return(dzp)
 }
 
 #########
@@ -123,6 +122,28 @@ get_p_z = function(d, mean_i, sd_i){
 # for average signal
 IP_CTRL_tmp = cbind(AVEmat, rep(AVEmat_cbg_size,length(AVEmat)))
 IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
+
+if (sum(IP_nb_pval<=(1e-16))<100){
+	use_pois = TRUE
+	AVEmat_cbg_non0_num = sum(AVEmat_cbg!=0)
+	pois_mean0_non0 = mean(AVEmat_cbg[AVEmat_cbg>0])
+	pois_mean0 = mean(AVEmat_cbg)
+	print(pois_mean0)
+	for (i in 1:100){
+		exp_0 = dpois(0, pois_mean0)
+		AVEmat_cbg_all_num = AVEmat_cbg_non0_num / (1-exp_0)
+		pois_mean0_new = pois_mean0_non0*AVEmat_cbg_non0_num / AVEmat_cbg_all_num
+		if (pois_mean0!=pois_mean0_new){
+			pois_mean0 = pois_mean0_new
+		} else{
+			break
+		}
+	}
+	print(pois_mean0)
+	IP_nb_pval = ppois(AVEmat, pois_mean0, lower.tail=F)
+}
+
+
 IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
 IP_nb_pval[IP_nb_pval>1] = 1.0
 IP_neglog10_nb_pval = -log10(IP_nb_pval)
@@ -152,35 +173,41 @@ for (i in 1:dim(file_list)[1]){
 	### get both
 #	obs_0_num = sum(IP_tmp==0)
 	CTRL_tmp_mean = mean(CTRL_tmp)
-        CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)*AVEmat_cbg_size
-        IP_CTRL_tmp = cbind(IP_tmp, CTRL_tmp_adj)
+    if (use_pois){
+    	CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)
+	} else{
+	    CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)*AVEmat_cbg_size
+    }
+    IP_CTRL_tmp = cbind(IP_tmp, CTRL_tmp_adj)
 
-        rm(IP_tmp0)
+    rm(IP_tmp0)
 	rm(CTRL_tmp)
-        ### get negative binomial p-value 
+    ### get negative binomial p-value 
 #	IP_nb_pval = apply(IP_CTRL_tmp, MARGIN=1, function(x) get_pval(x[1], bin_num, x[2], AVEmat_cbg_prob, obs_0_num) )
+	if (use_pois){
+		IP_nb_pval = ppois(IP_CTRL_tmp[,1], IP_CTRL_tmp[,2]*pois_mean0, lower.tail=F)
+	} else{
+		IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) #/ pnbinom(0, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) * (bin_num-obs_0_num)/bin_num
+	}
 
-	IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) #/ pnbinom(0, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) * (bin_num-obs_0_num)/bin_num
+    ### remove extrame p-value
+    IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
+    IP_nb_pval[IP_nb_pval>1] = 1.0
 
-
-        ### remove extrame p-value
-        IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
-        IP_nb_pval[IP_nb_pval>1] = 1.0
-
-        IP_neglog10_nb_pval = -log10(IP_nb_pval)
+    IP_neglog10_nb_pval = -log10(IP_nb_pval)
 	IP_neglog10_nb_pval[IP_neglog10_nb_pval<0] = 0
-        neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
-        print(toString(file_list[i,1]))
-        print('summary negative log10 NB p-value:')
-        print(summary(IP_neglog10_nb_pval))
+    neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
+    print(toString(file_list[i,1]))
+    print('summary negative log10 NB p-value:')
+    print(summary(IP_neglog10_nb_pval))
 	print(sum(IP_neglog10_nb_pval>16)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>10)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>5)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>2)/length(IP_neglog10_nb_pval)*dim(bed)[1])
 	print(sum(IP_neglog10_nb_pval>1)/length(IP_neglog10_nb_pval)*dim(bed)[1])
-        ### write output
+    ### write output
 	output_file_tmp = paste(toString(file_list[i,1]), '.NBP.bedgraph', sep='')
-        write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
+    write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
 }
 
 
