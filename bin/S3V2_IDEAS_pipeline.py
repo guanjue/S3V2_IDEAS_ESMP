@@ -45,7 +45,7 @@ def check(file_check):
 	except ValueError:
 		sys.exit("something wrong with NBP value!")
 
-def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_dir, OUTDIR, GENOME, GENOMESIZES, BLACK, metadata, bin_size, local_bg_bin, id_name, email, threads, cap_sig, IDEAS_track_link, other_parafile):
+def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_dir, OUTDIR, GENOME, GENOMESIZES, BLACK, metadata, bin_size, local_bg_bin, id_name, email, threads, cap_sig, IDEAS_track_link, other_parafile, overall_ref):
 	####################################
 	### start!
 	log_file=id_name+'.log.txt'
@@ -85,10 +85,16 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 				add2log('One mk mode...', log_file)
 				#a=call('Rscript '+script_dir+'/get_max_median1.R'+' '+'max1'+' '+mk[0]+'.file_list_tmp1'+' '+mk[0]+'.average_sig.max1.bedgraph', shell=True)
 				#a=call('python3 '+script_dir+'/s3norm_1mk.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.max1.bedgraph.S3.bedgraph'+' -c T', shell=True)
-				a=call('cp '+mk[0]+'.average_sig.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph', shell=True)
+				if overall_ref=='F':
+					a=call('cp '+mk[0]+'.average_sig.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph', shell=True)
+				else:
+					a=call('python3 '+script_dir+'/s3norm.py'+' -r '+overall_ref+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' -c T', shell=True)
 			else:
 				add2log('multiple mks mode...', log_file)
-				a=call('python3 '+script_dir+'/s3norm.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' -c T', shell=True)
+				if overall_ref=='F':
+					a=call('python3 '+script_dir+'/s3norm.py'+' -r '+script_dir+'/prior/H3K27ac.average_sig.sample200k.seed2019.bedgraph'+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' -c T', shell=True)
+				else:
+					a=call('python3 '+script_dir+'/s3norm.py'+' -r '+overall_ref+' -t '+mk[0]+'.average_sig.bedgraph'+' -o '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' -c T', shell=True)
 		add2log('S3norm average across marks......Done', log_file)
 		# 3: S3V2 across samples
 		add2log('S3V2 across samples......', log_file)
@@ -218,10 +224,10 @@ import getopt
 import sys
 def main(argv):
 	### read user provided parameters
-	opts, args = getopt.getopt(argv,"hu:v:y:z:s:o:g:c:b:i:l:n:d:e:t:a:w:x:")
+	opts, args = getopt.getopt(argv,"hu:v:y:z:s:o:g:c:b:i:l:n:d:e:t:a:w:x:r:")
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python3 $script_dir/S3V2_IDEAS_pipeline.py -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas -s $script_dir -o $OUTDIR -g $GENOME -c $GENOMESIZES -b $BLACK -i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile -l $bin_size -n $local_bg_bin -a $cap_sig')
+			print('time python3 $script_dir/S3V2_IDEAS_pipeline.py -u $get_sigtrack -v $normalization -y $get_bw -z $run_ideas -s $script_dir -o $OUTDIR -g $GENOME -c $GENOMESIZES -b $BLACK -i $metadata -d $id_name -e $email -t $threads -w $IDEAS_track_link -x $other_parafile -l $bin_size -n $local_bg_bin -a $cap_sig -r overall_ref')
 			return()	
 		elif opt=="-u":
 			get_sigtrack=str(arg.strip())
@@ -259,6 +265,8 @@ def main(argv):
 			IDEAS_track_link=str(arg.strip())
 		elif opt=="-x":
 			other_parafile=str(arg.strip())
+		elif opt=="-r":
+			overall_ref=str(arg.strip())
 
 	############ Default parameters
 	###### required parameters
@@ -377,10 +385,18 @@ def main(argv):
 		print('Default cap_sig: -t 16')
 		cap_sig = 16
 	###
+	try:
+		print('User provide overall_ref: -r '+str(overall_ref))
+		if overall_ref=='':
+			print('no overall_ref provided')
+			return()
+	except NameError:
+		print('Default overall_ref: -r F')
+		overall_ref = 'F'
 
 	######### run s3norm
 	print('start S3V2_IDEAS_pipeline.......')
-	S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_dir, OUTDIR, GENOME, GENOMESIZES, BLACK, metadata, bin_size, local_bg_bin, id_name, email, threads, cap_sig, IDEAS_track_link, other_parafile)
+	S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_dir, OUTDIR, GENOME, GENOMESIZES, BLACK, metadata, bin_size, local_bg_bin, id_name, email, threads, cap_sig, IDEAS_track_link, other_parafile, overall_ref)
 
 
 
