@@ -123,7 +123,7 @@ get_p_z = function(d, mean_i, sd_i){
 IP_CTRL_tmp = cbind(AVEmat, rep(AVEmat_cbg_size,length(AVEmat)))
 IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
 
-if (sum(IP_nb_pval<=(1e-16))<100){
+if ((sum(IP_nb_pval<=(1e-16))<(length(IP_nb_pval)*(1e-05))) | (sum(IP_nb_pval<=(1e-16))>(length(IP_nb_pval)*0.2))){
 	use_pois = TRUE
 	AVEmat_cbg_non0_num = sum(AVEmat_cbg!=0)
 	pois_mean0_non0 = mean(AVEmat_cbg[AVEmat_cbg>0])
