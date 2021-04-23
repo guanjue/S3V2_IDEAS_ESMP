@@ -190,10 +190,10 @@ def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thr
 	sig2 = np.array(sig2_raw[:,3], dtype=float)
 
 	### limit signal
-	#sig1[sig1>upperlim] = upperlim
-	#sig1[sig1<lowerlim] = lowerlim
-	#sig2[sig2>upperlim] = upperlim
-	#sig2[sig2<lowerlim] = lowerlim
+	sig1[sig1>upperlim] = upperlim
+	sig1[sig1<lowerlim] = lowerlim
+	sig2[sig2>upperlim] = upperlim
+	sig2[sig2<lowerlim] = lowerlim
 
 	### get whole genome binary label for reference & target
 	if p_method == 'z':
@@ -391,8 +391,8 @@ def main(argv):
 	try:
 		print('User provide upperlim: -a '+str(upperlim))
 	except NameError:
-		print('Default upperlim: -a 1000')
-		upperlim = 1000
+		print('Default upperlim: -a 500')
+		upperlim = 500
 	###
 	try:
 		print('User provide lowerlim: -b '+str(lowerlim))
