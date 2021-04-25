@@ -126,7 +126,10 @@ get_p_z = function(d, mean_i, sd_i){
 IP_CTRL_tmp = cbind(AVEmat, rep(AVEmat_cbg_size,length(AVEmat)))
 IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
 
-if ((sum(IP_nb_pval<=(1e-16))<(length(IP_nb_pval)*(1e-05))) | (sum(IP_nb_pval<=(1e-16))>(length(IP_nb_pval)*0.2))){
+
+use_pois = FALSE
+#if ((sum(IP_nb_pval<=(1e-16))<(length(IP_nb_pval)*(1e-05))) | (sum(IP_nb_pval<=(1e-16))>(length(IP_nb_pval)*0.2))){
+if (1<0){
 	use_pois = TRUE
 	AVEmat_cbg_non0_num = sum(AVEmat_cbg!=0)
 	pois_mean0_non0 = mean(AVEmat_cbg[AVEmat_cbg>0])
@@ -145,7 +148,6 @@ if ((sum(IP_nb_pval<=(1e-16))<(length(IP_nb_pval)*(1e-05))) | (sum(IP_nb_pval<=(
 	print(pois_mean0)
 	IP_nb_pval = ppois(AVEmat, pois_mean0, lower.tail=F)
 }
-
 
 IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
 IP_nb_pval[IP_nb_pval>1] = 1.0

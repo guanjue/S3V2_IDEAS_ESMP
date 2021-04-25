@@ -52,103 +52,85 @@ file_list = read.table(file_list_file, header=F)
 ######## read average signal
 print('read average signal')
 mk = unlist(strsplit(file_list_file, split='\\.'))[1]
-#file_tmp = paste(mk, '.average_sig.bedgraph.S3V2ref.bedgraph', sep='')
-#file_tmp = paste(mk, '.average_sig.bedgraph.S3.bedgraph', sep='')
 file_tmp = average_sig_file
 
 AVE = read.table(file_tmp, header=F, sep='\t')
 bed = AVE[,1:3]
 AVEmat = AVE[,4]
 ### cbg
-#cbg_file = paste(mk, '_commonpkfdr01_z.cbg.txt', sep='')
-cbg = scan(cbg_file)!=0
 
 
 ### all cbg
 #cbg = (cbg!=0)
 ######### get global NB bg model
-print(sum(AVEmat<1))
-print(summary(AVEmat[AVEmat<1]))
-#AVEmat[AVEmat<1] = round(AVEmat[AVEmat<1])
-print(sum(AVEmat<1))
-#AVEmat = AVEmat+1
-AVEmat[AVEmat<1] = 0
 AVEmat_cbg = as.numeric(AVEmat)
-#AVEmat_cbg = as.numeric(AVEmat[cbg])
-#if (max(AVEmat_cbg)<1){
-AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.99)]
-#}
-#AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.95)]
-#AVEmat_cbg = AVEmat_cbg[cbg]
+top_sigs = AVEmat_cbg[AVEmat_cbg>10]
+scale_down = 200/mean(tail(sort(top_sigs),100))
+
+print(scale_down)
 print('Summary signal')
-print(summary(AVEmat))
-print(summary(AVEmat_cbg))
 ###### get NB model prob and size and p0
-AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVEmat_cbg)
-AVEmat_cbg_Zmodel_non0mean = mean(AVEmat_cbg[AVEmat_cbg>0])
-AVEmat_cbg_Zmodel_non0sd = sd(AVEmat_cbg[AVEmat_cbg>0])
+AVEmat_cbg = round(AVEmat_cbg)
 
-print('AVEmat_cbg_NBmodel:')
-print(AVEmat_cbg_NBmodel)
-print(AVEmat_cbg_Zmodel_non0mean)
-print(AVEmat_cbg_Zmodel_non0sd)
-AVEmat_cbg_p0 = AVEmat_cbg_NBmodel[3]
-AVEmat_cbg_size = AVEmat_cbg_NBmodel[2]
-AVEmat_cbg_prob = AVEmat_cbg_NBmodel[1]
-### set limit for prob
-if (AVEmat_cbg_prob<0.001){
-	AVEmat_cbg_prob = 0.001
-}
-if (AVEmat_cbg_prob>=0.999){
-	AVEmat_cbg_prob = 0.999
-}
+print(summary(AVEmat_cbg))
 
-
+min_non0 = min(AVEmat_cbg[AVEmat_cbg>0])
+print(min_non0)
+AVEmat_cbg = (AVEmat_cbg-min_non0)*scale_down+min_non0
+AVEmat_cbg[AVEmat_cbg<0] = 0
+AVEmat_cbg[AVEmat_cbg>200] = 200
 ### get output
-bin_num = length(AVEmat)
-obs_0_num = round(sum(AVEmat_cbg<1)/length(AVEmat_cbg)*length(AVEmat))
 
-print(bin_num)
-print(obs_0_num)
-
-get_p_z = function(d, mean_i, sd_i){
-	dz = (d - mean_i)/sd_i
-	dzp = pnorm(-(dz))
-	return(dzp)
-}
 
 #########
 ### get output sigi
 # for average signal
-IP_CTRL_tmp = cbind(AVEmat, rep(AVEmat_cbg_size,length(AVEmat)))
-IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
+print(summary(AVEmat_cbg))
 
-use_pois = FALSE
-if ((sum(IP_nb_pval<=(1e-16))<(length(IP_nb_pval)*(1e-05))) | (sum(IP_nb_pval<=(1e-16))>(length(IP_nb_pval)*0.2))){
+#use_pois = FALSE
+#if ((sum(IP_nb_pval<=(1e-16))<(length(IP_nb_pval)*(1e-05))) | (sum(IP_nb_pval<=(1e-16))>(length(IP_nb_pval)*0.2))){
 	use_pois = TRUE
-	AVEmat_cbg_non0_num = sum(AVEmat_cbg!=0)
-	pois_mean0_non0 = mean(AVEmat_cbg[AVEmat_cbg>0])
-	pois_mean0 = mean(AVEmat_cbg)
-	print(pois_mean0)
+	inflate_thresh = 2
+	AVEmat_cbg_non0_num = sum(AVEmat_cbg>inflate_thresh)
+	pois_mean0_non0 = mean(AVEmat_cbg[AVEmat_cbg>inflate_thresh])
+	pois_mean_all = mean(AVEmat_cbg[AVEmat_cbg>inflate_thresh])
+	print(pois_mean_all)
+	print('fit pois')
 	for (i in 1:100){
-		exp_0 = dpois(0, pois_mean0)
-		AVEmat_cbg_all_num = AVEmat_cbg_non0_num / (1-exp_0)
-		pois_mean0_new = pois_mean0_non0*AVEmat_cbg_non0_num / AVEmat_cbg_all_num
-		if (pois_mean0!=pois_mean0_new){
-			pois_mean0 = pois_mean0_new
+		exp_inflate = sum(dpois(0:inflate_thresh, pois_mean_all))
+		#print(exp_inflate)
+		AVEmat_cbg_all_num = AVEmat_cbg_non0_num / (1-exp_inflate)
+		AVEmat_cbg_othersInflate_binnum_sig = 0
+		for (k in 1:inflate_thresh){
+			exp_inflatek = dpois(k, pois_mean_all)
+			AVEmat_cbg_othersInflate_binnum_sig = AVEmat_cbg_othersInflate_binnum_sig+AVEmat_cbg_all_num*exp_inflatek*k
+		}
+		pois_mean_all_new = (pois_mean0_non0*AVEmat_cbg_non0_num+AVEmat_cbg_othersInflate_binnum_sig) / AVEmat_cbg_all_num
+		if (abs(pois_mean_all-pois_mean_all_new)>0.001){
+			pois_mean_all = pois_mean_all_new
+			print(pois_mean_all)
 		} else{
 			break
 		}
 	}
-	print(pois_mean0)
-	IP_nb_pval = ppois(AVEmat, pois_mean0, lower.tail=F)
-}
-
-
+	print(pois_mean_all)
+	IP_nb_pval = ppois(AVEmat*scale_down, pois_mean_all, lower.tail=F)
+#}
+print('use_pois:')
+print(use_pois)
 IP_nb_pval[IP_nb_pval<=1e-323] = 1e-323
 IP_nb_pval[IP_nb_pval>1] = 1.0
 IP_neglog10_nb_pval = -log10(IP_nb_pval)
 IP_neglog10_nb_pval[IP_neglog10_nb_pval<0] = 0
+
+        print('summary negative log10 NB p-value:')
+        print(summary(IP_neglog10_nb_pval))
+        print(sum(IP_neglog10_nb_pval>16)/length(IP_neglog10_nb_pval)*dim(bed)[1])
+        print(sum(IP_neglog10_nb_pval>10)/length(IP_neglog10_nb_pval)*dim(bed)[1])
+        print(sum(IP_neglog10_nb_pval>5)/length(IP_neglog10_nb_pval)*dim(bed)[1])
+        print(sum(IP_neglog10_nb_pval>2)/length(IP_neglog10_nb_pval)*dim(bed)[1])
+        print(sum(IP_neglog10_nb_pval>1)/length(IP_neglog10_nb_pval)*dim(bed)[1])
+
 neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
 ### write output
 output_file_tmp = paste(average_sig_file, '.NBP.bedgraph', sep='')
@@ -165,14 +147,17 @@ for (i in 1:dim(file_list)[1]){
 	if (i==1){
 		bed = IP_tmp0[,1:3]
 	}
-	IP_tmp = IP_tmp0[,4]
+
+        IP_tmp = IP_tmp0[,4]
+        min_non0 = min(IP_tmp[IP_tmp>0])
+        IP_tmp = (IP_tmp-min_non0)*scale_down+min_non0
+	IP_tmp[IP_tmp<0] = 0
 	print(summary(IP_tmp))
 	### get CTRL
 	file_tmp1 = toString(file_list[i,2])
 	print(file_tmp1)	
 	CTRL_tmp = read.table(file_tmp1, header=F, sep='\t')[,4]
 	### get both
-#	obs_0_num = sum(IP_tmp==0)
 	CTRL_tmp_mean = mean(CTRL_tmp)
 	if (use_pois){
 		CTRL_tmp_adj = (CTRL_tmp+1)/(CTRL_tmp_mean+1)
@@ -184,11 +169,10 @@ for (i in 1:dim(file_list)[1]){
 	rm(IP_tmp0)
 	rm(CTRL_tmp)
 	### get negative binomial p-value 
-#	IP_nb_pval = apply(IP_CTRL_tmp, MARGIN=1, function(x) get_pval(x[1], bin_num, x[2], AVEmat_cbg_prob, obs_0_num) )
 	if (use_pois){
-		IP_nb_pval = ppois(IP_CTRL_tmp[,1], IP_CTRL_tmp[,2]*pois_mean0, lower.tail=F)
+		IP_nb_pval = ppois(IP_CTRL_tmp[,1], IP_CTRL_tmp[,2]*pois_mean_all, lower.tail=F)
 	} else{
-		IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) #/ pnbinom(0, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE) * (bin_num-obs_0_num)/bin_num
+		IP_nb_pval = pnbinom(IP_CTRL_tmp[,1]-1, IP_CTRL_tmp[,2], AVEmat_cbg_prob, lower.tail=FALSE)
 	}
 
 	### remove extrame p-value
@@ -197,7 +181,7 @@ for (i in 1:dim(file_list)[1]){
 
 	IP_neglog10_nb_pval = -log10(IP_nb_pval)
 	IP_neglog10_nb_pval[IP_neglog10_nb_pval<0] = 0
-	neglog10_nb_pval_bedgraph = cbind(bed, IP_neglog10_nb_pval)
+	neglog10_nb_pval_bedgraph = cbind(bed, round(IP_neglog10_nb_pval, 3))
 	print(toString(file_list[i,1]))
 	print('summary negative log10 NB p-value:')
 	print(summary(IP_neglog10_nb_pval))
@@ -210,5 +194,6 @@ for (i in 1:dim(file_list)[1]){
 	output_file_tmp = paste(toString(file_list[i,1]), '.NBP.bedgraph', sep='')
 	write.table(neglog10_nb_pval_bedgraph, output_file_tmp, quote=FALSE, col.names=FALSE, row.names=FALSE, sep='\t')
 }
+
 
 
