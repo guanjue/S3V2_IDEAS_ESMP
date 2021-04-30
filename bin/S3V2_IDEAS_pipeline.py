@@ -4,6 +4,7 @@ import subprocess
 from subprocess import call
 import sys
 
+
 def creat2log(info, log_file):
 	log = open(log_file, 'w')
 	log.write(info+'\n')
