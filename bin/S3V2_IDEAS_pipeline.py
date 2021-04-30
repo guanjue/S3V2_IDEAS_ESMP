@@ -140,7 +140,6 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 			add2log(mk[0], log_file) 
 			add2log('get NBP......', log_file)
 			a=call('Rscript '+script_dir+'/global_nbp_NB_cm.ok.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
-			
 			#if uniq_mk_num==1:
 			#	add2log('get NBP 1 mk mode......', log_file)
 			#	### get NBP
