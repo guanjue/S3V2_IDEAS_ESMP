@@ -137,14 +137,16 @@ def S3V2_IDEAS_pipeline(get_sigtrack, normalization, get_bw, run_ideas, script_d
 		for mk in mks:
 			print(mk[0])
 			add2log(mk[0], log_file) 
-			if uniq_mk_num==1:
-				add2log('get NBP 1 mk mode......', log_file)
-				### get NBP
-				a=call('Rscript '+script_dir+'/global_nbp_NB_cm.1mk.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
-			else:
-				add2log('get NBP multiple mks mode......', log_file)
-				### get NBP
-				a=call('Rscript '+script_dir+'/global_nbp_NB_cm.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
+			add2log('get NBP......', log_file)
+			a=call('Rscript '+script_dir+'/global_nbp_NB_cm.ok.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
+			#if uniq_mk_num==1:
+			#	add2log('get NBP 1 mk mode......', log_file)
+			#	### get NBP
+			#	a=call('Rscript '+script_dir+'/global_nbp_NB_cm.1mk.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
+			#else:
+			#	add2log('get NBP multiple mks mode......', log_file)
+			#	### get NBP
+			#	a=call('Rscript '+script_dir+'/global_nbp_NB_cm.R '+mk[0]+'.getave_nbp.list.txt'+' '+mk[0]+'.average_sig.bedgraph.S3.bedgraph'+' '+mk[0]+'.average_sig.bedgraph.S3V2.ave.bedgraph'+' '+mk[0]+'_commonpkfdr01_z.cbg.txt', shell=True)
 		add2log('Get NBP......Done', log_file)
 		# 6: Get IDEAS input
 		add2log('Get IDEAS input......', log_file)

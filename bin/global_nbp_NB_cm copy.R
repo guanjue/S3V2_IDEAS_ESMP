@@ -33,40 +33,6 @@ get_true_NB_prob_size = function(x){
 	return(rt);
 }
 
-
-get_true_NB_prob_size = function(x, siglim){
-	x_pass_lim = x[x>siglim]
-	m=mean(x_pass_lim)
-	v=var(x_pass_lim)
-	passlim_num = sum(x>siglim)
-	for (i in 1:100){
-		m_pre = m
-		v_pre = v
-		p = m/v
-		s = m^2/(v-m)
-		exp_siglim_p = dnbinom(0:siglim, s, p)
-		exp_total_num = passlim_num/(1-sum(exp_siglim_p))
-		### get new mean
-		siglim_n_sum_for_m = 0
-		for (j in 0:siglim){
-			siglim_n_sum_for_m = siglim_n_sum_for_m + j* exp_siglim_p[j]*exp_total_num
-		}
-		m = (siglim_n_sum_for_m + m * passlim_num) / exp_total_num
-		### get new var
-		siglim_n_sum_for_v = 0
-		for (j in 0:siglim){
-			siglim_n_sum_for_v = siglim_n_sum_for_v + (j-m)^2 * exp_siglim_p[j]*exp_total_num
-		}
-		v = (siglim_n_sum_for_v + (x_pass_lim-m)^2 * (passlim_num+1)) / (exp_total_num-1)
-		print(c(m,v))
-		if(abs(m-m_pre)<0.001 & abs(v-v_pre)<0.00001) {break}
-	}
-	p = m/v
-	s = m^2/(v-m)
-	return(c(p,s))
-}
-
-
 ###### get NB model p-value
 get_pval = function(N, l, sig_0_size, sig_0_prob, num_0){
 	if (N != 0){
@@ -124,10 +90,11 @@ AVEmat_cbg = AVEmat_cbg[AVEmat_cbg<quantile(AVEmat_cbg[AVEmat_cbg>0],0.95)]
 }
 
 ###### get NB model prob and size and p0
-AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVE0mat_cbg, 2)
+AVEmat_cbg_NBmodel = get_true_NB_prob_size(AVE0mat_cbg)
 
 print('AVEmat_cbg_NBmodel:')
 print(AVEmat_cbg_NBmodel)
+AVEmat_cbg_p0 = AVEmat_cbg_NBmodel[3]
 AVEmat_cbg_size = AVEmat_cbg_NBmodel[2]
 AVEmat_cbg_prob = AVEmat_cbg_NBmodel[1]
 ### set limit for prob
