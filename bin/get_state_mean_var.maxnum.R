@@ -43,6 +43,7 @@ state_num = length(unique(state_tmp))
 state_var_all = matrix(0, nrow=state_num, ncol=uniq_mk_num)
 state_mean_all = matrix(0, nrow=state_num, ncol=uniq_mk_num)
 state_var_mean_all = matrix(0, nrow=state_num, ncol=uniq_mk_num)
+state_var_mean_all_sep = matrix(0, nrow=state_num, ncol=uniq_mk_num*length(fullset_ct))
 
 for (i in 1:length(fullset_ct)){
 #for (i in 1:2){
@@ -88,21 +89,39 @@ print(state_var)
 print(state_var/state_mean)
 state_var_all = state_var_all + state_var
 state_mean_all = state_mean_all + state_mean
-state_var_mean_all = state_var_mean_all+state_var_mean_i
-#pdf(paste(fullset_ct[i], output_name, sep=''))
-#my_colorbar=colorRampPalette(c('white', 'blue'))(n = 128)
-#col_breaks = c(seq(0, 2000,length=33))
-#pheatmap(state_var_mean, color=my_colorbar, cluster_cols = FALSE,cluster_rows=FALSE,show_rownames=TRUE,show_colnames=TRUE)
-#dev.off()
+#state_var_mean_all = state_var_mean_all+state_var_mean_i
+pdf(paste(fullset_ct[i], '.m.', output_name, sep=''))
+my_colorbar=colorRampPalette(c('white', 'blue'))(n = 128)
+col_breaks = c(seq(0, 2000,length=33))
+pheatmap(state_mean, color=my_colorbar, cluster_cols = FALSE,cluster_rows=FALSE,show_rownames=TRUE,show_colnames=TRUE)
+dev.off()
+pdf(paste(fullset_ct[i], output_name, sep=''))
+my_colorbar=colorRampPalette(c('white', 'blue'))(n = 128)
+col_breaks = c(seq(0, 2000,length=33))
+pheatmap(state_var_mean_i, color=my_colorbar, cluster_cols = FALSE,cluster_rows=FALSE,show_rownames=TRUE,show_colnames=TRUE)
+dev.off()
+
+state_var_mean_all_sep[,1:length(uniq_mk)+(i-1)*length(uniq_mk)] = state_var_mean_i
 }
 
 used_order_col = order(colnames(state_var_all))
 state_var_all = state_var_all[,used_order_col]
 state_mean_all = state_mean_all[,used_order_col]
 
-state_var_mean_all = (state_var_all)/(state_mean_all)
+state_var_mean_all = matrix(0, nrow=state_num, ncol=uniq_mk_num)
+colnames(state_var_mean_all) = uniq_mk
+rownames(state_var_mean_all) = 0:(state_num-1)
+print(dim(state_var_mean_all))
+for (i in 1:state_num){
+state_num_i_mat = matrix(0, nrow=length(fullset_ct), ncol=uniq_mk_num)
+state_num_i_mat_sig = state_var_mean_all_sep[i,]
+for (j in 1:length(fullset_ct)){
+state_num_i_mat[j,] = state_num_i_mat_sig[(1:uniq_mk_num)+(j-1)*uniq_mk_num]
+}
+state_var_mean_all[i,] = apply(state_num_i_mat,2,median)
+}
+state_var_mean_all = state_var_mean_all[,used_order_col]
 
-state_var_mean_all = state_var_mean_all/length(fullset_ct)
 
 write.table(state_var_mean_all, paste(IDEAS_folder, IDEAS_output_name, IDEAS_output_folder_tail, 'all', output_name, '.txt', sep=''), quote=F)
 write.table(state_var_all, paste(IDEAS_folder, IDEAS_output_name, IDEAS_output_folder_tail, 'all_var', output_name, '.txt', sep=''), quote=F)
@@ -110,9 +129,10 @@ write.table(state_mean_all, paste(IDEAS_folder, IDEAS_output_name, IDEAS_output_
 
 #state_var_mean_all = cbind(rowMeans(state_var_mean_all), rowMeans(state_var_mean_all))
 pdf(paste(IDEAS_folder, IDEAS_output_name, IDEAS_output_folder_tail, 'all', output_name, sep=''))
-my_colorbar=colorRampPalette(c('white', 'blue'))(n = 128)
-col_breaks = c(seq(0, 2000,length=33))
-pheatmap(state_var_mean_all, color=my_colorbar, cluster_cols = FALSE,cluster_rows=FALSE,show_rownames=TRUE,show_colnames=TRUE)
+breaksList = seq(0, 20, by = 0.01)
+my_colorbar=colorRampPalette(c('white', 'blue'))(n = length(breaksList))
+#state_var_mean_all[state_var_mean_all>2] = 2
+pheatmap(state_var_mean_all, color=my_colorbar, breaks = breaksList, cluster_cols = FALSE,cluster_rows=FALSE,show_rownames=TRUE,show_colnames=TRUE)
 dev.off()
 
 
