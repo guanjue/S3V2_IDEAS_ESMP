@@ -73,28 +73,28 @@ fi
 export PATH=/gpfs/group/rch8/legacy/group/bin:$PATH
 
 
-if [ ! -f "$OUTDIR/windowsNoBlack.noid.bed" ]; then
-   echo "makewindow noid"
-   command="bedtools makewindows -g $GENOMESIZES -w "$bin_size
-   $command > $OUTDIR/windows.bed
-   test $? -eq 0 || die "failed: $command"
-   echo $command
+#if [ ! -f "$OUTDIR/windowsNoBlack.noid.bed" ]; then
+echo "makewindow noid"
+command="bedtools makewindows -g $GENOMESIZES -w "$bin_size
+$command > $OUTDIR/windows.bed
+test $? -eq 0 || die "failed: $command"
+echo $command
 
-   command="bedtools subtract -a $OUTDIR/windows.bed -b $BLACK -A"
-   $command > $OUTDIR/windowsNoBlack.noid.bed
-   test $? -eq 0 || die "failed: $command"
-   echo $command
-fi
+command="bedtools subtract -a $OUTDIR/windows.bed -b $BLACK -A"
+$command > $OUTDIR/windowsNoBlack.noid.bed
+test $? -eq 0 || die "failed: $command"
+echo $command
+#fi
 
-if [ ! -f "$OUTDIR/windowsNoBlack.withid.bed" ]; then
-   echo "makewindow withid"
-   i=1
-   while read -r line; do
-      echo -e "$line\t${i}"
-      let i++
-   done < $OUTDIR/windowsNoBlack.noid.bed > $OUTDIR/windowsNoBlack.withid.bed
-   test $? -eq 0 || die "failed to add ids to windows"
-fi
+#if [ ! -f "$OUTDIR/windowsNoBlack.withid.bed" ]; then
+echo "makewindow withid"
+i=1
+while read -r line; do
+   echo -e "$line\t${i}"
+   let i++
+done < $OUTDIR/windowsNoBlack.noid.bed > $OUTDIR/windowsNoBlack.withid.bed
+test $? -eq 0 || die "failed to add ids to windows"
+#fi
 echo "Windows done"
 
 #print a 1 foreach window, default control if none given
