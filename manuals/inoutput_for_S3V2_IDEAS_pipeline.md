@@ -22,8 +22,8 @@
 #### (2) The input metadata list for S3norm
 ##### It only needs one input metadata file which tells the package where are input bigwig files. An example of the metadata is in the "metadata.for_master_peak_calls.txt" file with 4 columns (columns are separated by tab):
 ##### 1st column: cell type name (!!!The cell type name should not have "." in it!!!)
-##### 2nd column: epigenetic feature
-##### 3rd column: cell type id
+##### 2nd column: epigenetic feature (!!!The epigenetic feature should not have "." in it!!!)
+##### 3rd column: cell type id (!!!The cell type id should not have "." in it!!!)
 ##### 4th column: absolute path to the IP bigwig files
 ##### 5th column: absolute path to the CONTROL bigwig files (If there is no control signal track, this column can be leave as empty)
 ```
