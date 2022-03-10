@@ -46,7 +46,24 @@ Codename:	Core
 After installing the GSL system, users need to add the ~/gsl/lib into the LD_LIBRARY_PATH
 ```
 
-### Installing Dependencies and Setting Up Environment. 
+### Conda Installing Dependencies and Setting Up Environment. 
+```
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --add channels mvdbeek
+conda update conda
+
+### conda create s3v2_ideas env
+conda create -n s3v2_ideas gsl=2.2.1 python=3 r=3.6 bedtools ucsc_tools numpy scipy multiprocess r-doParallel r-foreach r-data.table
+
+### conda activate s3v2_ideas env
+conda activate s3v2_ideas
+
+```
+
+
+### Manually Installing Dependencies and Setting Up Environment. 
 ```
 ### Use 'apt-get' to install python3, R 3.5.2, bedtools (v2.27.1) and some basic softwares in Linux-64 system.
 apt-get update && apt-get install -y --no-install-recommends build-essential r-base r-cran-randomforest python3.6 python3-pip python3-setuptools python3-dev git time bash wget make bedtools vim
