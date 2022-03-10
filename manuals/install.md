@@ -44,6 +44,7 @@ Codename:	Core
 (6) bedtools (v2.27.1 and above): The instruction about bedtools can be found in the following link(https://bedtools.readthedocs.io/en/latest/content/installation.html)
 (7) GSL 2.2.1: The instruction about GSL can be found in the following link (https://www.gnu.org/software/gsl/manual/gsl-ref.html)
 After installing the GSL system, users need to add the ~/gsl/lib into the LD_LIBRARY_PATH
+(8) ucsc_tools
 ```
 
 ### Conda Installing Dependencies and Setting Up Environment. 
@@ -55,11 +56,13 @@ conda config --add channels mvdbeek
 conda update conda
 
 ### conda create s3v2_ideas env
-conda create -n s3v2_ideas gsl=2.2.1 python=3 r=3.6 bedtools ucsc_tools numpy scipy multiprocess r-doParallel r-foreach r-data.table
+conda create -n s3v2_ideas
+conda install -n s3v2_ideas gsl=2.2.1 r python=3 ucsc_tools
+conda install -n s3v2_ideas bedtools numpy scipy multiprocess
+conda install -n s3v2_ideas r-doParallel r-foreach r-data.table
 
 ### conda activate s3v2_ideas env
 conda activate s3v2_ideas
-
 ```
 
 
@@ -90,6 +93,11 @@ Rscript -e "install.packages('foreach')"
 # However, it is often not available for users using the public linux servers. 
 # Please contact the Administrator of server to see how to use this package.
 cd /where_you_install_gsl_2_2_1/ && mkdir /where_you_install_gsl_2_2_1/gsl && cd /where_you_install_gsl_2_2_1/gsl && wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.2.1.tar.gz && tar -zxvf gsl-2.2.1.tar.gz && cd /where_you_install_gsl_2_2_1/gsl/gsl-2.2.1 && mkdir /where_you_install_gsl_2_2_1/gsl/gsl && ./configure --prefix=/where_you_install_gsl_2_2_1/gsl/gsl && make && make check && make install 
+
+### ucsc_tools
+# UCSC tools can be downloaded from the following link:
+# http://hgdownload.soe.ucsc.edu/admin/exe/
+# At least bigWigAverageOverBed bedGraphToBigWig need to be added into HOME bin directory
 
 ### Clone the S3V2_IDEAS_ESMP from GitHub.
 cd  /The_folder_you_want_to_install_S3V2_IDEAS_ESMP_package/
