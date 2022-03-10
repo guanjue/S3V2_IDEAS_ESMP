@@ -29,7 +29,8 @@ function binSignal () {
    cd $outdir
    test $? -eq 0 || die "Failed cd $outdir"
 
-   command=$script_dir"bigWigAverageOverBed ${f[3]} ${w4} ${f[0]}.${f[1]}.${f[2]}.tmp"
+   #command=$script_dir"bigWigAverageOverBed ${f[3]} ${w4} ${f[0]}.${f[1]}.${f[2]}.tmp"
+   command="bigWigAverageOverBed ${f[3]} ${w4} ${f[0]}.${f[1]}.${f[2]}.tmp"
    echo $command
    $command
    test $? -eq 0 || die "Failed $command"
@@ -39,7 +40,8 @@ function binSignal () {
 
    if [ ${f[4]+1} ]
       then
-         command=$script_dir"bigWigAverageOverBed ${f[4]} $w4 ${f[0]}.${f[1]}.${f[2]}.control.tmp"
+         #command=$script_dir"bigWigAverageOverBed ${f[4]} $w4 ${f[0]}.${f[1]}.${f[2]}.control.tmp"
+         command="bigWigAverageOverBed ${f[4]} $w4 ${f[0]}.${f[1]}.${f[2]}.control.tmp"
          $command
          test $? -eq 0 || die "Failed $command"
 
