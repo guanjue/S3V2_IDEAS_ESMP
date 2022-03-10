@@ -12,5 +12,3 @@ conda install -n s3v2_ideas bedtools numpy scipy multiprocess
 conda install -n s3v2_ideas r-doParallel r-foreach r-data.table
 
 conda activate s3v2_ideas
-
-
