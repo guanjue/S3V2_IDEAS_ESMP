@@ -17,8 +17,8 @@ function get_bw {
 
     sort -k1,1 -k2,2n ${bedgraph_file} > ${bedgraph_file}.pksort.bedgraph
     test $? -eq 0 || die "Failed to sort ${bedgraph_file}"
-    #$SCRIPTDIR'bedGraphToBigWig' ${bedgraph_file}.pksort.bedgraph ${GENOMESIZES} ${bedgraph_file}.bw
-    bedGraphToBigWig ${bedgraph_file}.pksort.bedgraph ${GENOMESIZES} ${bedgraph_file}.bw
+    $SCRIPTDIR'bedGraphToBigWig' ${bedgraph_file}.pksort.bedgraph ${GENOMESIZES} ${bedgraph_file}.bw
+    #bedGraphToBigWig ${bedgraph_file}.pksort.bedgraph ${GENOMESIZES} ${bedgraph_file}.bw
     test $? -eq 0 || die "Failed to convert ${bedgraph_file} to bigwig"
     mv ${bedgraph_file}.bw $OUTDIR
     test $? -eq 0 || die "Failed to move ${bedgraph_file}"
