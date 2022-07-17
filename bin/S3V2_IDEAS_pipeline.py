@@ -1,5 +1,5 @@
 import os
-import numpy as np
+##import numpy as np
 import subprocess
 from subprocess import call
 import sys
@@ -16,7 +16,7 @@ def add2log(info, log_file):
 	log.close()
 
 def read2d_array(filename,dtype_used):
-	import numpy as np
+	#import numpy as np
 	data=open(filename,'r')
 	data0=[]
 	for records in data:
@@ -27,7 +27,7 @@ def read2d_array(filename,dtype_used):
 	return(data0)
 
 def read1d_array(filename,dtype_used):
-	import numpy as np
+	#import numpy as np
 	data=open(filename,'r')
 	data0=[]
 	for records in data:

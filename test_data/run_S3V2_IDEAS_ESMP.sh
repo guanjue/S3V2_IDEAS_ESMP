@@ -1,19 +1,19 @@
 ### required inputs
 ###### the absolute path to the bin folder
-script_dir='/app/S3V2_IDEAS_ESMP/bin/'
+script_dir='/Users/guanjuexiang/Documents/projects/S3V2_IDEAS_ESMP/bin/'
 ###### your output folder
-output_dir='/app/S3V2_IDEAS_ESMP/test_data/outputs/'
+output_dir='/Users/guanjuexiang/Documents/projects/S3V2_IDEAS_ESMP/test_data/outputs/'
 ###### the absolute path to the your modified "metadata.for_master_peak_calls.txt" file
-metadata='/app/S3V2_IDEAS_ESMP/test_data/metadata.forEScall.txt'
+metadata='/Users/guanjuexiang/Documents/projects/S3V2_IDEAS_ESMP/test_data/metadata.forEScall.txt'
 ###### The output name
 id_name='test_S3V2_IDEAS_pipeline'
 
 ###### genome
 GENOME='mm10'
 ###### genome size (can be found in the "S3V2_IDEAS_ESMP/genomesize/" folder)
-GENOMESIZES='/app/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
+GENOMESIZES='/Users/guanjuexiang/Documents/projects/S3V2_IDEAS_ESMP/genomesize/mm10.chrom.chr11.fortest.sizes'
 ###### blacklist (can be found in the "S3V2_IDEAS_ESMP/blacklist/" folder)
-BLACK='/app/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
+BLACK='/Users/guanjuexiang/Documents/projects/S3V2_IDEAS_ESMP/blacklist/mm10-blacklist.v2.bed'
 
 ###### number of threads in system
 ###### When the number of threads is too large, the multi-threads in python3 may fail. So it is more stable to keep it below 4. 

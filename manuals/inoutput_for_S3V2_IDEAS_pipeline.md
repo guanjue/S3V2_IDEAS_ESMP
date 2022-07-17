@@ -135,8 +135,13 @@ drwxrws--- 2 gzx103 gzx103_collab 4.0K Sep  8 04:02 Tracks
 ##### (1) The S3V2 normalized average read counts will be save in the "test_S3V2_IDEAS_package_bws_RC" folder
 ##### (2) The -log10(p-value) based on S3norm normalized average read counts will be save in the "test_S3V2_IDEAS_package_bws_NBP" folder
 ##### (3) The signal composition of the epigenetic state will be the "test_S3V2_IDEAS_package.pdf"
-##### (4) The genome segmentation will be saved in "test_S3V2_IDEAS_package_IDEAS_output/Tracks/" folder. These bigBed files can be loaded into UCSC genome browser as track hub by the "hub_test_S3V2_IDEAS_pipeline.txt" file in the "Tracks/" folder.
-##### (5) If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_package.cCRE.M.bed" file
+##### (4) The frequency, mean and variance parameters for each epigenetic states will be the "test_S3V2_IDEAS_package.para" file
+##### The state signal composition matrix can be easily extract from R by the following command:
+s = read.table('test_S3V2_IDEAS_package.para', header=T, sep=' ', comment.char='~')
+s_signal_mat = s[,2:(num_of_features+1)] / s[,1]
+
+##### (5) The genome segmentation will be saved in "test_S3V2_IDEAS_package_IDEAS_output/Tracks/" folder. These bigBed files can be loaded into UCSC genome browser as track hub by the "hub_test_S3V2_IDEAS_pipeline.txt" file in the "Tracks/" folder.
+##### (6) If there is one epigenetic feature, a master peak list will be saved as the "test_S3V2_IDEAS_package.cCRE.M.bed" file
 ```
 
 
