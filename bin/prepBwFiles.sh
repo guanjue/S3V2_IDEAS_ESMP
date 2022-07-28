@@ -107,6 +107,9 @@ test $? -eq 0 || die "failed: to create default control"
 #convert bw to bedgraphs
 #read metadata file for bigwigs and control bigwigs
 i=0
+if [ $nthreads -gt 1 ]; then
+   nthreads=$(($nthreads-1))
+fi
 while read -r line 
    do
    binSignal "$line" $OUTDIR $WORKFLOWDIR &
