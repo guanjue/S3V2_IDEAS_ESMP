@@ -121,7 +121,7 @@ while read -r line
    #fi
 done < $METADATA
 
-wait
+#wait
 #when all threads finished clean up
 rm tmpControl.bed
 rm *.tmp
