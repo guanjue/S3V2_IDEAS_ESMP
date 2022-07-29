@@ -112,12 +112,13 @@ if [ $nthreads -gt 1 ]; then
 fi
 while read -r line 
    do
-   binSignal "$line" $OUTDIR $WORKFLOWDIR &
-   ((i++))
-   if [ $i -ge $nthreads ]; then
-      wait
-      i=0
-   fi
+   binSignal "$line" $OUTDIR $WORKFLOWDIR
+   #binSignal "$line" $OUTDIR $WORKFLOWDIR &
+   #((i++))
+   #if [ $i -ge $nthreads ]; then
+   #   wait
+   #   i=0
+   #fi
 done < $METADATA
 
 wait
