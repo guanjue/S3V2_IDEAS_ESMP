@@ -13,8 +13,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/admin/gsl/gsl/gsl/lib/
 pip3 install numpy
 pip3 install scipy
 pip3 install multiprocess
-### install R lib
-R
+### install R lib in R
+# open R in termianl
 install.packages('data.table')
 install.packages('doParallel')
 install.packages('foreach')
