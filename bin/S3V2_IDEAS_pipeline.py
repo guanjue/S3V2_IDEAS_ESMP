@@ -1,5 +1,5 @@
 import os
-##import numpy as np
+import numpy as np
 import subprocess
 from subprocess import call
 import sys

@@ -1,10 +1,5 @@
 ### start a AWS EC2 instance with Debian system (at least 4CUP and 32GB mem)
-
-### 
-
-
-
-### 
+### apt-get install packages 
 sudo apt-get update
 ### install 
 sudo apt-get install -y --no-install-recommends build-essential r-base r-cran-randomforest python3.6 python3-pip python3-setuptools python3-dev git time bash wget make bedtools vim
@@ -24,10 +19,14 @@ install.packages('data.table')
 install.packages('doParallel')
 install.packages('foreach')
 
-### install S3V2-IDEAS
+### git clone S3V2-IDEAS
 mkdir /home/admin/app
 mkdir /home/admin/app/git
 cd /home/admin/app/git
 git clone https://github.com/guanjue/S3V2_IDEAS_ESMP.git
 
-### 
+### test run
+cd /home/admin/app/git/S3V2_IDEAS_ESMP/test_data
+time bash run_S3V2_IDEAS_ESMP_AWS.sh
+
+
