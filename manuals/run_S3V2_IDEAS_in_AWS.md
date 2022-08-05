@@ -1,4 +1,4 @@
-# Running S3V2-IDEAS in operating system set in Docker
+# Running S3V2-IDEAS in operating system set in AWS
 
 ### Outline
 **[(1) Install gsl python and R and used library](#Install-gsl-python-and-R-and-used-library.)**<br>
@@ -7,7 +7,7 @@
 
 
 ####
-
+## S3V2-IDEAS require to use the AWS Debian system with the default settings to run
 ## Install gsl python and R and used library
 ```
 ### start a AWS EC2 instance with Debian system (at least 4CUP and 32GB mem)
