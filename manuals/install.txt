@@ -37,7 +37,7 @@ Codename:	Core
 ### Dependencies are as follows:
 ```
 (1) python3 (https://www.python.org/download/releases/3.0/)
-(2) python dependencies: 'numpy_1.13.3', 'scipy_0.19.1', 'multiprocess_0.70.11.1' & later versions
+(2) python dependencies: 'numpy_1.13.3', 'scipy_0.19.1', 'multiprocess_0.70.11.1', 'pandas_1.4.3' & later versions
 (3) R (https://www.r-project.org/): The pipeline should work in the latest version of R. We have also tested other versions of R and the pipeline should also work in the following versions: 3.5.2; 3.6.2; 4.0.0
 (4) R dependencies: 'doParallel_1.0.16', 'foreach_1.4.8', 'data.table_1.12.0' & later versions
 (5) gawk
