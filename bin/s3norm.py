@@ -178,9 +178,9 @@ def NewtonRaphsonMethod(sig1_pk, sig1_bg, sig2_pk, sig2_bg, upperlim, A,B, metho
 ### s3norm
 def s3norm(sig1_wg_raw, sig2_wg_raw, sig2_output_name, NTmethod, B_init, fdr_thresh, rank_lim, upperlim, lowerlim, p_method, common_pk_binary, common_bg_binary, cross_mark):
 	### read whole genome signals
-	sig1_raw = pd.read_csv(sig1_wg_raw, sep='\t')
+	sig1_raw = pd.read_csv(sig1_wg_raw, sep='\t', header=None)
 	sig1_raw = np.array(sig1_raw)
-	sig2_raw = pd.read_csv(sig2_wg_raw, sep='\t')
+	sig2_raw = pd.read_csv(sig2_wg_raw, sep='\t', header=None)
 	sig2_raw = np.array(sig2_raw)
 
 	### check if the bedgraph files have the same coordinates
