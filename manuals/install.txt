@@ -55,6 +55,7 @@ apt-get update && apt-get install -y --no-install-recommends build-essential r-b
 pip3 install numpy --user
 pip3 install scipy --user
 pip3 install multiprocess --user
+pip3 install pandas --user
 ### Version of the python modules works for our operating system:
 ### numpy_1.13.3 scipy_0.19.1     multiprocess_0.70.11.1
 ### Other versions especially the latest version of the python modules should works as well

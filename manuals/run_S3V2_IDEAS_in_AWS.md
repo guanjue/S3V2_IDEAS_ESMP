@@ -28,6 +28,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/admin/gsl/gsl/gsl/lib/
 pip3 install numpy
 pip3 install scipy
 pip3 install multiprocess
+pip3 install pandas
 ### install R lib
 R
 install.packages('data.table')
