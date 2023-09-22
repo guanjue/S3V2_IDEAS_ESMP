@@ -14,7 +14,7 @@ get_z = function(x){
 ### get fdr
 get_fdr = function(x){
         z = get_z(x)
-        zp = pnorm(-abs(z))
+        zp = pnorm(-(z))
         zpfdr = p.adjust(zp)
         return(zpfdr)
 }
